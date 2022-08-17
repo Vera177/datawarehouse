@@ -1,0 +1,36 @@
+{
+  "name": "datawarehouse",
+  "version": "1.0.0",
+  "description": "4th proyect of the Acamica's online course full stack web developer",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Vera177/datawarehouse.git"
+  },
+  "keywords": [
+    "proyect",
+    "monolito",
+    "mongo",
+    "uikit",
+    "database"
+  ],
+  "author": "Vera Orduna",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Vera177/datawarehouse/issues"
+  },
+  "homepage": "https://github.com/Vera177/datawarehouse#readme",
+  "dependencies": {
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "mongoose": "^6.5.2"
+  },
+  "devDependencies": {
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.19"
+  }
+}
