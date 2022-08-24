@@ -14,6 +14,19 @@ class RolesController {
             return res.status(500).json(error);
         }
     }
+
+    static async getAll(req, res) {
+        try {
+            const roles = await roleModel.find();
+            const data = roles.map((role => ({id: role._id, name: role.name})));
+            return res.status(200).json({
+                status: 200,
+                data
+            });
+        } catch (error) {
+            return res.status(500).json(error);
+        }
+    }
 }
 
 module.exports = RolesController;
