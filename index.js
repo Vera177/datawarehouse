@@ -16,6 +16,7 @@ app.post('/role', RolesController.create);
 app.get('/role', RolesController.getAll);
 
 app.post('/user', Usercontroller.create);
+app.get('/user', Usercontroller.getAll);
 
 mongoose.Promise = global.Promise;
 const userPasswordDatabase = (config.database.user || config.database.password) && `${config.database.user}:${config.database.password}@`
