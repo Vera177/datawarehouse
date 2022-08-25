@@ -25,6 +25,30 @@ class Usercontroller {
             return res.status(500).json(error);
         }
     }
+
+    static async getAll(req, res){
+        try {
+            const users = await userModel.find().populate('roles_id')
+            const data = users.map(user => {
+                return {
+                    id: user._id,
+                    firstname: user.firstname,
+                    lastname: user.lastname,
+                    email: user.email,
+                    role: {
+                        id: user.roles_id._id,
+                        name: user.roles_id.name
+                    }
+                }
+            });
+            return res.json({
+                status: 200,
+                data
+            })
+        } catch (error) {
+            return res.status(500).json(error);
+        }
+    }
 }
 
 module.exports = Usercontroller;
