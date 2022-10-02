@@ -26,7 +26,7 @@ class Usercontroller {
         }
     }
 
-    static async getAll(req, res){
+    static async getAll(req, res) {
         try {
             const users = await userModel.find().populate('roles_id')
             const data = users.map(user => {
@@ -47,6 +47,30 @@ class Usercontroller {
             })
         } catch (error) {
             return res.status(500).json(error);
+        }
+    }
+
+    static async login(req, res) {
+        const { email, password } = req.body;
+        try {
+            const user = await userModel.findOne({ email });
+            if (!user) {
+                throw { status: 401, message: 'Usuario no encontrado' };
+            }
+            user.comparePassword(password, (error, match) => {
+                if(!match) {
+                    throw { status: 401, message: 'Contraseña invalida' };
+                }
+            });
+            return res.json({
+                status: 200,
+                token: 'token'
+            });
+        } catch (error) {
+            return res.status(error.status || 500).json({
+                status: error.status || 500,
+                message: error.message || 'Internal server error'
+            });
         }
     }
 }
