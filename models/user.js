@@ -20,7 +20,7 @@ schema.pre('save', function(next) {
 
 schema.methods.comparePassword = function(plaintext, callback) {
     return new Promise((resolve, reject) => {
-        return resolve(null, bcrypt.compareSync(plaintext, this.password));
+        return resolve(bcrypt.compareSync(plaintext, this.password));
     })
 }
 
