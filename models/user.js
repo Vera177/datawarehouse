@@ -21,7 +21,7 @@ schema.pre('save', function(next) {
 schema.methods.comparePassword = function(plaintext, callback) {
     return new Promise((resolve, reject) => {
         return resolve(bcrypt.compareSync(plaintext, this.password));
-    })
+    });
 }
 
 module.exports = mongoose.model('Users', schema);
