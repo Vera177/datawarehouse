@@ -20,6 +20,13 @@
   ],
   "author": "Vera Orduna",
   "license": "ISC",
+  "browserslist": [
+    "ie >= 11",
+    "last 2 Chrome versions",
+    "last 2 Firefox versions",
+    "last 2 Opera versions",
+    "last 2 Safari versions"
+  ],
   "bugs": {
     "url": "https://github.com/Vera177/datawarehouse/issues"
   },
