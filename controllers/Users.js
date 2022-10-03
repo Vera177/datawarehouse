@@ -57,11 +57,10 @@ class Usercontroller {
             if (!user) {
                 throw { status: 401, message: 'Usuario no encontrado' };
             }
-            user.comparePassword(password, (error, match) => {
-                if(!match) {
-                    throw { status: 401, message: 'Contraseña invalida' };
-                }
-            });
+            const match = await user.comparePassword(password);
+            if (!match) {
+                throw { status: 401, message: 'Contraseña invalida' };
+            }
             return res.json({
                 status: 200,
                 token: 'token'
