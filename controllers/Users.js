@@ -55,11 +55,11 @@ class Usercontroller {
         try {
             const user = await userModel.findOne({ email });
             if (!user) {
-                throw { status: 401, message: 'Usuario no encontrado' };
+                throw { status: 401, message: 'Usuario y/o contraseña invalidos' };
             }
             const match = await user.comparePassword(password);
             if (!match) {
-                throw { status: 401, message: 'Contraseña invalida' };
+                throw { status: 401, message: 'Usuario y/o contraseña invalidos' };
             }
             return res.json({
                 status: 200,
