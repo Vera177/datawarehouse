@@ -19,7 +19,7 @@ module.exports = (_env, argv) => {
       client: [
         './js/index.js',
         './sass/index.scss',
-        'babel-polyfill'
+         '@babel/polyfill'
       ]
     },
     output: {
@@ -27,10 +27,12 @@ module.exports = (_env, argv) => {
       filename: isDebug ? 'js/[name].js' : 'js/[name].[fullhash:8].js'
     },
     devServer: {
-      contentBase: path.join(__dirname, './dist'),
       port: 3001,
       hot: true,
-      writeToDisk: true,
+      devMiddleware: {
+        writeToDisk: true,
+      },
+      static : {directory: path.join(__dirname, './dist')},
       proxy: {
         '/api': {
            target: {
