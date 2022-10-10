@@ -4,20 +4,15 @@ const mongoose = require('mongoose');
 
 const config = require('./config');
 
-const RolesController = require('./controllers/Roles');
-const Usercontroller = require('./controllers/Users');
-
 const app = express();
+const apiPath = '/api';
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.post('/role', RolesController.create);
-app.get('/role', RolesController.getAll);
+app.use('/', express.static('dist'));
 
-app.post('/user', Usercontroller.create);
-app.get('/user', Usercontroller.getAll);
-app.post('/login', Usercontroller.login);
+app.use(apiPath, require('./routes'));
 
 mongoose.Promise = global.Promise;
 const userPasswordDatabase = (config.database.user || config.database.password) && `${config.database.user}:${config.database.password}@`
