@@ -14,6 +14,15 @@ app.use('/', express.static('dist'));
 
 app.use(apiPath, require('./routes'));
 
+if(config.env === 'development'){
+    const swaggerUi = require('swagger-ui-express');
+    const YAML = require('yamljs');
+    
+    app.use(require('morgan')('dev'));
+    const swaggerDocument = YAML.load('./docs/swagger.yaml');
+    app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+}
+
 mongoose.Promise = global.Promise;
 const userPasswordDatabase = (config.database.user || config.database.password) && `${config.database.user}:${config.database.password}@`
 mongoose.connect(
