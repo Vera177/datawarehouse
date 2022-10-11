@@ -4,6 +4,8 @@
   "description": "4th proyect of the Acamica's online course full stack web developer",
   "main": "index.js",
   "scripts": {
+    "build": "cross-env NODE_ENV=production webpack --config=webpack.config.js --mode=production",
+    "build:dev": "cross-env NODE_ENV=development webpack serve --config=webpack.config.js --open --mode=development",
     "dev": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -20,19 +22,44 @@
   ],
   "author": "Vera Orduna",
   "license": "ISC",
+  "browserslist": [
+    "ie >= 11",
+    "last 2 Chrome versions",
+    "last 2 Firefox versions",
+    "last 2 Opera versions",
+    "last 2 Safari versions"
+  ],
   "bugs": {
     "url": "https://github.com/Vera177/datawarehouse/issues"
   },
   "homepage": "https://github.com/Vera177/datawarehouse#readme",
   "dependencies": {
+    "@babel/polyfill": "^7.12.1",
     "bcrypt": "^5.0.1",
-    "dotenv": "^16.0.1",
+    "cross-env": "^7.0.3",
+    "dotenv": "^16.0.3",
     "express": "^4.18.1",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.5.2"
   },
   "devDependencies": {
+    "@babel/core": "^7.19.3",
+    "@babel/preset-env": "^7.19.3",
+    "babel-loader": "^8.2.5",
+    "clean-webpack-plugin": "^4.0.0",
+    "css-loader": "^6.7.1",
+    "handlebars": "^4.7.7",
+    "handlebars-loader": "^1.7.2",
+    "html-webpack-plugin": "^5.5.0",
+    "mini-css-extract-plugin": "^2.6.1",
     "morgan": "^1.10.0",
-    "nodemon": "^2.0.19"
+    "nodemon": "^2.0.19",
+    "sass": "^1.55.0",
+    "sass-loader": "^13.0.2",
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0",
+    "webpack-dev-server": "^4.11.1",
+    "swagger-ui-express": "^4.3.0",
+    "yamljs": "^0.3.0"
   }
 }
