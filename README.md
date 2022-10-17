@@ -36,11 +36,11 @@ npm i
 ```
 
 _Luego ejecutaremos los siguientes comandos para levantar el servidor del lado del frontend y luego del lado del backend_
-
+En una terminal escribimos:
 ```
 npm run dev
 ```
-
+Simultáneamente abrimos otra terminal y escribimos:
 ```
 npm run build:dev
 ```
