@@ -1,10 +1,8 @@
 @import "./partials/footer.scss";
 @import "./partials/header.scss";
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap');
 
 body {
     background-color: none;
-}
-
-div {
-    background-color: yellow;
+    font-family: 'Open Sans', sans-serif;
 }
