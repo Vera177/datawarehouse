@@ -10,8 +10,8 @@ btnSubmit.addEventListener("click", (e) => {
         method: "POST",
         body: { email: txtUser.value, password: txtPassword.value },
     }).then((res) => {
-        localStorage.setItem("ejercicio_tokenasas", res.token);
-        window.location.replace('/news.html');
+        localStorage.setItem("ejercicio_token", res.token);
+        window.location.replace('/index.html');
     }).catch(err => {
       console.log(err);
     });
