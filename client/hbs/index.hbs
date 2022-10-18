@@ -1,18 +1,49 @@
 {{>partials/head}}
-  {{> partials/header}}
-  <div class="content">
-    <form>
-      <div>
-        <label for="username">Usuario</label>
-        <input type="text" id="username" name="username">
-      </div>
-      <div>
-        <label for="password">Contraseña</label>
-        <input type="password" id="password" name="password">
-      </div>
+{{> partials/header}}
+<h1>Contactos</h1>
+<div class="uk-margin">
+  <form class="uk-search uk-search-default">
+    <span class="uk-search-icon-flip" uk-search-icon></span>
+    <input type="search" class="uk-search-input" placeholder="Search">
+  </form>
+</div>
 
-      <button type="submit" id="submit">Ingresar</button>
-    </form>
-  </div>
-  {{> partials/footer}}
+<table class="uk-table">
+  <thead>
+    <tr>
+      <th>checkmark????</th>
+      <th>Contacto</th>
+      <th>País/Región</th>
+      <th>Compañía</th>
+      <th>Cargo</th>
+      <th>Canal preferido</th>
+      <th>Interés</th>
+      <th>Acciones</th>
+
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Table Data</td>
+      <td>Table Data</td>
+      <td>Table Data</td>
+      <td>Table Data</td>
+      <td>Table Data</td>
+      <td>Table Data</td>
+      <td>Table Data</td>
+      <td>Table Data</td>
+    </tr>
+    <tr>
+      <td>Table Data</td>
+      <td>Table Data</td>
+      <td>Table Data</td>
+      <td>Table Data</td>
+      <td>Table Data</td>
+      <td>Table Data</td>
+      <td>Table Data</td>
+      <td>Table Data</td>
+    </tr>
+  </tbody>
+</table>
+{{> partials/footer}}
 {{>partials/foot}}
