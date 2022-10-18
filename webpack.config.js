@@ -103,6 +103,14 @@ module.exports = (_env, argv) => {
         filename: 'news.html',
         template: path.resolve(__dirname, './client/hbs/news.hbs')
       }),
+      new HtmlWebpackPlugin({
+        title: 'Data warehouse',
+        inject: true,
+        minify: false,
+        scriptLoading: 'blocking',
+        filename: 'login.html',
+        template: path.resolve(__dirname, './client/hbs/login.hbs')
+      }),
       new MiniCssExtractPlugin({
         filename: isDebug ? 'css/[name].css' : 'css/[name].[fullhash:5].css',
         chunkFilename: isDebug ? 'css/[name].chunk.css' : 'css/[name].[fullhash:5].chunk.css'
