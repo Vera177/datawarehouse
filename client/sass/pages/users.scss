@@ -1,0 +1,27 @@
+.Users {
+    border: 1px solid black;
+    width: 50%;
+    margin: 8% auto;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    padding: 2%;
+
+    .createUser{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .createUser > .container {
+        display: flex;
+        justify-content: space-between;
+
+        label{
+            padding-right: 25px;
+        }
+    }
+
+    .createUser > #create{
+        align-self: flex-end;
+    }
+}
