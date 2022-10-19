@@ -1,5 +1,6 @@
 const userModel = require('../models/user');
 const roleModel = require('../models/roles');
+const jwtHelper = require('../helpers/jwt');
 
 class Usercontroller {
 
@@ -53,7 +54,7 @@ class Usercontroller {
     static async login(req, res) {
         const { email, password } = req.body;
         try {
-            const user = await userModel.findOne({ email });
+            const user = await userModel.findOne({ email }).populate('roles_id');
             if (!user) {
                 throw { status: 401, message: 'Usuario y/o contraseña invalidos' };
             }
@@ -61,10 +62,19 @@ class Usercontroller {
             if (!match) {
                 throw { status: 401, message: 'Usuario y/o contraseña invalidos' };
             }
+            if(user.roles_id.name != 'admin'){
+                throw {status: 401, message: "Hello admin"}
+            }
+            const token = jwtHelper.encode({
+                checkUser: {
+                    id: user._id,
+                    role: user.roles_id
+                }
+            });
             return res.json({
                 status: 200,
-                token: 'token'
-            });
+                token: token
+            });            
         } catch (error) {
             return res.status(error.status || 500).json({
                 status: error.status || 500,
