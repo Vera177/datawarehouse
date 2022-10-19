@@ -1,0 +1,23 @@
+.space{
+    margin: 2%;
+}
+
+.welcome{
+    border: 1px solid black;
+    box-sizing: border-box;
+    width: 50%;
+    margin: 8% auto;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    padding: 2%;
+
+    .login{
+        display: flex;
+        flex-direction: column;
+    
+        #submit{
+            align-self: flex-end;
+        }
+    }
+}
