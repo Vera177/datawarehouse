@@ -23,11 +23,19 @@
     margin: 0 5%;
     text-align: center;
 
-    >thead>tr>th{
-        width: 5%;
+    >thead{
+        padding: 1%;
+
+        tr>th{
+            width: 5%;
+        }
     }
 
-    >tbody>tr>td{
-        width: 5%;
+    >tbody{
+        padding: 1%;
+
+        tr>td{
+            width: 5%;
+        }
     }
 }
