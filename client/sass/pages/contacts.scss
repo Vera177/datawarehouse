@@ -1,3 +1,30 @@
+.uk-margin{
+    width: 50%;
+
+    .uk-search-default{
+        width: 88%;
+    }
+}
+
 .contactsSection{
     margin: 2% 1%;
+
+    .titleContacts{
+        font-weight: bold;
+        font-family: 'Open Sans', sans-serif;
+    }
+
+    .uk-search-input{
+        border-radius: 5px;
+    }
+
+    .iconSearch{
+        border: 1px solid #e5e5e5;
+        padding-left: 9px;
+        padding-right: 9px;
+        padding-top: 9px;
+        padding-bottom: 9px;
+        color: #1d72C2;
+        border-radius: 5px;
+    }
 }
