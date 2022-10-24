@@ -28,3 +28,13 @@
         border-radius: 5px;
     }
 }
+
+.uk-table>thead>tr>th, .uk-table>tbody>tr>td{
+    font-family: 'Open Sans', sans-serif;
+    color: #000000;
+    font-size: inherit;
+}
+
+.uk-table{
+    border: 1px solid #e5e5e5;
+}
