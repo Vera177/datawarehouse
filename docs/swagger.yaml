@@ -6,7 +6,7 @@ info:
     name: Vera Orduna
   version: 1.0.0
 servers:
-  - url: http://localhost:3000
+  - url: http://localhost:3000/api/
 tags:
   - name: Usuarios
     description: Obtener, crear, actualizar producto por id, obtener por id y eliminar por id un usuario
@@ -16,148 +16,137 @@ tags:
     description: Obtener, crear, actualizar producto por id, obtener por id y eliminar por id una Compañía
   - name: Contactos
     description: Obtener, crear, actualizar producto por id, obtener por id y eliminar por id una Región/Ciudad
-# paths:
-#   /user/login:
-#     post:
-#       tags:
-#         - Usuarios
-#       summary: Endpoint para login
-#       requestBody:
-#         content:
-#           application/json:
-#             schema:
-#               type: object
-#               properties:
-#                 user_name:
-#                   type: string
-#                   example: administrator                
-#                 email:
-#                   type: string
-#                   example: administrator@email.com
-#                   required: true
-#                 password: 
-#                   type: string
-#                   example: admin
-#                   required: true                
-#       responses:
-#         200:
-#           description: Login exitoso
-#           content:
-#             application/json:
-#               schema:
-#                 type: object
-#                 properties:
-#                   status:
-#                     type: number
-#                     example: 200
-#                   token:
-#                     type: string
-#                   admin:
-#                     type: boolean
-#         401:
-#           description: Usuario no valido
-#           content:
-#             application/json:
-#               schema:
-#                 type: object
-#                 properties:
-#                   status:
-#                     type: number
-#                     example: 401
-#                   message:
-#                     type: string
-#                     example: Usuario o contraseña invalido
-#         500:
-#           description: Internal server error
-#           content:
-#             application/json:
-#               schema:
-#                 $ref: '#/components/schemas/error'
-#   /user:
-#     post:
-#       tags:
-#         - Usuarios
-#       summary: Endpoint para crear usuario
-#       requestBody:
-#         content:
-#           application/json:
-#             schema:
-#               type: object
-#               properties:
-#                 user_name:
-#                   type: string
-#                   example: test
-#                   required: true
-#                 name:
-#                   type: string
-#                   example: testing
-#                   required: true
-#                 email:
-#                   type: string
-#                   example: test@test.com
-#                   required: true
-#                 password: 
-#                   type: string
-#                   example: 123456
-#                   required: true
-#                 phone: 
-#                   type: string
-#                   example: 42518888
-#                   required: true
-#                 address:
-#                   type: string
-#                   example: Avenida siempre viva 123
-#                   required: true
-#                 roles_id:
-#                   type: number
-#                   example: 1
-#       responses:
-#         201:
-#           description: Usuario creado con exito
-#           content:
-#             application/json:
-#               schema:
-#                 type: object
-#                 properties:
-#                   status:
-#                     type: number
-#                     example: 201
-#                   message:
-#                     type: string
-#                     example: Usuario creado!
-#         500:
-#           description: Internal server error
-#           content:
-#             application/json:
-#               schema:
-#                 $ref: '#/components/schemas/error'
-#     get:
-#       tags:
-#         - Usuarios
-#       summary: Endpoint para obtener usuario
-#       responses:
-#         200:
-#           description: Obtiene todos los usuarios
-#           content:
-#             application/json:
-#               schema:
-#                 type: object
-#                 properties:
-#                   status: 
-#                     type: 200
-#                     example: 200
-#                   data:
-#                     type: array
-#                     items:
-#                       $ref: '#/components/schemas/user'
-#         500:
-#           description: Internal server error
-#           content:
-#             application/json:
-#               schema:
-#                 $ref: '#/components/schemas/error'
-#       security:
-#         - Authorization: []
+paths:
+  /login:
+    post:
+      tags:
+        - Usuarios
+      summary: Endpoint para login
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:              
+                email:
+                  type: string
+                  example: test@test.com
+                  required: true
+                password: 
+                  type: string
+                  example: 12345678
+                  required: true                
+      responses:
+        200:
+          description: Login exitoso
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: number
+                    example: 200
+                  token:
+                    type: string
+                  admin:
+                    type: boolean
+        401:
+          description: Usuario no valido
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: number
+                    example: 401
+                  message:
+                    type: string
+                    example: Usuario o contraseña invalido
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+  /user:
+    post:
+      tags:
+        - Usuarios
+      summary: Endpoint para crear usuario
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                firstname:
+                  type: string
+                  example: testing
+                  required: true
+                lastname:
+                  type: string
+                  example: testing
+                  required: true
+                email:
+                  type: string
+                  example: test@test.com
+                  required: true
+                password: 
+                  type: string
+                  example: 12345678
+                  required: true
+                role:
+                  type: string
+                  example: 6361d486f06640c24f0fe334
+      responses:
+        201:
+          description: Usuario creado con exito
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: number
+                    example: 201
+                  message:
+                    type: string
+                    example: Usuario creado!
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+    get:
+      tags:
+        - Usuarios
+      summary: Endpoint para obtener usuarios
+      responses:
+        200:
+          description: Obtiene todos los usuarios
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: 
+                    type: 200
+                    example: 200
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/user'
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+      security:
+        - Authorization: []
 #   /product/:
 #     get:
 #       tags:
@@ -581,107 +570,101 @@ tags:
 #                 $ref: '#/components/schemas/error'
 #       security:
 #         - Authorization: []
-# components:
-#   schemas:
-#     error:
-#       type: object
-#       properties:
-#         status:
-#           type: number
-#           example: 500
-#         message:
-#           type: string
-#           example: Internal server error
-#     user:
-#       type: object
-#       properties:
-#         id:
-#           type: number
-#           example: 1
-#         user_name:
-#           type: string
-#         name:
-#           type: string
-#         email:
-#           type: string
-#         password: 
-#           type: string
-#         phone: 
-#           type: string
-#         address:
-#           type: string
-#         role:           
-#             $ref: '#/components/schemas/role'
-#     role:
-#       type: object
-#       properties:
-#         id:
-#           type: number
-#           example: 2
-#         name:
-#           type: string
-#           example: user
-#     status:
-#       type: object
-#       properties:
-#         status_id:
-#           type: number
-#           example: 1
-#         name:
-#           type: string
-#           example: Nuevo
-#     pay_method:
-#       type: object
-#       properties:
-#         id:
-#           type: number
-#           example: 1
-#         name:
-#           type: string
-#           example: Efectivo
-#     product:
-#       type: object
-#       properties:
-#         id:
-#           type: number
-#           example: 1
-#         name:
-#           type: string
-#           example: Bagel de Salmon
-#         price:
-#           type: number
-#           example: 425
-#         url_image:
-#           type: string
-#           example: https://www.casanhelp.com.ar/wp-content/uploads/2020/05/bagel-de-salmon-169.jpg
-#         amount:
-#           type: number
-#           example: 1
-#     order:
-#       type: object
-#       properties:
-#         id:
-#           type: number
-#           example: 1
-#         date:
-#           type: string
-#           format: date-time
-#         total:
-#           type: number
-#           example: 1000
-#         user:
-#           $ref: '#/components/schemas/user'
-#         role:           
-#           $ref: '#/components/schemas/role' 
-#         status:
-#           $ref: '#/components/schemas/status' 
-#         pay_method:
-#           $ref: '#/components/schemas/pay_method'
-#         product:
-#           $ref: '#components/schemas/product'
+components:
+  schemas:
+    error:
+      type: object
+      properties:
+        status:
+          type: number
+          example: 500
+        message:
+          type: string
+          example: Internal server error
+    user:
+      type: object
+      properties:
+        id:
+          type: number
+          example: 1
+        firstname:
+          type: string
+        lastname:
+          type: string
+        email:
+          type: string
+        role:           
+            $ref: '#/components/schemas/role'
+    role:
+      type: object
+      properties:
+        id:
+          type: number
+          example: 2
+        name:
+          type: string
+          example: user
+    # status:
+    #   type: object
+    #   properties:
+    #     status_id:
+    #       type: number
+    #       example: 1
+    #     name:
+    #       type: string
+    #       example: Nuevo
+    # pay_method:
+    #   type: object
+    #   properties:
+    #     id:
+    #       type: number
+    #       example: 1
+    #     name:
+    #       type: string
+    #       example: Efectivo
+    # product:
+    #   type: object
+    #   properties:
+    #     id:
+    #       type: number
+    #       example: 1
+    #     name:
+    #       type: string
+    #       example: Bagel de Salmon
+    #     price:
+    #       type: number
+    #       example: 425
+    #     url_image:
+    #       type: string
+    #       example: https://www.casanhelp.com.ar/wp-content/uploads/2020/05/bagel-de-salmon-169.jpg
+    #     amount:
+    #       type: number
+    #       example: 1
+    # order:
+    #   type: object
+    #   properties:
+    #     id:
+    #       type: number
+    #       example: 1
+    #     date:
+    #       type: string
+    #       format: date-time
+    #     total:
+    #       type: number
+    #       example: 1000
+    #     user:
+    #       $ref: '#/components/schemas/user'
+    #     role:           
+    #       $ref: '#/components/schemas/role' 
+    #     status:
+    #       $ref: '#/components/schemas/status' 
+    #     pay_method:
+    #       $ref: '#/components/schemas/pay_method'
+    #     product:
+    #       $ref: '#components/schemas/product'
 
-#   securitySchemes:
-#     Authorization:
-#       type: http
-#       scheme: bearer
-#       bearerFormat: JWT
+securitySchemes:
+  Authorization:
+    type: http
+    scheme: bearer
+    bearerFormat: JWT
