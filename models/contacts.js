@@ -14,15 +14,6 @@ const schema = mongoose.Schema({
     cities_id: {type: mongoose.Schema.Types.ObjectId, ref: 'City'}
 });
 
-schema.pre('save', function(next) {
-    if(!this.isModified('password')) {
-        return next();
-    }
-    const salt = bcrypt.genSaltSync(10);
-    this.password = bcrypt.hashSync(this.password, salt);
-    next();
-});
-
 schema.methods.comparePassword = function(plaintext, callback) {
     return new Promise((resolve, reject) => {
         return resolve(bcrypt.compareSync(plaintext, this.password));
