@@ -5,7 +5,6 @@ const schema = mongoose.Schema({
     lastname: {type: String, require: true},
     email: {type: String, require: true},
     adress: {type: String, require: true},
-    roles_id: {type: mongoose.Schema.Types.ObjectId, ref: 'Roles'},
     company_id: {type: mongoose.Schema.Types.ObjectId, ref: 'Company'},
     occupation_id: {type: mongoose.Schema.Types.ObjectId, ref: 'Occupation'},
     contact_information_id: {type: mongoose.Schema.Types.ObjectId, ref: 'ContactInformation'},
