@@ -1,24 +1,22 @@
 const contactModel = require('../models/contacts');
+const companyModel = require('../models/company');
+const occupationModel = require('../models/occupation');
+const contactInformationModel = require('../models/contactInformation');
+const interestModel = require('../models/interest');
+const cityModel = require('../models/cities');
 
 class Contactcontroller {
 
     static async create(req, res) {
-        const { firstname, lastname, email, password, role } = req.body;
+        const { firstname, lastname, email, adress, company, occupation, contactInformation, interestedPercentage, City } = req.body;
         try {
-            const roleFound = await roleModel.findOne({ _id: role });
-            if (!roleFound) {
-                return res.status(400).json({
-                    status: 400,
-                    error: 'Role ID not found'
-                });
-            }
-            const userCreated = new userModel({
-                firstname, lastname, email, password, roles_id: role
+            const contactCreated = new contactModel({
+                firstname, lastname, email, adress, company_id: company, occupation_id: occupation, contact_information_id: contactInformation, interested_id: interestedPercentage, cities_id: City
             });
-            await userCreated.save();
+            await contactCreated.save();
             return res.status(201).json({
                 status: 201,
-                message: 'User created'
+                message: 'Contact created'
             });
         } catch (error) {
             return res.status(500).json(error);
@@ -27,57 +25,27 @@ class Contactcontroller {
 
     static async getAll(req, res) {
         try {
-            const users = await userModel.find().populate('roles_id')
-            const data = users.map(user => {
-                return {
-                    id: user._id,
-                    firstname: user.firstname,
-                    lastname: user.lastname,
-                    email: user.email,
-                    role: {
-                        id: user.roles_id._id,
-                        name: user.roles_id.name
-                    }
-                }
-            });
+            const data = await contactModel.find().populate('interested_id');
+            // const contacts = await contactModel.populate('Company');
+            // const data = contacts.map(contact => {
+            //     return {
+            //         id: contact._id,
+            //         firstname: contact.firstname,
+            //         lastname: contact.lastname,
+            //         email: contact.email,
+            //         adress: contact.adress,
+            //         company: {
+            //             id: contact.company_id._id,
+            //             name: contact.company_id.name
+            //         }
+            //     }
+            // });
             return res.json({
                 status: 200,
                 data
             })
         } catch (error) {
             return res.status(500).json(error);
-        }
-    }
-
-    static async login(req, res) {
-        const { email, password } = req.body;
-        try {
-            const user = await userModel.findOne({ email }).populate('roles_id');
-            if (!user) {
-                throw { status: 401, message: 'Usuario y/o contraseña invalidos' };
-            }
-            const match = await user.comparePassword(password);
-            if (!match) {
-                throw { status: 401, message: 'Usuario y/o contraseña invalidos' };
-            }
-            if(user.roles_id.name != 'admin'){
-                throw {status: 401, message: "Hello admin"}
-            }
-            const token = jwtHelper.encode({
-                checkUser: {
-                    id: user._id,
-                    role: user.roles_id
-                }
-            });
-            return res.json({
-                status: 200,
-                token: token
-            });            
-        } catch (error) {
-            return res.status(error.status || 500).json({
-                status: error.status || 500,
-                message: error.message || 'Internal server error'
-            });
         }
     }
 }
