@@ -4,7 +4,6 @@ const schema = mongoose.Schema({
     firstname: {type: String, require: true},
     lastname: {type: String, require: true},
     email: {type: String, require: true},
-    password: {type: String, require: true},
     adress: {type: String, require: true},
     roles_id: {type: mongoose.Schema.Types.ObjectId, ref: 'Roles'},
     company_id: {type: mongoose.Schema.Types.ObjectId, ref: 'Company'},
