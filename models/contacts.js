@@ -14,10 +14,4 @@ const schema = mongoose.Schema({
     cities_id: {type: mongoose.Schema.Types.ObjectId, ref: 'City'}
 });
 
-schema.methods.comparePassword = function(plaintext, callback) {
-    return new Promise((resolve, reject) => {
-        return resolve(bcrypt.compareSync(plaintext, this.password));
-    });
-}
-
 module.exports = mongoose.model('Contacts', schema);
