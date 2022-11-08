@@ -1,22 +1,17 @@
-const contactModel = require('../models/contacts');
-const companyModel = require('../models/company');
 const occupationModel = require('../models/occupation');
-const contactInformationModel = require('../models/contactInformation');
-const interestModel = require('../models/interest');
-const cityModel = require('../models/cities');
 
-class Contactcontroller {
+class Occupationcontroller {
 
     static async create(req, res) {
-        const { firstname, lastname, email, adress, company, occupation, contactInformation, interestedPercentage, City } = req.body;
+        const { name } = req.body;
         try {
-            const contactCreated = new contactModel({
-                firstname, lastname, email, adress, company_id: company, occupation_id: occupation, contact_information_id: contactInformation, interested_id: interestedPercentage, cities_id: City
+            const contactCreated = new occupationModel({
+                name
             });
             await contactCreated.save();
             return res.status(201).json({
                 status: 201,
-                message: 'Contact created'
+                message: 'Occupation created'
             });
         } catch (error) {
             return res.status(500).json(error);
@@ -25,7 +20,8 @@ class Contactcontroller {
 
     static async getAll(req, res) {
         try {
-            const contacts = await contactModel.find().populate('company_id').populate('cities_id').populate('occupation_id').populate('contact_information_id').populate('interested_id');
+            const data = await contactModel.find().populate('company_id');
+            // const contacts = await contactModel.populate('Company');
             // const data = contacts.map(contact => {
             //     return {
             //         id: contact._id,
@@ -41,7 +37,7 @@ class Contactcontroller {
             // });
             return res.json({
                 status: 200,
-                contacts
+                data
             })
         } catch (error) {
             return res.status(500).json(error);
@@ -49,4 +45,4 @@ class Contactcontroller {
     }
 }
 
-module.exports = Contactcontroller;
+module.exports = Occupationcontroller;
