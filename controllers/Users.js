@@ -62,9 +62,6 @@ class Usercontroller {
             if (!match) {
                 throw { status: 401, message: 'Usuario y/o contraseña invalidos' };
             }
-            if(user.roles_id.name != 'admin'){
-                throw {status: 401, message: "Hello admin"}
-            }
             const token = jwtHelper.encode({
                 checkUser: {
                     id: user._id,
