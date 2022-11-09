@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const jwtMiddleware = require('./middlewares/jwtToken');
+const adminCheckMiddleware = require('./middlewares/adminCheck');
 const RolesController = require('./controllers/Roles');
 const Usercontroller = require('./controllers/Users');
 const ContactsController = require('./controllers/Contacts');
@@ -16,40 +17,42 @@ router.post('/role', RolesController.create);
 router.get('/role', RolesController.getAll);
 
 /* users */
-router.post('/user', Usercontroller.create);
-router.get('/user', jwtMiddleware, Usercontroller.getAll);
+router.post('/user', jwtMiddleware, adminCheckMiddleware, Usercontroller.create);
+router.get('/user', jwtMiddleware, adminCheckMiddleware, Usercontroller.getAll);
+router.get('/user/:id', jwtMiddleware, adminCheckMiddleware, Usercontroller.getById);
 router.post('/login', Usercontroller.login);
 
 /* contacts */
-router.post('/contact', ContactsController.create);
-router.get('/contact', ContactsController.getAll);
+router.post('/contact',  jwtMiddleware, ContactsController.create);
+router.get('/contact',  jwtMiddleware, ContactsController.getAll);
+router.get('/contact/:id',  jwtMiddleware, ContactsController.getById);
 
 /* company */
-router.post('/company', CompanyController.create);
-router.get('/company', CompanyController.getAll);
+router.post('/company',  jwtMiddleware, CompanyController.create);
+router.get('/company',  jwtMiddleware, CompanyController.getAll);
 
 /* occupation */
-router.post('/occupation', Occupationcontroller.create);
-router.get('/occupation', Occupationcontroller.getAll);
+router.post('/occupation',  jwtMiddleware, Occupationcontroller.create);
+router.get('/occupation',  jwtMiddleware, Occupationcontroller.getAll);
 
 /* contact information */
-router.post('/contactinformation', Contactinformationcontroller.create);
-router.get('/contactinformation', Contactinformationcontroller.getAll);
+router.post('/contactinformation',  jwtMiddleware, Contactinformationcontroller.create);
+router.get('/contactinformation',  jwtMiddleware, Contactinformationcontroller.getAll);
 
 /* interest percentage*/
-router.post('/interest', Interestcontroller.create);
-router.get('/interest', Interestcontroller.getAll);
+router.post('/interest',  jwtMiddleware, Interestcontroller.create);
+router.get('/interest',  jwtMiddleware, Interestcontroller.getAll);
 
 /* city */
-router.post('/city', Citycontroller.create);
-router.get('/city', Citycontroller.getAll);
+router.post('/city',  jwtMiddleware, Citycontroller.create);
+router.get('/city',  jwtMiddleware, Citycontroller.getAll);
 
 /* country */
-router.post('/country', Countrycontroller.create);
-router.get('/country', Countrycontroller.getAll);
+router.post('/country',  jwtMiddleware, Countrycontroller.create);
+router.get('/country',  jwtMiddleware, Countrycontroller.getAll);
 
 /* region */
-router.post('/region', Regioncontroller.create);
-router.get('/region', Regioncontroller.getAll);
+router.post('/region',  jwtMiddleware, Regioncontroller.create);
+router.get('/region',  jwtMiddleware, Regioncontroller.getAll);
 
 module.exports = router;
