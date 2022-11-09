@@ -4,15 +4,15 @@ const companyModel = require('../models/company');
 class Companycontroller {
 
     static async create(req, res) {
-        const { name, adress, email, phone, City } = req.body;
+        const { name, adress, email, phone, city } = req.body;
         try {
             const companyCreated = new companyModel({
-                name, adress, email, phone, cities_id: City
+                name, adress, email, phone, cities_id: city
             });
             await companyCreated.save();
             return res.status(201).json({
                 status: 201,
-                message: 'Contact created'
+                message: 'Company created'
             });
         } catch (error) {
             return res.status(500).json(error);
@@ -21,7 +21,7 @@ class Companycontroller {
 
     static async getAll(req, res) {
         try {
-            const data = await contactModel.find().populate('interested_id');
+            const data = await companyModel.find().populate('cities_id');
             // const contacts = await contactModel.populate('Company');
             // const data = contacts.map(contact => {
             //     return {
