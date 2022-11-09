@@ -20,7 +20,7 @@ class Contactinformationcontroller {
 
     static async getAll(req, res) {
         try {
-            const data = await contactModel.find().populate('interested_id');
+            const data = await contactInformationModel.find();
             // const contacts = await contactModel.populate('Company');
             // const data = contacts.map(contact => {
             //     return {
