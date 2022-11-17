@@ -21,6 +21,8 @@ router.get('/role/:id', RolesController.getById);
 router.post('/user', jwtMiddleware, adminCheckMiddleware, Usercontroller.create);
 router.get('/user', jwtMiddleware, adminCheckMiddleware, Usercontroller.getAll);
 router.get('/user/:id', jwtMiddleware, adminCheckMiddleware, Usercontroller.getById);
+router.patch('/user/:id', jwtMiddleware, adminCheckMiddleware, Usercontroller.update);
+router.delete('/user/:id', jwtMiddleware, adminCheckMiddleware, Usercontroller.delete);
 router.post('/login', Usercontroller.login);
 
 /* contacts */

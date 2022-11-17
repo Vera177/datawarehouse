@@ -92,6 +92,30 @@ class Usercontroller {
             return res.status(500).json(error);
         }
     }
+
+    // static async update(req, res){
+    //     try {
+    //         const user = await userModel.updateOne(req.params.id);
+    //         return res.json({
+    //             status: 200,
+    //             data: user
+    //         })
+    //     } catch (error) {
+    //         return res.status(500).json(error);
+    //     }
+    // }
+
+    static async delete(req, res){
+        try {
+            const user = await userModel.deleteOne({ _id: req.params.id});
+            return res.json({
+                status: 200,
+                data: user
+            })
+        } catch (error) {
+            return res.status(500).json(error);
+        }
+    }
 }
 
 module.exports = Usercontroller;
