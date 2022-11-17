@@ -93,17 +93,18 @@ class Usercontroller {
         }
     }
 
-    // static async update(req, res){
-    //     try {
-    //         const user = await userModel.updateOne(req.params.id);
-    //         return res.json({
-    //             status: 200,
-    //             data: user
-    //         })
-    //     } catch (error) {
-    //         return res.status(500).json(error);
-    //     }
-    // }
+    static async update(req, res){
+        const {firstname, lastname, email, password, roles_id} = req.body;
+        try {
+            const user = await userModel.updateOne({ _id: req.params.id},{ $set: {firstname, lastname, email, password, roles_id}});
+            return res.json({
+                status: 200,
+                data: user
+            })
+        } catch (error) {
+            return res.status(500).json(error);
+        }
+    }
 
     static async delete(req, res){
         try {
