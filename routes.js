@@ -15,6 +15,7 @@ const Regioncontroller = require('./controllers/Region');
 /* user's roles*/
 router.post('/role', RolesController.create);
 router.get('/role', RolesController.getAll);
+router.get('/role/:id', RolesController.getById);
 
 /* users */
 router.post('/user', jwtMiddleware, adminCheckMiddleware, Usercontroller.create);
