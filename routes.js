@@ -55,5 +55,6 @@ router.get('/country',  jwtMiddleware, Countrycontroller.getAll);
 /* region */
 router.post('/region',  jwtMiddleware, Regioncontroller.create);
 router.get('/region',  jwtMiddleware, Regioncontroller.getAll);
+router.get('/region/:id', jwtMiddleware, Regioncontroller.getById);
 
 module.exports = router;

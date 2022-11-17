@@ -43,6 +43,18 @@ class Regioncontroller {
             return res.status(500).json(error);
         }
     }
+
+    static async getById(req, res){
+        try {
+            const region = await regionModel.findById(req.params.id, "-password -__v");
+            return res.json({
+                status: 200,
+                data: region
+            });
+        } catch (error) {
+            return res.status(500).json(error);
+        }
+    }
 }
 
 module.exports = Regioncontroller;
