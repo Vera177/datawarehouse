@@ -43,6 +43,18 @@ class Interestcontroller {
             return res.status(500).json(error);
         }
     }
+
+    static async getById(req, res){
+        try {
+            const interestedPercentage = await interestModel.findById(req.params.id, "-__v");
+            return res.json({
+                status: 200,
+                data: interestedPercentage
+            });
+        } catch (error) {
+            return res.status(500).json(error);
+        }
+    }
 }
 
 module.exports = Interestcontroller;

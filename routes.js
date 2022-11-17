@@ -44,6 +44,7 @@ router.get('/contactinformation',  jwtMiddleware, Contactinformationcontroller.g
 /* interest percentage*/
 router.post('/interest',  jwtMiddleware, Interestcontroller.create);
 router.get('/interest',  jwtMiddleware, Interestcontroller.getAll);
+router.get('/interest/:id',  jwtMiddleware, Interestcontroller.getById);
 
 /* city */
 router.post('/city',  jwtMiddleware, Citycontroller.create);
