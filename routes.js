@@ -40,6 +40,7 @@ router.get('/occupation/:id',  jwtMiddleware, Occupationcontroller.getById);
 /* contact information */
 router.post('/contactinformation',  jwtMiddleware, Contactinformationcontroller.create);
 router.get('/contactinformation',  jwtMiddleware, Contactinformationcontroller.getAll);
+router.get('/contactinformation/:id',  jwtMiddleware, Contactinformationcontroller.getById);
 
 /* interest percentage*/
 router.post('/interest',  jwtMiddleware, Interestcontroller.create);

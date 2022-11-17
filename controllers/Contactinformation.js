@@ -43,6 +43,18 @@ class Contactinformationcontroller {
             return res.status(500).json(error);
         }
     }
+
+    static async getById(req, res){
+        try {
+            const contactinformation = await contactInformationModel.findById(req.params.id, "-__v");
+            return res.json({
+                status: 200,
+                data: contactinformation
+            });
+        } catch (error) {
+            return res.status(500).json(error);
+        }
+    }
 }
 
 module.exports = Contactinformationcontroller;
