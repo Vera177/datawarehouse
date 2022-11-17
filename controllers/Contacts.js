@@ -51,6 +51,18 @@ class Contactcontroller {
             return res.status(500).json(error);
         }
     }
+
+    static async getById(req, res){
+        try {
+            const contact = await contactModel.findById(req.params.id, "-__v").populate("company_id", "-__v").populate('cities_id', '-__v').populate('occupation_id', '-__v').populate('contact_information_id', '-__v').populate('interested_id', '-__v');
+            return res.json({
+                status: 200,
+                data: contact
+            });
+        } catch (error) {
+            return res.status(500).json(error);
+        }
+    }
 }
 
 module.exports = Contactcontroller;
