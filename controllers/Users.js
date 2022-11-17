@@ -79,6 +79,19 @@ class Usercontroller {
             });
         }
     }
+
+    
+    static async getById(req, res){
+        try {
+            const user = await userModel.findById(req.params.id, "-password -__v").populate("roles_id", "-__v");
+            return res.json({
+                status: 200,
+                data: user
+            });
+        } catch (error) {
+            return res.status(500).json(error);
+        }
+    }
 }
 
 module.exports = Usercontroller;
