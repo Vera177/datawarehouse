@@ -45,6 +45,18 @@ class Countrycontroller {
             return res.status(500).json(error);
         }
     }
+
+    static async getById(req, res){
+        try {
+            const country = await countryModel.findById(req.params.id, "-__v");
+            return res.json({
+                status: 200,
+                data: country
+            });
+        } catch (error) {
+            return res.status(500).json(error);
+        }
+    }
 }
 
 module.exports = Countrycontroller;

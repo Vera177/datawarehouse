@@ -53,6 +53,7 @@ router.get('/city',  jwtMiddleware, Citycontroller.getAll);
 /* country */
 router.post('/country',  jwtMiddleware, Countrycontroller.create);
 router.get('/country',  jwtMiddleware, Countrycontroller.getAll);
+router.get('/country/:id',  jwtMiddleware, Countrycontroller.getById);
 
 /* region */
 router.post('/region',  jwtMiddleware, Regioncontroller.create);
