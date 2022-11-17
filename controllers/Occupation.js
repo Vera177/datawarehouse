@@ -43,6 +43,18 @@ class Occupationcontroller {
             return res.status(500).json(error);
         }
     }
+
+    static async getById(req, res){
+        try {
+            const occupation = await occupationModel.findById(req.params.id, "-password -__v");
+            return res.json({
+                status: 200,
+                data: occupation
+            });
+        } catch (error) {
+            return res.status(500).json(error);
+        }
+    }
 }
 
 module.exports = Occupationcontroller;

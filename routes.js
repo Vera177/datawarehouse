@@ -35,6 +35,7 @@ router.get('/company',  jwtMiddleware, CompanyController.getAll);
 /* occupation */
 router.post('/occupation',  jwtMiddleware, Occupationcontroller.create);
 router.get('/occupation',  jwtMiddleware, Occupationcontroller.getAll);
+router.get('/occupation/:id',  jwtMiddleware, Occupationcontroller.getById);
 
 /* contact information */
 router.post('/contactinformation',  jwtMiddleware, Contactinformationcontroller.create);
