@@ -25,7 +25,11 @@ class Contactcontroller {
 
     static async getAll(req, res) {
         try {
-            const contacts = await contactModel.find().populate('company_id').populate('cities_id').populate('occupation_id').populate('contact_information_id').populate('interested_id');
+            const {email, name} = req.query;
+            const query = {};
+            if(email) query.email = {$regex: email};
+            if(name) query.name = name;
+            const contacts = await contactModel.find(query).populate('company_id').populate('cities_id').populate('occupation_id').populate('contact_information_id').populate('interested_id');
             // const data = contacts.map(contact => {
             //     return {
             //         id: contact._id,
