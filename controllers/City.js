@@ -44,6 +44,18 @@ class Citycontroller {
             return res.status(500).json(error);
         }
     }
+
+    static async getById(req, res){
+        try {
+            const city = await cityModel.findById(req.params.id, "-__v");
+            return res.json({
+                status: 200,
+                data: city
+            });
+        } catch (error) {
+            return res.status(500).json(error);
+        }
+    }
 }
 
 module.exports = Citycontroller;
