@@ -44,6 +44,18 @@ class Companycontroller {
             return res.status(500).json(error);
         }
     }
+
+    static async getById(req, res){
+        try {
+            const company = await companyModel.findById(req.params.id, "-__v").populate("cities_id", "-__v");
+            return res.json({
+                status: 200,
+                data: company
+            });
+        } catch (error) {
+            return res.status(500).json(error);
+        }
+    }
 }
 
 module.exports = Companycontroller;
