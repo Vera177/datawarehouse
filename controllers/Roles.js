@@ -27,6 +27,18 @@ class RolesController {
             return res.status(500).json(error);
         }
     }
+
+    static async getById(req, res){
+        try {
+            const role = await roleModel.findById(req.params.id, "-password -__v");
+            return res.json({
+                status: 200,
+                data: role
+            });
+        } catch (error) {
+            return res.status(500).json(error);
+        }
+    }
 }
 
 module.exports = RolesController;
