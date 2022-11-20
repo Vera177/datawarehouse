@@ -68,6 +68,18 @@ class Interestcontroller {
             return res.status(500).json(error);
         }
     }
+
+    static async delete(req, res) {
+        try {
+            const interestedPercentage = await interestModel.deleteOne({ _id: req.params.id });
+            return res.json({
+                status: 200,
+                data: interestedPercentage
+            })
+        } catch (error) {
+            return res.status(500).json(error);
+        }
+    }
 }
 
 module.exports = Interestcontroller;
