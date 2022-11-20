@@ -57,6 +57,19 @@ class Countrycontroller {
             return res.status(500).json(error);
         }
     }
+
+    static async update(req, res) {
+        const { name } = req.body;
+        try {
+            const city = await countryModel.updateOne({ _id: req.params.id }, { $set: { name } });
+            return res.json({
+                status: 200,
+                data: city
+            })
+        } catch (error) {
+            return res.status(500).json(error);
+        }
+    }
 }
 
 module.exports = Countrycontroller;
