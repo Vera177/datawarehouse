@@ -29,6 +29,7 @@ router.post('/login', Usercontroller.login);
 router.post('/contact',  jwtMiddleware, ContactsController.create);
 router.get('/contact',  jwtMiddleware, ContactsController.getAll);
 router.get('/contact/:id',  jwtMiddleware, ContactsController.getById);
+router.delete('/contact/:id', jwtMiddleware, ContactsController.delete);
 
 /* company */
 router.post('/company',  jwtMiddleware, CompanyController.create);
