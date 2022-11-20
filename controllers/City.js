@@ -45,7 +45,7 @@ class Citycontroller {
         }
     }
 
-    static async getById(req, res){
+    static async getById(req, res) {
         try {
             const city = await cityModel.findById(req.params.id, "-__v");
             return res.json({
@@ -57,10 +57,10 @@ class Citycontroller {
         }
     }
 
-        static async update(req, res){
-        const {name} = req.body;
+    static async update(req, res) {
+        const { name } = req.body;
         try {
-            const city = await cityModel.updateOne({ _id: req.params.id},{ $set: {name}});
+            const city = await cityModel.updateOne({ _id: req.params.id }, { $set: { name } });
             return res.json({
                 status: 200,
                 data: city
@@ -70,9 +70,9 @@ class Citycontroller {
         }
     }
 
-    static async delete(req, res){
+    static async delete(req, res) {
         try {
-            const city = await cityModel.deleteOne({ _id: req.params.id});
+            const city = await cityModel.deleteOne({ _id: req.params.id });
             return res.json({
                 status: 200,
                 data: city
