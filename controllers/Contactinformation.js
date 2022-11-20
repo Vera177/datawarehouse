@@ -68,6 +68,18 @@ class Contactinformationcontroller {
             return res.status(500).json(error);
         }
     }
+
+    static async delete(req, res) {
+        try {
+            const contactinformation = await contactInformationModel.deleteOne({ _id: req.params.id });
+            return res.json({
+                status: 200,
+                data: contactinformation
+            })
+        } catch (error) {
+            return res.status(500).json(error);
+        }
+    }
 }
 
 module.exports = Contactinformationcontroller;

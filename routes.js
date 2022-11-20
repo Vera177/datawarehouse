@@ -51,6 +51,7 @@ router.post('/contactinformation',  jwtMiddleware, Contactinformationcontroller.
 router.get('/contactinformation',  jwtMiddleware, Contactinformationcontroller.getAll);
 router.get('/contactinformation/:id',  jwtMiddleware, Contactinformationcontroller.getById);
 router.patch('/contactinformation/:id', jwtMiddleware, Contactinformationcontroller.update);
+router.delete('/contactinformation/:id', jwtMiddleware, Contactinformationcontroller.delete);
 
 /* interest percentage*/
 router.post('/interest',  jwtMiddleware, Interestcontroller.create);
