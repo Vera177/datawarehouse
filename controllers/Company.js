@@ -56,6 +56,19 @@ class Companycontroller {
             return res.status(500).json(error);
         }
     }
+
+    static async update(req, res){
+        const {name, adress, email, phone, cities_id} = req.body;
+        try {
+            const company = await companyModel.updateOne({ _id: req.params.id},{ $set: {name, adress, email, phone, cities_id}});
+            return res.json({
+                status: 200,
+                data: company
+            })
+        } catch (error) {
+            return res.status(500).json(error);
+        }
+    }
 }
 
 module.exports = Companycontroller;
