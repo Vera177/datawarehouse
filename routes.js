@@ -57,6 +57,7 @@ router.get('/interest/:id',  jwtMiddleware, Interestcontroller.getById);
 /* city */
 router.post('/city',  jwtMiddleware, Citycontroller.create);
 router.get('/city',  jwtMiddleware, Citycontroller.getAll);
+router.patch('/city/:id', jwtMiddleware, Citycontroller.update);
 router.delete('/city/:id', jwtMiddleware, Citycontroller.delete);
 
 /* country */
