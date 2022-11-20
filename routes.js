@@ -55,6 +55,7 @@ router.get('/contactinformation/:id',  jwtMiddleware, Contactinformationcontroll
 router.post('/interest',  jwtMiddleware, Interestcontroller.create);
 router.get('/interest',  jwtMiddleware, Interestcontroller.getAll);
 router.get('/interest/:id',  jwtMiddleware, Interestcontroller.getById);
+router.patch('/interest/:id', jwtMiddleware, Interestcontroller.update);
 
 /* city */
 router.post('/city',  jwtMiddleware, Citycontroller.create);

@@ -55,6 +55,19 @@ class Interestcontroller {
             return res.status(500).json(error);
         }
     }
+
+    static async update(req, res) {
+        const { interest } = req.body;
+        try {
+            const interestedPercentage = await interestModel.updateOne({ _id: req.params.id }, { $set: { interest } });
+            return res.json({
+                status: 200,
+                data: interestedPercentage
+            })
+        } catch (error) {
+            return res.status(500).json(error);
+        }
+    }
 }
 
 module.exports = Interestcontroller;
