@@ -50,6 +50,7 @@ router.delete('/occupation/:id', jwtMiddleware, Occupationcontroller.delete);
 router.post('/contactinformation',  jwtMiddleware, Contactinformationcontroller.create);
 router.get('/contactinformation',  jwtMiddleware, Contactinformationcontroller.getAll);
 router.get('/contactinformation/:id',  jwtMiddleware, Contactinformationcontroller.getById);
+router.patch('/contactinformation/:id', jwtMiddleware, Contactinformationcontroller.update);
 
 /* interest percentage*/
 router.post('/interest',  jwtMiddleware, Interestcontroller.create);
