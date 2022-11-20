@@ -64,6 +64,19 @@ class Contactcontroller {
         }
     }
 
+    static async update(req, res){
+        const {firstname, lastname, email, adress, company_id, occupation_id, contact_information_id, interested_id, cities_id} = req.body;
+        try {
+            const contact = await contactModel.updateOne({ _id: req.params.id},{ $set: {firstname, lastname, email, adress, company_id, occupation_id, contact_information_id, interested_id, cities_id}});
+            return res.json({
+                status: 200,
+                data: contact
+            })
+        } catch (error) {
+            return res.status(500).json(error);
+        }
+    }
+
     static async delete(req, res){
         try {
             const contact = await contactModel.deleteOne({ _id: req.params.id});
