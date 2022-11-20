@@ -65,6 +65,7 @@ router.post('/country',  jwtMiddleware, Countrycontroller.create);
 router.get('/country',  jwtMiddleware, Countrycontroller.getAll);
 router.get('/country/:id',  jwtMiddleware, Countrycontroller.getById);
 router.patch('/country/:id', jwtMiddleware, Countrycontroller.update);
+router.delete('/country/:id', jwtMiddleware, Countrycontroller.delete);
 
 /* region */
 router.post('/region',  jwtMiddleware, Regioncontroller.create);
