@@ -43,6 +43,7 @@ router.delete('/company/:id', jwtMiddleware, CompanyController.delete);
 router.post('/occupation',  jwtMiddleware, Occupationcontroller.create);
 router.get('/occupation',  jwtMiddleware, Occupationcontroller.getAll);
 router.get('/occupation/:id',  jwtMiddleware, Occupationcontroller.getById);
+router.patch('/occupation/:id', jwtMiddleware, Occupationcontroller.update);
 
 /* contact information */
 router.post('/contactinformation',  jwtMiddleware, Contactinformationcontroller.create);

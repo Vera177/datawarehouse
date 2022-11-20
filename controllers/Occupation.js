@@ -55,6 +55,19 @@ class Occupationcontroller {
             return res.status(500).json(error);
         }
     }
+
+    static async update(req, res) {
+        const { name } = req.body;
+        try {
+            const occupation = await occupationModel.updateOne({ _id: req.params.id }, { $set: { name } });
+            return res.json({
+                status: 200,
+                data: occupation
+            })
+        } catch (error) {
+            return res.status(500).json(error);
+        }
+    }
 }
 
 module.exports = Occupationcontroller;
