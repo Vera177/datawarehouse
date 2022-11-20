@@ -68,6 +68,18 @@ class Occupationcontroller {
             return res.status(500).json(error);
         }
     }
+
+    static async delete(req, res) {
+        try {
+            const occupation = await occupationModel.deleteOne({ _id: req.params.id });
+            return res.json({
+                status: 200,
+                data: occupation
+            })
+        } catch (error) {
+            return res.status(500).json(error);
+        }
+    }
 }
 
 module.exports = Occupationcontroller;
