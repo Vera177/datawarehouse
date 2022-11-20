@@ -1,0 +1,670 @@
+openapi: 3.0.2
+info:
+  title: Data Warehouse
+  description: "Proyecto para Acamica donde se administran todos los contactos de los clientes de una compañía de Marketing"
+  contact:
+    name: Vera Orduna
+  version: 1.0.0
+servers:
+  - url: http://localhost:3000/api/
+tags:
+  - name: Usuarios
+    description: Obtener, crear, actualizar producto por id, obtener por id y eliminar por id un usuario
+  - name: Región/Ciudad
+    description: Obtener, crear, actualizar producto por id, obtener por id y eliminar por id una Región/Ciudad
+  - name: Compañías
+    description: Obtener, crear, actualizar producto por id, obtener por id y eliminar por id una Compañía
+  - name: Contactos
+    description: Obtener, crear, actualizar producto por id, obtener por id y eliminar por id una Región/Ciudad
+paths:
+  /login:
+    post:
+      tags:
+        - Usuarios
+      summary: Endpoint para login
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:              
+                email:
+                  type: string
+                  example: test@test.com
+                  required: true
+                password: 
+                  type: string
+                  example: 12345678
+                  required: true                
+      responses:
+        200:
+          description: Login exitoso
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: number
+                    example: 200
+                  token:
+                    type: string
+                  admin:
+                    type: boolean
+        401:
+          description: Usuario no valido
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: number
+                    example: 401
+                  message:
+                    type: string
+                    example: Usuario o contraseña invalido
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+  /user:
+    post:
+      tags:
+        - Usuarios
+      summary: Endpoint para crear usuario
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                firstname:
+                  type: string
+                  example: testing
+                  required: true
+                lastname:
+                  type: string
+                  example: testing
+                  required: true
+                email:
+                  type: string
+                  example: test@test.com
+                  required: true
+                password: 
+                  type: string
+                  example: 12345678
+                  required: true
+                role:
+                  type: string
+                  example: 6361d486f06640c24f0fe334
+      responses:
+        201:
+          description: Usuario creado con exito
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: number
+                    example: 201
+                  message:
+                    type: string
+                    example: Usuario creado!
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+    get:
+      tags:
+        - Usuarios
+      summary: Endpoint para obtener usuarios
+      responses:
+        200:
+          description: Obtiene todos los usuarios
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: 
+                    type: 200
+                    example: 200
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/user'
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+      security:
+        - Authorization: []
+#   /product/:
+#     get:
+#       tags:
+#         - Región/Ciudad
+#       summary: Endpoint para obtener todos los productos
+#       responses:
+#         200:
+#           description: Obtiene todos los productos
+#           content:
+#             application/json:
+#               schema:
+#                 type: object
+#                 properties:
+#                   status: 
+#                     type: 200
+#                     example: 200
+#                   data:
+#                     type: array
+#                     items:
+#                       $ref: '#/components/schemas/user'
+#         500:
+#           description: Internal server error
+#           content:
+#             application/json:
+#               schema:
+#                 $ref: '#/components/schemas/error'  
+#     post:
+#       tags:
+#         - Región/Ciudad
+#       summary: Endpoint para crear productos
+#       requestBody:
+#         content:
+#           application/json:
+#             schema:
+#               type: object
+#               properties:
+#                 name:
+#                   type: string
+#                   example: Bacalao
+#                   required: true
+#                 price:
+#                   type: number
+#                   example: 300
+#                   required: true
+#                 url_image:
+#                   type: string
+#                   example: https://www.casanhelp.com.ar/wp-content/uploads/2020/05/bagel-de-salmon-169.jpg
+#       responses:
+#         201:
+#           description: Producto creado con exito
+#           content:
+#             application/json:
+#               schema:
+#                 type: object
+#                 properties:
+#                   status:
+#                     type: number
+#                     example: 201
+#                   message:
+#                     type: string
+#                     example: Producto creado!
+#         500:
+#           description: Internal server error
+#           content:
+#             application/json:
+#               schema:
+#                 $ref: '#/components/schemas/error'
+#       security:
+#         - Authorization: []
+#   /product/{id}:
+#     get:
+#       tags:
+#         - Región/Ciudad
+#       summary: Endpoint para obtener producto por id
+#       parameters:
+#       - name: id
+#         in: path
+#         description: ID del producto
+#         required: true
+#         schema:
+#           type: number
+#           example: 1
+#       responses:
+#         200:
+#           description: Obtiene producto por id
+#           content:
+#             application/json:
+#               schema:
+#                 type: object
+#                 properties:
+#                   status: 
+#                     type: 200
+#                     example: 200
+#                   data:
+#                     type: array
+#                     items:
+#                       $ref: '#/components/schemas/user'
+#         500:
+#           description: Internal server error
+#           content:
+#             application/json:
+#               schema:
+#                 $ref: '#/components/schemas/error'
+#     patch:
+#       tags:
+#         - Región/Ciudad
+#       summary: Endpoint para actualizar producto
+#       parameters:
+#       - name: id
+#         in: path
+#         description: ID del producto
+#         required: true
+#         schema:
+#           type: number
+#           example: 1
+#       requestBody:
+#         content:
+#           application/json:
+#             schema:
+#               type: object
+#               properties:
+#                 name:
+#                   type: string
+#                   example: Tortilla de papa
+#                   required: true
+#                 price:
+#                   type: number
+#                   example: 400
+#                   required: true
+#                 url_image:
+#                   type: string
+#                   example: https://www.casanhelp.com.ar/wp-content/uploads/2020/05/bagel-de-salmon-169.jpg
+#       responses:
+#         201:
+#           description: Producto actualizado con exito
+#           content:
+#             application/json:
+#               schema:
+#                 type: object
+#                 properties:
+#                   status:
+#                     type: number
+#                     example: 201
+#                   message:
+#                     type: string
+#                     example: Producto actualizado!
+#         500:
+#           description: Internal server error
+#           content:
+#             application/json:
+#               schema:
+#                 $ref: '#/components/schemas/error'
+#       security:
+#         - Authorization: [] 
+#     delete:
+#       tags:
+#         - Región/Ciudad
+#       summary: Endpoint para eliminar producto por id
+#       parameters:
+#       - name: id
+#         in: path
+#         description: ID del producto
+#         required: true
+#         schema:
+#           type: number
+#           example: 1
+#       responses:
+#         200:
+#           description: Obtiene eliminar por id
+#           content:
+#             application/json:
+#               schema:
+#                 type: object
+#                 properties:
+#                   status: 
+#                     type: 200
+#                     example: 200
+#                   data:
+#                     type: array
+#                     items:
+#                       $ref: '#/components/schemas/user'
+#         500:
+#           description: Internal server error
+#           content:
+#             application/json:
+#               schema:
+#                 $ref: '#/components/schemas/error'
+#       security:
+#         - Authorization: []
+#   /order:
+#     get:
+#       tags:
+#         - Compañías
+#       summary: Endpoint para obtener todos los pedidos
+#       responses:
+#         200:
+#           description: Obtiene todos los pedidos
+#           content:
+#             application/json:
+#               schema:
+#                 type: object
+#                 properties:
+#                   status: 
+#                     type: 200
+#                     example: 200
+#                   data:
+#                     type: array
+#                     items:
+#                       $ref: '#/components/schemas/order'
+#         500:
+#           description: Internal server error
+#           content:
+#             application/json:
+#               schema:
+#                 $ref: '#/components/schemas/error'
+#       security:
+#         - Authorization: []  
+#     post:
+#       tags:
+#         - Compañías
+#       summary: Endpoint para crear un pedido
+#       requestBody:
+#         content:
+#           application/json:
+#             schema:
+#               type: object
+#               properties:
+#                 date:
+#                   type: date
+#                   example: "2022-03-21T21:24:00.000Z"
+#                   required: true
+#                 users_id:
+#                   type: number
+#                   example: 2
+#                 pay_method_id:
+#                   type: number
+#                   example: 1
+#       responses:
+#         201:
+#           description: Producto creado con exito
+#           content:
+#             application/json:
+#               schema:
+#                 type: object
+#                 properties:
+#                   status:
+#                     type: number
+#                     example: 201
+#                   message:
+#                     type: string
+#                     example: Producto creado!
+#         500:
+#           description: Internal server error
+#           content:
+#             application/json:
+#               schema:
+#                 $ref: '#/components/schemas/error'
+#       security:
+#         - Authorization: []
+#   /order/{orderId}/product/{productId}: 
+#     post:
+#       tags:
+#         - Contactos
+#       parameters:
+#       - name: orderId
+#         in: path
+#         description: ID de la orden
+#         required: true
+#         schema:
+#           type: number
+#           example: 1
+#       - name: productId
+#         in: path
+#         description: ID del producto a agregar
+#         required: true
+#         schema:
+#           type: number
+#           example: 1
+#       tags:
+#         - order
+#       summary: Endpoint para agregar productos a un pedido
+#       requestBody:
+#         content:
+#           application/json:
+#             schema:
+#               type: object
+#               properties:
+#                 amount:
+#                   type: number
+#                   example: 1
+#       responses:
+#         201:
+#           description: Producto agregado con exito
+#           content:
+#             application/json:
+#               schema:
+#                 type: object
+#                 properties:
+#                   status:
+#                     type: number
+#                     example: 201
+#                   message:
+#                     type: string
+#                     example: Producto agregado!
+#         500:
+#           description: Internal server error
+#           content:
+#             application/json:
+#               schema:
+#                 $ref: '#/components/schemas/error'
+#       security:
+#         - Authorization: []
+#   /order/{id}:
+#     get:
+#       tags:
+#         - Compañías
+#       summary: Endpoint para obtener orden por id
+#       parameters:
+#       - name: id
+#         in: path
+#         description: ID de la orden
+#         required: true
+#         schema:
+#           type: number
+#           example: 1
+#       responses:
+#         200:
+#           description: Obtiene una orden por su id
+#           content:
+#             application/json:
+#               schema:
+#                 type: object
+#                 properties:
+#                   status: 
+#                     type: 200
+#                     example: 200
+#                   data:
+#                     type: array
+#                     items:
+#                       $ref: '#/components/schemas/order'
+#         500:
+#           description: Internal server error
+#           content:
+#             application/json:
+#               schema:
+#                 $ref: '#/components/schemas/error'
+#       security:
+#         - Authorization: []  
+#     patch:
+#       tags:
+#         - Compañías
+#       summary: Endpoint para actualizar estado del pedido
+#       parameters:
+#       - name: id
+#         in: path
+#         description: ID del pedido
+#         required: true
+#         schema:
+#           type: number
+#           example: 1
+#       requestBody:
+#         content:
+#           application/json:
+#             schema:
+#               $ref: '#/components/schemas/status'
+#       responses:
+#         201:
+#           description: Estado del producto actualizado con exito
+#           content:
+#             application/json:
+#               schema:
+#                 type: object
+#                 properties:
+#                   status:
+#                     type: number
+#                     example: 201
+#                   message:
+#                     type: string
+#                     example: Estado del producto actualizado!
+#         500:
+#           description: Internal server error
+#           content:
+#             application/json:
+#               schema:
+#                 $ref: '#/components/schemas/error'
+     
+#       security:
+#         - Authorization: []
+#     delete:
+#       tags:
+#         - Compañías
+#       summary: Endpoint para eliminar una orden por id
+#       parameters:
+#       - name: id
+#         in: path
+#         description: ID de la orden
+#         required: true
+#         schema:
+#           type: number
+#           example: 1
+#       responses:
+#         200:
+#           description: Elimina una orden por su id
+#           content:
+#             application/json:
+#               schema:
+#                 type: object
+#                 properties:
+#                   status: 
+#                     type: 200
+#                     example: 200
+#                   data:
+#                     type: array
+#                     items:
+#                       $ref: '#/components/schemas/user'
+#         500:
+#           description: Internal server error
+#           content:
+#             application/json:
+#               schema:
+#                 $ref: '#/components/schemas/error'
+#       security:
+#         - Authorization: []
+components:
+  schemas:
+    error:
+      type: object
+      properties:
+        status:
+          type: number
+          example: 500
+        message:
+          type: string
+          example: Internal server error
+    user:
+      type: object
+      properties:
+        id:
+          type: number
+          example: 1
+        firstname:
+          type: string
+        lastname:
+          type: string
+        email:
+          type: string
+        role:           
+            $ref: '#/components/schemas/role'
+    role:
+      type: object
+      properties:
+        id:
+          type: number
+          example: 2
+        name:
+          type: string
+          example: user
+    # status:
+    #   type: object
+    #   properties:
+    #     status_id:
+    #       type: number
+    #       example: 1
+    #     name:
+    #       type: string
+    #       example: Nuevo
+    # pay_method:
+    #   type: object
+    #   properties:
+    #     id:
+    #       type: number
+    #       example: 1
+    #     name:
+    #       type: string
+    #       example: Efectivo
+    # product:
+    #   type: object
+    #   properties:
+    #     id:
+    #       type: number
+    #       example: 1
+    #     name:
+    #       type: string
+    #       example: Bagel de Salmon
+    #     price:
+    #       type: number
+    #       example: 425
+    #     url_image:
+    #       type: string
+    #       example: https://www.casanhelp.com.ar/wp-content/uploads/2020/05/bagel-de-salmon-169.jpg
+    #     amount:
+    #       type: number
+    #       example: 1
+    # order:
+    #   type: object
+    #   properties:
+    #     id:
+    #       type: number
+    #       example: 1
+    #     date:
+    #       type: string
+    #       format: date-time
+    #     total:
+    #       type: number
+    #       example: 1000
+    #     user:
+    #       $ref: '#/components/schemas/user'
+    #     role:           
+    #       $ref: '#/components/schemas/role' 
+    #     status:
+    #       $ref: '#/components/schemas/status' 
+    #     pay_method:
+    #       $ref: '#/components/schemas/pay_method'
+    #     product:
+    #       $ref: '#components/schemas/product'
+
+securitySchemes:
+  Authorization:
+    type: http
+    scheme: bearer
+    bearerFormat: JWT

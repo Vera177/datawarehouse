@@ -1,33 +1,40 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>
-    {{htmlWebpackPlugin.options.title}}
-  </title>
-</head>
-
-<body>
-  {{> partials/header}}
-  <div class="content">
-    <form>
-      <div>
-        <label for="username">Usuario</label>
-        <input type="text" id="username" name="username">
-      </div>
-      <div>
-        <label for="password">Contraseña</label>
-        <input type="password" id="password" name="password">
-      </div>
-
-      <button type="submit" id="submit">Ingresar</button>
+{{>partials/head}}
+{{> partials/header}}
+<section class="contactsSection">
+  <h2 class="titleContacts">Contactos</h2>
+  <div class="uk-margin">
+    <form class="uk-search uk-search-default">
+      <input type="search" class="uk-search-input" placeholder="Search">
     </form>
+    <a href="https://google.com" class="uk-text-bold iconSearch uk-search-icon-flip" uk-search-icon></a>
   </div>
-  {{> partials/footer}}
 
-</body>
-
-</html>
+  <table class="uk-table">
+    <thead class="contactsTableHead">
+      <tr>
+        <th class="uk-text-capitalize"><input type="checkbox"></th>
+        <th class="uk-text-capitalize">Contacto</th>
+        <th class="uk-text-capitalize">País/Región</th>
+        <th class="uk-text-capitalize">Compañía</th>
+        <th class="uk-text-capitalize">Cargo</th>
+        <th class="uk-text-capitalize">Canal preferido</th>
+        <th class="uk-text-capitalize">Interés</th>
+        <th class="uk-text-capitalize">Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th class="uk-text-capitalize"><input type="checkbox"></th>
+        <td>Camila Soledad Pantó<br><label>camilapanto123@gmail.com</label></td>
+        <td>Argentina<br><label>Latam</label></td>
+        <td>Table Data</td>
+        <td>Table Data</td>
+        <td>Table Data</td>
+        <td>Table Data</td>
+        <td>Table Data</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+{{> partials/footer}}
+{{>partials/foot}}

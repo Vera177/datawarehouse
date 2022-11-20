@@ -1,0 +1,12 @@
+.sectionCity{
+    display: flex;
+    justify-content: flex-end;
+
+    .titleCity{
+        text-align: center;
+        border: 1px solid black;
+        width: 15%;
+        margin: 4% 5%;
+        font-weight: 600;
+    }
+}

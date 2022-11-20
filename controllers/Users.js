@@ -1,5 +1,6 @@
 const userModel = require('../models/user');
 const roleModel = require('../models/roles');
+const jwtHelper = require('../helpers/jwt');
 
 class Usercontroller {
 
@@ -53,7 +54,7 @@ class Usercontroller {
     static async login(req, res) {
         const { email, password } = req.body;
         try {
-            const user = await userModel.findOne({ email });
+            const user = await userModel.findOne({ email }).populate('roles_id');
             if (!user) {
                 throw { status: 401, message: 'Usuario y/o contraseña invalidos' };
             }
@@ -61,15 +62,59 @@ class Usercontroller {
             if (!match) {
                 throw { status: 401, message: 'Usuario y/o contraseña invalidos' };
             }
+            const token = jwtHelper.encode({
+                checkUser: {
+                    id: user._id,
+                    role: user.roles_id
+                }
+            });
             return res.json({
                 status: 200,
-                token: 'token'
-            });
+                token: token
+            });            
         } catch (error) {
             return res.status(error.status || 500).json({
                 status: error.status || 500,
                 message: error.message || 'Internal server error'
             });
+        }
+    }
+
+    
+    static async getById(req, res){
+        try {
+            const user = await userModel.findById(req.params.id, "-password -__v").populate("roles_id", "-__v");
+            return res.json({
+                status: 200,
+                data: user
+            });
+        } catch (error) {
+            return res.status(500).json(error);
+        }
+    }
+
+    static async update(req, res){
+        const {firstname, lastname, email, password, roles_id} = req.body;
+        try {
+            const user = await userModel.updateOne({ _id: req.params.id},{ $set: {firstname, lastname, email, password, roles_id}});
+            return res.json({
+                status: 200,
+                data: user
+            })
+        } catch (error) {
+            return res.status(500).json(error);
+        }
+    }
+
+    static async delete(req, res){
+        try {
+            const user = await userModel.deleteOne({ _id: req.params.id});
+            return res.json({
+                status: 200,
+                data: user
+            })
+        } catch (error) {
+            return res.status(500).json(error);
         }
     }
 }

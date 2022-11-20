@@ -100,8 +100,32 @@ module.exports = (_env, argv) => {
         inject: true,
         minify: false,
         scriptLoading: 'blocking',
-        filename: 'news.html',
-        template: path.resolve(__dirname, './client/hbs/news.hbs')
+        filename: 'city.html',
+        template: path.resolve(__dirname, './client/hbs/city.hbs')
+      }),
+      new HtmlWebpackPlugin({
+        title: 'Data warehouse',
+        inject: true,
+        minify: false,
+        scriptLoading: 'blocking',
+        filename: 'companies.html',
+        template: path.resolve(__dirname, './client/hbs/companies.hbs')
+      }),
+      new HtmlWebpackPlugin({
+        title: 'Data warehouse',
+        inject: true,
+        minify: false,
+        scriptLoading: 'blocking',
+        filename: 'users.html',
+        template: path.resolve(__dirname, './client/hbs/users.hbs')
+      }),
+      new HtmlWebpackPlugin({
+        title: 'Data warehouse',
+        inject: true,
+        minify: false,
+        scriptLoading: 'blocking',
+        filename: 'login.html',
+        template: path.resolve(__dirname, './client/hbs/login.hbs')
       }),
       new MiniCssExtractPlugin({
         filename: isDebug ? 'css/[name].css' : 'css/[name].[fullhash:5].css',

@@ -1,0 +1,41 @@
+.companiesTitleContainer{
+    margin: 4% 5%;
+    width: 85%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    div{
+        border: 1px solid black;
+        width: 13%;
+        height: 12%;
+        text-align: center;
+        padding: 1%;
+    }
+}
+
+.companiesTable{
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    align-content: space-around;
+    width: 85%;
+    margin: 0 5%;
+    text-align: center;
+
+    >thead{
+        padding: 1%;
+
+        tr>th{
+            width: 5%;
+        }
+    }
+
+    >tbody{
+        padding: 1%;
+
+        tr>td{
+            width: 5%;
+        }
+    }
+}

@@ -1,0 +1,36 @@
+body > .uk-container{
+    max-width: 350px;
+
+    .title{
+        text-align: center;
+    }
+}
+
+.Users {
+    border: 1px solid black;
+    width: 36%;
+    margin: 8% auto;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    padding: 2% 0;
+
+    .createUser{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .createUser > .container {
+        display: flex;
+        justify-content: space-between;
+
+        label{
+            padding-right: 25px;
+            color: #000000;
+        }
+    }
+
+    .createUser > #create{
+        align-self: flex-end;
+    }
+}
