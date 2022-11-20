@@ -71,5 +71,6 @@ router.delete('/country/:id', jwtMiddleware, Countrycontroller.delete);
 router.post('/region',  jwtMiddleware, Regioncontroller.create);
 router.get('/region',  jwtMiddleware, Regioncontroller.getAll);
 router.get('/region/:id', jwtMiddleware, Regioncontroller.getById);
+router.patch('/region/:id', jwtMiddleware, Regioncontroller.update);
 
 module.exports = router;
