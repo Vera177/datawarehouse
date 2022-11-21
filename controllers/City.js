@@ -64,7 +64,7 @@ class Citycontroller {
             const city = await cityModel.updateOne({ _id: req.params.id }, { $set: { name } });
             return res.json({
                 status: 200,
-                data: city
+                data: `${name} updated succesfully`
             })
         } catch (error) {
             return res.status(500).json(error);
@@ -76,7 +76,7 @@ class Citycontroller {
             const city = await cityModel.deleteOne({ _id: req.params.id });
             return res.json({
                 status: 200,
-                data: city
+                data: 'City deleted succesfully'
             })
         } catch (error) {
             return res.status(500).json(error);
