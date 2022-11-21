@@ -11,7 +11,7 @@ class Occupationcontroller {
             await contactCreated.save();
             return res.status(201).json({
                 status: 201,
-                message: 'Occupation created'
+                message: `${name} created succesfully`
             });
         } catch (error) {
             return res.status(500).json(error);
@@ -62,7 +62,7 @@ class Occupationcontroller {
             const occupation = await occupationModel.updateOne({ _id: req.params.id }, { $set: { name } });
             return res.json({
                 status: 200,
-                data: occupation
+                data: `${name} updated succesfully`
             })
         } catch (error) {
             return res.status(500).json(error);
@@ -74,7 +74,7 @@ class Occupationcontroller {
             const occupation = await occupationModel.deleteOne({ _id: req.params.id });
             return res.json({
                 status: 200,
-                data: occupation
+                data: 'Occupation deleted succesfully'
             })
         } catch (error) {
             return res.status(500).json(error);
