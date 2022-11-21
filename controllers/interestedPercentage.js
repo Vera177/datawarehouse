@@ -62,7 +62,7 @@ class Interestcontroller {
             const interestedPercentage = await interestModel.updateOne({ _id: req.params.id }, { $set: { interest } });
             return res.json({
                 status: 200,
-                data: interestedPercentage
+                data: `${interest} updated succesfully`
             })
         } catch (error) {
             return res.status(500).json(error);
@@ -74,7 +74,7 @@ class Interestcontroller {
             const interestedPercentage = await interestModel.deleteOne({ _id: req.params.id });
             return res.json({
                 status: 200,
-                data: interestedPercentage
+                data: 'Interest percentage deleted succesfully'
             })
         } catch (error) {
             return res.status(500).json(error);
