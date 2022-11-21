@@ -99,7 +99,7 @@ class Usercontroller {
             const user = await userModel.updateOne({ _id: req.params.id},{ $set: {firstname, lastname, email, password, roles_id}});
             return res.json({
                 status: 200,
-                data: user
+                data: 'User updateded succesfully'
             })
         } catch (error) {
             return res.status(500).json(error);
@@ -111,7 +111,7 @@ class Usercontroller {
             const user = await userModel.deleteOne({ _id: req.params.id});
             return res.json({
                 status: 200,
-                data: user
+                data: 'User deleted succesfully'
             })
         } catch (error) {
             return res.status(500).json(error);
