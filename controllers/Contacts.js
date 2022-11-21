@@ -70,7 +70,7 @@ class Contactcontroller {
             const contact = await contactModel.updateOne({ _id: req.params.id},{ $set: {firstname, lastname, email, adress, company_id, occupation_id, contact_information_id, interested_id, cities_id}});
             return res.json({
                 status: 200,
-                data: contact
+                data: 'Contact updated succesfully'
             })
         } catch (error) {
             return res.status(500).json(error);
@@ -82,7 +82,7 @@ class Contactcontroller {
             const contact = await contactModel.deleteOne({ _id: req.params.id});
             return res.json({
                 status: 200,
-                data: contact
+                data: 'Contact deleted succesfully'
             })
         } catch (error) {
             return res.status(500).json(error);
