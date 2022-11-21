@@ -29,7 +29,7 @@ class Contactcontroller {
             const query = {};
             if(email) query.email = {$regex: email};
             if(name) query.name = name;
-            const contacts = await contactModel.find(query).populate('company_id').populate('cities_id').populate('occupation_id').populate('contact_information_id').populate('interested_id');
+            const contacts = await contactModel.find(query).populate('company_id').populate({path: 'cities_id', populate: {path: 'countries_id', populate: {path: 'regions_id'}}}).populate('occupation_id').populate('contact_information_id').populate('interested_id');
             // const data = contacts.map(contact => {
             //     return {
             //         id: contact._id,
