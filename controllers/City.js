@@ -21,7 +21,8 @@ class Citycontroller {
 
     static async getAll(req, res) {
         try {
-            const data = await cityModel.find().populate('countries_id');
+            const data = await cityModel.find().populate({path: 'countries_id', populate: {path: 'regions_id'}});
+            // const data2 = data.populate('region_id');
             // const contacts = await contactModel.populate('Company');
             // const data = contacts.map(contact => {
             //     return {
