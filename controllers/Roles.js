@@ -8,7 +8,7 @@ class RolesController {
             await roleCreated.save();
             return res.status(201).json({
                 status: 201,
-                message: 'Role created'
+                message: `New ${name}'s role created succesfully`
             })
         } catch (error) {
             return res.status(500).json(error);
@@ -35,6 +35,31 @@ class RolesController {
                 status: 200,
                 data: role
             });
+        } catch (error) {
+            return res.status(500).json(error);
+        }
+    }
+
+    static async update(req, res) {
+        const { name } = req.body;
+        try {
+            const role = await roleModel.updateOne({ _id: req.params.id }, { $set: { name } });
+            return res.json({
+                status: 200,
+                data: `${name} updated succesfully`
+            })
+        } catch (error) {
+            return res.status(500).json(error);
+        }
+    }
+
+    static async delete(req, res) {
+        try {
+            const role = await roleModel.deleteOne({ _id: req.params.id });
+            return res.json({
+                status: 200,
+                data: 'Role deleted succesfully'
+            })
         } catch (error) {
             return res.status(500).json(error);
         }
