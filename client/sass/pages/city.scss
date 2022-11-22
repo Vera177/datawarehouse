@@ -1,12 +1,15 @@
 .sectionCity{
     display: flex;
     justify-content: flex-end;
+    margin: 2% 3%;
 
-    .titleCity{
-        text-align: center;
-        border: $bordersolidblack;
-        width: 15%;
-        margin: 4% 5%;
-        font-weight: 600;
+    .btnTitleCity{
+        background-color: $blue;
+        color: $white;
+        font-family: $TxtOpenSans;
+        border-color: transparent;
+        border-radius: 3px;
+        width: 173px;
+        height: 42px;
     }
 }
