@@ -1,3 +1,13 @@
+.contactsSection{
+    margin: 2% 2%;
+
+    .titleContacts{
+        font-weight:bolder;
+        font-size:x-large;
+        font-family: 'Open Sans', sans-serif;
+    }
+}
+
 .uk-margin{
     display: flex;
     justify-content: space-between;
@@ -5,9 +15,26 @@
 
     .search{
         width: 50%;
+        display: flex;
 
         .uk-search-default{
             width: 90%;
+
+            .uk-search-input{
+                border-radius: 5px;
+            }
+        }
+
+        .iconSearch{
+            margin: 0 0.7%;
+            border: 1px solid #e5e5e5;
+            padding-left: 9px;
+            padding-right: 9px;
+            padding-top: 9px;
+            padding-bottom: 9px;
+            color: $blue;
+            border-radius: 5px;
+            height: fit-content;
         }
     }
 
@@ -19,29 +46,6 @@
         border-radius: 3px;
         width: 173px;
         height: 42px;
-    }
-}
-
-.contactsSection{
-    margin: 2% 2%;
-
-    .titleContacts{
-        font-weight: bold;
-        font-family: 'Open Sans', sans-serif;
-    }
-
-    .uk-search-input{
-        border-radius: 5px;
-    }
-
-    .iconSearch{
-        border: 1px solid #e5e5e5;
-        padding-left: 9px;
-        padding-right: 9px;
-        padding-top: 9px;
-        padding-bottom: 9px;
-        color: $blue;
-        border-radius: 5px;
     }
 }
 
@@ -57,4 +61,17 @@
     .contactsTableHead{
         border-bottom: 1px solid #e5e5e5;
     }
+
+    .contactsTableBody>tr>.interestPercentage{
+            display: flex;
+            justify-content: space-around;
+
+            div{
+                width: 60%;
+            }
+    }
+
+    .contactsTableBody>tr>.tripleDot{
+        text-align: center;
+    }    
 }

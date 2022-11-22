@@ -7,7 +7,7 @@ body > .uk-container{
 }
 
 .Users {
-    border: $bordersolidblack;
+    border: 1px solid black;
     width: 36%;
     margin: 8% auto;
     align-items: center;
@@ -15,7 +15,12 @@ body > .uk-container{
     flex-direction: column;
     padding: 2% 0;
 
-    .createUser{
+    .createUser {
+        display: flex;
+        flex-direction: column;
+    }
+
+    content > .createUser {
         display: flex;
         flex-direction: column;
     }
