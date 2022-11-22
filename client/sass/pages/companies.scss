@@ -1,10 +1,14 @@
-.companiesTitleContainer{
+.companiesTitleContainer {
     margin: 4% 2%;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    
+    h3 {
+        font-family: $TxtOpenSans;
+    }
 
-    .btnAddCompanies{
+    .btnAddCompanies {
         background-color: $blue;
         color: $white;
         font-family: $TxtOpenSans;
@@ -15,7 +19,7 @@
     }
 }
 
-.companiesTable{
+.companiesTable {
     margin: 4% 2%;
     border: $bordersolidblack;
     display: flex;
@@ -23,18 +27,21 @@
     align-content: space-around;
     text-align: center;
 
-    >thead{
+    > thead {
         padding: 1%;
+        font-family: $TxtOpenSans;
+        color: $black;
 
-        tr>th{
+        tr > th {
             width: 5%;
         }
     }
 
-    >tbody{
+    > tbody {
         padding: 1%;
+        color: $black;
 
-        tr>td{
+        tr > td {
             width: 5%;
         }
     }
