@@ -32,5 +32,12 @@ body > .uk-container{
 
     .createUser > #create{
         align-self: flex-end;
+        background-color: $blue;
+        color: $white;
+        font-family: $TxtOpenSans;
+        border-color: transparent;
+        border-radius: 3px;
+        width: 173px;
+        height: 42px;
     }
 }
