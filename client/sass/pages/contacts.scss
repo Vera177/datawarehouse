@@ -1,13 +1,29 @@
 .uk-margin{
-    width: 50%;
+    display: flex;
+    justify-content: space-between;
+    height: 15vh;
 
-    .uk-search-default{
-        width: 88%;
+    .search{
+        width: 50%;
+
+        .uk-search-default{
+            width: 90%;
+        }
+    }
+
+    div>.addContactBtn{
+        background-color: $blue;
+        color: $white;
+        font-family: $TxtOpenSans;
+        border-color: transparent;
+        border-radius: 3px;
+        width: 173px;
+        height: 42px;
     }
 }
 
 .contactsSection{
-    margin: 2% 1%;
+    margin: 2% 2%;
 
     .titleContacts{
         font-weight: bold;
@@ -24,7 +40,7 @@
         padding-right: 9px;
         padding-top: 9px;
         padding-bottom: 9px;
-        color: #1d72C2;
+        color: $blue;
         border-radius: 5px;
     }
 }
