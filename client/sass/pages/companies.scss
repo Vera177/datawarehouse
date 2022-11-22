@@ -1,26 +1,26 @@
 .companiesTitleContainer{
-    margin: 4% 5%;
-    width: 85%;
+    margin: 4% 2%;
     display: flex;
     justify-content: space-between;
     align-items: center;
 
-    div{
-        border: $bordersolidblack;
-        width: 13%;
-        height: 12%;
-        text-align: center;
-        padding: 1%;
+    .btnAddCompanies{
+        background-color: $blue;
+        color: $white;
+        font-family: $TxtOpenSans;
+        border-color: transparent;
+        border-radius: 3px;
+        width: 173px;
+        height: 42px;
     }
 }
 
 .companiesTable{
+    margin: 4% 2%;
     border: $bordersolidblack;
     display: flex;
     flex-direction: column;
     align-content: space-around;
-    width: 85%;
-    margin: 0 5%;
     text-align: center;
 
     >thead{
