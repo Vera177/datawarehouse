@@ -8,15 +8,202 @@ info:
 servers:
   - url: http://localhost:3000/api/
 tags:
+  - name: Roles
+    description: Obtener, crear, actualizar un rol por id, obtener por id y eliminar por id
   - name: Usuarios
-    description: Obtener, crear, actualizar producto por id, obtener por id y eliminar por id un usuario
-  - name: Región/Ciudad
-    description: Obtener, crear, actualizar producto por id, obtener por id y eliminar por id una Región/Ciudad
+    description: Obtener, crear, actualizar un usuario por id, obtener por id y eliminar por id
+  - name: Ciudad
+    description: Obtener, crear, actualizar una ciudad por id, obtener por id y eliminar por id
+  - name: País
+    description: Obtener, crear, actualizar una país por id, obtener por id y eliminar por id
+  - name: Región
+    description: Obtener, crear, actualizar una región por id, obtener por id y eliminar por id
   - name: Compañías
-    description: Obtener, crear, actualizar producto por id, obtener por id y eliminar por id una Compañía
+    description: Obtener, crear, actualizar una compañía por id, obtener por id y eliminar por id
   - name: Contactos
-    description: Obtener, crear, actualizar producto por id, obtener por id y eliminar por id una Región/Ciudad
+    description: Obtener, crear, actualizar un contacto por id, obtener por id y eliminar por id
 paths:
+  /role:
+    post:
+      tags:
+        - Roles
+      summary: Endpoint para crear rol
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: admin
+                  required: true
+      responses:
+        201:
+          description: Rol creado con exito
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: number
+                    example: 201
+                  message:
+                    type: string
+                    example: Rol creado!
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+      security:
+        - Authorization: []
+    get:
+      tags:
+        - Roles
+      summary: Endpoint para obtener roles
+      responses:
+        200:
+          description: Obtiene todos los roles
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: 
+                    type: 200
+                    example: 200
+                  data:
+                    type: array
+                    message:
+                      type: string
+                      example: admin
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+      security:
+        - Authorization: []
+  /role/{id}:
+    get:
+      get:
+      tags:
+        - Roles
+      summary: Endpoint para obtener rol por id
+      parameters:
+      - name: id
+        in: path
+        description: ID del rol
+        required: true
+        schema:
+          type: string
+          example: 636a6cdb659766c01da966b8
+      responses:
+        200:
+          description: Obtiene un rol por id
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: 
+                    type: 200
+                    example: 200
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/user'
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+      security:
+        - Authorization: []
+    patch:
+      tags:
+        - Roles
+      summary: Endpoint para actualizar un rol por id
+      parameters:
+      - name: id
+        in: path
+        description: ID del usuario
+        required: true
+        schema:
+          type: string
+          example: 638248940ea30b1d0fc6cd25
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: testing
+                  required: true
+      responses:
+        201:
+          description: Rol actualizado con exito
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: number
+                    example: 201
+                  message:
+                    type: string
+                    example: Rol actualizado!
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+      security:
+        - Authorization: [] 
+    delete:
+      tags:
+        - Roles
+      summary: Endpoint para eliminar un usuario por id
+      parameters:
+      - name: id
+        in: path
+        description: ID del usuario
+        required: true
+        schema:
+          type: string
+          example: 638248940ea30b1d0fc6cd25
+      responses:
+        200:
+          description: Elimina un usuario por id
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: 
+                    type: 200
+                    example: 200
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/user'
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+      security:
+        - Authorization: [] 
   /login:
     post:
       tags:
@@ -225,7 +412,7 @@ paths:
                   example: 6361d486f06640c24f0fe334
       responses:
         201:
-          description: Producto actualizado con exito
+          description: Usuario actualizado con exito
           content:
             application/json:
               schema:
@@ -315,64 +502,6 @@ components:
         name:
           type: string
           example: user
-    # status:
-    #   type: object
-    #   properties:
-    #     status_id:
-    #       type: number
-    #       example: 1
-    #     name:
-    #       type: string
-    #       example: Nuevo
-    # pay_method:
-    #   type: object
-    #   properties:
-    #     id:
-    #       type: number
-    #       example: 1
-    #     name:
-    #       type: string
-    #       example: Efectivo
-    # product:
-    #   type: object
-    #   properties:
-    #     id:
-    #       type: number
-    #       example: 1
-    #     name:
-    #       type: string
-    #       example: Bagel de Salmon
-    #     price:
-    #       type: number
-    #       example: 425
-    #     url_image:
-    #       type: string
-    #       example: https://www.casanhelp.com.ar/wp-content/uploads/2020/05/bagel-de-salmon-169.jpg
-    #     amount:
-    #       type: number
-    #       example: 1
-    # order:
-    #   type: object
-    #   properties:
-    #     id:
-    #       type: number
-    #       example: 1
-    #     date:
-    #       type: string
-    #       format: date-time
-    #     total:
-    #       type: number
-    #       example: 1000
-    #     user:
-    #       $ref: '#/components/schemas/user'
-    #     role:           
-    #       $ref: '#/components/schemas/role' 
-    #     status:
-    #       $ref: '#/components/schemas/status' 
-    #     pay_method:
-    #       $ref: '#/components/schemas/pay_method'
-    #     product:
-    #       $ref: '#components/schemas/product'
 
   securitySchemes:
     Authorization:
