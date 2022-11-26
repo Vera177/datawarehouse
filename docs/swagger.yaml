@@ -497,7 +497,7 @@ paths:
                   example: 6361d486f06640c24f0fe334
       responses:
         201:
-          description: Usuario creado con exito
+          description: Compañía creada con exito
           content:
             application/json:
               schema:
