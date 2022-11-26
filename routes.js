@@ -65,6 +65,7 @@ router.delete('/interest/:id', jwtMiddleware, Interestcontroller.delete);
 /* city */
 router.post('/city',  jwtMiddleware, Citycontroller.create);
 router.get('/city',  jwtMiddleware, Citycontroller.getAll);
+router.get('/city/:id',  jwtMiddleware, Citycontroller.getById);
 router.patch('/city/:id', jwtMiddleware, Citycontroller.update);
 router.delete('/city/:id', jwtMiddleware, Citycontroller.delete);
 
