@@ -337,7 +337,6 @@ paths:
         - Authorization: []
   /user/{id}:
     get:
-      get:
       tags:
         - Usuarios
       summary: Endpoint para obtener usuario por id
@@ -434,6 +433,600 @@ paths:
     delete:
       tags:
         - Usuarios
+      summary: Endpoint para eliminar un usuario por id
+      parameters:
+      - name: id
+        in: path
+        description: ID del usuario
+        required: true
+        schema:
+          type: string
+          example: 638248940ea30b1d0fc6cd25
+      responses:
+        200:
+          description: Elimina un usuario por id
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: 
+                    type: 200
+                    example: 200
+                  message:
+                    type: string
+                    example: User deleted succesfully
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+      security:
+        - Authorization: [] 
+  /city:
+    post:
+      tags:
+        - Ciudad
+      summary: Endpoint para crear una ciudad
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: testing
+                  required: true
+                country:
+                  type: string
+                  example: 637aefb347ac8eb3a18a0c8b
+      responses:
+        201:
+          description: Ciudad creada con exito
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: number
+                    example: 201
+                  message:
+                    type: string
+                    example: Ciudad creada!
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+      security:
+        - Authorization: []
+    get:
+      tags:
+        - Ciudad
+      summary: Endpoint para obtener todas las ciudades
+      responses:
+        200:
+          description: Obtiene todas los ciudades
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: 
+                    type: 200
+                    example: 200
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/city'
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+      security:
+        - Authorization: []
+  /city/{id}:
+    get:
+      tags:
+        - Ciudad
+      summary: Endpoint para obtener una ciudad por id
+      parameters:
+      - name: id
+        in: path
+        description: ID de la ciudad
+        required: true
+        schema:
+          type: string
+          example: 636a6cdb659766c01da966b8
+      responses:
+        200:
+          description: Obtiene una ciudad por id
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: 
+                    type: 200
+                    example: 200
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/city'
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+      security:
+        - Authorization: []
+    patch:
+      tags:
+        - Ciudad
+      summary: Endpoint para actualizar una ciudad por id
+      parameters:
+      - name: id
+        in: path
+        description: ID de la ciudad
+        required: true
+        schema:
+          type: string
+          example: 638248940ea30b1d0fc6cd25
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/city'
+      responses:
+        201:
+          description: Ciudad actualizada con exito
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: number
+                    example: 201
+                  message:
+                    type: string
+                    example: Ciudad actualizada!
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+      security:
+        - Authorization: [] 
+    delete:
+      tags:
+        - Ciudad
+      summary: Endpoint para eliminar una ciudad por id
+      parameters:
+      - name: id
+        in: path
+        description: ID de la ciudad
+        required: true
+        schema:
+          type: string
+          example: 638248940ea30b1d0fc6cd25
+      responses:
+        200:
+          description: Elimina una ciudad por id
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: 
+                    type: 200
+                    example: 200
+                  message:
+                    type: string
+                    example: City deleted succesfully
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+      security:
+        - Authorization: [] 
+  /country:
+    post:
+      tags:
+        - País
+      summary: Endpoint para crear usuario
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                firstname:
+                  type: string
+                  example: testing
+                  required: true
+                lastname:
+                  type: string
+                  example: testing
+                  required: true
+                email:
+                  type: string
+                  example: test@test.com
+                  required: true
+                password: 
+                  type: string
+                  example: 12345678
+                  required: true
+                role:
+                  type: string
+                  example: 6361d486f06640c24f0fe334
+      responses:
+        201:
+          description: Usuario creado con exito
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: number
+                    example: 201
+                  message:
+                    type: string
+                    example: Usuario creado!
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+      security:
+        - Authorization: []
+    get:
+      tags:
+        - País
+      summary: Endpoint para obtener usuarios
+      responses:
+        200:
+          description: Obtiene todos los usuarios
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: 
+                    type: 200
+                    example: 200
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/user'
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+      security:
+        - Authorization: []
+  /country/{id}:
+    get:
+      get:
+      tags:
+        - País
+      summary: Endpoint para obtener un pais por id
+      parameters:
+      - name: id
+        in: path
+        description: ID del país
+        required: true
+        schema:
+          type: string
+          example: 636a6cdb659766c01da966b8
+      responses:
+        200:
+          description: Obtiene un usuario por id
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: 
+                    type: 200
+                    example: 200
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/user'
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+      security:
+        - Authorization: []
+    patch:
+      tags:
+        - País
+      summary: Endpoint para actualizar un usuario por id
+      parameters:
+      - name: id
+        in: path
+        description: ID del usuario
+        required: true
+        schema:
+          type: string
+          example: 638248940ea30b1d0fc6cd25
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                firstname:
+                  type: string
+                  example: testing
+                  required: true
+                lastname:
+                  type: string
+                  example: testing
+                  required: true
+                email:
+                  type: string
+                  example: test@test.com
+                  required: true
+                password: 
+                  type: string
+                  example: 12345678
+                  required: true
+                role:
+                  type: string
+                  example: 6361d486f06640c24f0fe334
+      responses:
+        201:
+          description: Usuario actualizado con exito
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: number
+                    example: 201
+                  message:
+                    type: string
+                    example: Usuario actualizado!
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+      security:
+        - Authorization: [] 
+    delete:
+      tags:
+        - Usuarios
+      summary: Endpoint para eliminar un usuario por id
+      parameters:
+      - name: id
+        in: path
+        description: ID del usuario
+        required: true
+        schema:
+          type: string
+          example: 638248940ea30b1d0fc6cd25
+      responses:
+        200:
+          description: Elimina un usuario por id
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: 
+                    type: 200
+                    example: 200
+                  message:
+                    type: string
+                    example: User deleted succesfully
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+      security:
+        - Authorization: []
+  /region:
+    post:
+      tags:
+        - Región
+      summary: Endpoint para crear usuario
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                firstname:
+                  type: string
+                  example: testing
+                  required: true
+                lastname:
+                  type: string
+                  example: testing
+                  required: true
+                email:
+                  type: string
+                  example: test@test.com
+                  required: true
+                password: 
+                  type: string
+                  example: 12345678
+                  required: true
+                role:
+                  type: string
+                  example: 6361d486f06640c24f0fe334
+      responses:
+        201:
+          description: Usuario creado con exito
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: number
+                    example: 201
+                  message:
+                    type: string
+                    example: Usuario creado!
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+      security:
+        - Authorization: []
+    get:
+      tags:
+        - Región
+      summary: Endpoint para obtener usuarios
+      responses:
+        200:
+          description: Obtiene todos los usuarios
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: 
+                    type: 200
+                    example: 200
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/user'
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+      security:
+        - Authorization: []
+  /region/{id}:
+    get:
+      get:
+      tags:
+        - Región
+      summary: Endpoint para obtener usuario por id
+      parameters:
+      - name: id
+        in: path
+        description: ID del usuario
+        required: true
+        schema:
+          type: string
+          example: 636a6cdb659766c01da966b8
+      responses:
+        200:
+          description: Obtiene un usuario por id
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: 
+                    type: 200
+                    example: 200
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/user'
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+      security:
+        - Authorization: []
+    patch:
+      tags:
+        - Región
+      summary: Endpoint para actualizar un usuario por id
+      parameters:
+      - name: id
+        in: path
+        description: ID del usuario
+        required: true
+        schema:
+          type: string
+          example: 638248940ea30b1d0fc6cd25
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                firstname:
+                  type: string
+                  example: testing
+                  required: true
+                lastname:
+                  type: string
+                  example: testing
+                  required: true
+                email:
+                  type: string
+                  example: test@test.com
+                  required: true
+                password: 
+                  type: string
+                  example: 12345678
+                  required: true
+                role:
+                  type: string
+                  example: 6361d486f06640c24f0fe334
+      responses:
+        201:
+          description: Usuario actualizado con exito
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: number
+                    example: 201
+                  message:
+                    type: string
+                    example: Usuario actualizado!
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+      security:
+        - Authorization: [] 
+    delete:
+      tags:
+        - Región
       summary: Endpoint para eliminar un usuario por id
       parameters:
       - name: id
@@ -941,12 +1534,21 @@ components:
           type: string
         role:           
             $ref: '#/components/schemas/role'
+    city:
+      type: object
+      properties:
+        name:
+          type: string
+          example: Buenos Aires
+        country:
+          type: string
+          example: 637aefb347ac8eb3a18a0c8b
     role:
       type: object
       properties:
         id:
-          type: number
-          example: 2
+          type: string
+          example: 63059c27a84e02e3af11f68b
         name:
           type: string
           example: user
