@@ -474,35 +474,20 @@ paths:
     post:
       tags:
         - Cargo
-      summary: Endpoint para crear usuario
+      summary: Endpoint para crear un puesto de trabajo
       requestBody:
         content:
           application/json:
             schema:
               type: object
               properties:
-                firstname:
+                name:
                   type: string
-                  example: testing
-                  required: true
-                lastname:
-                  type: string
-                  example: testing
-                  required: true
-                email:
-                  type: string
-                  example: test@test.com
-                  required: true
-                password: 
-                  type: string
-                  example: 12345678
-                  required: true
-                role:
-                  type: string
-                  example: 6361d486f06640c24f0fe334
+                  example: Developer
+                  required: true                
       responses:
         201:
-          description: Usuario creado con exito
+          description: Puesto de trabajo creado con exito
           content:
             application/json:
               schema:
@@ -513,7 +498,7 @@ paths:
                     example: 201
                   message:
                     type: string
-                    example: Usuario creado!
+                    example: Occupation created succesfully!
         500:
           description: Internal server error
           content:
@@ -525,10 +510,10 @@ paths:
     get:
       tags:
         - Cargo
-      summary: Endpoint para obtener Cargo
+      summary: Endpoint para obtener puestos de trabajo
       responses:
         200:
-          description: Obtiene todos los Cargo
+          description: Obtiene todos los puestos de trabajo
           content:
             application/json:
               schema:
@@ -540,7 +525,7 @@ paths:
                   data:
                     type: array
                     items:
-                      $ref: '#/components/schemas/user'
+                      $ref: '#/components/schemas/occupation'
         500:
           description: Internal server error
           content:
@@ -553,18 +538,18 @@ paths:
     get:
       tags:
         - Cargo
-      summary: Endpoint para obtener usuario por id
+      summary: Endpoint para obtener un puesto de trabajo por id
       parameters:
       - name: id
         in: path
-        description: ID del usuario
+        description: ID del puesto de trabajo
         required: true
         schema:
           type: string
           example: 636a6cdb659766c01da966b8
       responses:
         200:
-          description: Obtiene un usuario por id
+          description: Obtiene un puesto de trabajo por id
           content:
             application/json:
               schema:
@@ -576,7 +561,7 @@ paths:
                   data:
                     type: array
                     items:
-                      $ref: '#/components/schemas/user'
+                      $ref: '#/components/schemas/occupation'
         500:
           description: Internal server error
           content:
@@ -588,11 +573,11 @@ paths:
     patch:
       tags:
         - Cargo
-      summary: Endpoint para actualizar un usuario por id
+      summary: Endpoint para actualizar un puesto de trabajo por id
       parameters:
       - name: id
         in: path
-        description: ID del usuario
+        description: ID del puesto de trabajo
         required: true
         schema:
           type: string
@@ -603,28 +588,13 @@ paths:
             schema:
               type: object
               properties:
-                firstname:
+                name:
                   type: string
-                  example: testing
-                  required: true
-                lastname:
-                  type: string
-                  example: testing
-                  required: true
-                email:
-                  type: string
-                  example: test@test.com
-                  required: true
-                password: 
-                  type: string
-                  example: 12345678
-                  required: true
-                role:
-                  type: string
-                  example: 6361d486f06640c24f0fe334
+                  example: Developer
+                  required: true                
       responses:
         201:
-          description: Usuario actualizado con exito
+          description: Puesto de trabajo actualizado con exito
           content:
             application/json:
               schema:
@@ -635,7 +605,7 @@ paths:
                     example: 201
                   message:
                     type: string
-                    example: Usuario actualizado!
+                    example: Occupation updated succesfully
         500:
           description: Internal server error
           content:
@@ -647,18 +617,18 @@ paths:
     delete:
       tags:
         - Cargo
-      summary: Endpoint para eliminar un usuario por id
+      summary: Endpoint para eliminar un puesto de trabajo por id
       parameters:
       - name: id
         in: path
-        description: ID del usuario
+        description: ID del puesto de trabajo
         required: true
         schema:
           type: string
           example: 638248940ea30b1d0fc6cd25
       responses:
         200:
-          description: Elimina un usuario por id
+          description: Elimina un puesto de trabajo por id
           content:
             application/json:
               schema:
@@ -669,7 +639,7 @@ paths:
                     example: 200
                   message:
                     type: string
-                    example: User deleted succesfully
+                    example: Occupation deleted succesfully
         500:
           description: Internal server error
           content:
@@ -2110,6 +2080,12 @@ components:
           type: string
         role:           
             $ref: '#/components/schemas/role'
+    occupation:
+      type: object
+      properties:
+        name:
+          type: string
+          example: Developer
     city:
       type: object
       properties:
