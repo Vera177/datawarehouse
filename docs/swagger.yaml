@@ -828,35 +828,20 @@ paths:
     post:
       tags:
         - Interés
-      summary: Endpoint para crear usuario
+      summary: Endpoint para crear un nuevo porcentaje de interés
       requestBody:
         content:
           application/json:
             schema:
               type: object
               properties:
-                firstname:
-                  type: string
-                  example: testing
-                  required: true
-                lastname:
-                  type: string
-                  example: testing
-                  required: true
-                email:
-                  type: string
-                  example: test@test.com
-                  required: true
-                password: 
-                  type: string
-                  example: 12345678
-                  required: true
-                role:
-                  type: string
-                  example: 6361d486f06640c24f0fe334
+                interest:
+                  type: number
+                  example: 75
+                  required: true                
       responses:
         201:
-          description: Usuario creado con exito
+          description: Porcentaje de interés creado con exito
           content:
             application/json:
               schema:
@@ -867,7 +852,7 @@ paths:
                     example: 201
                   message:
                     type: string
-                    example: Usuario creado!
+                    example: Interest number created!
         500:
           description: Internal server error
           content:
@@ -879,10 +864,10 @@ paths:
     get:
       tags:
         - Interés
-      summary: Endpoint para obtener Interés
+      summary: Endpoint para obtener porcentaje de interés del contacto
       responses:
         200:
-          description: Obtiene todos los Interés
+          description: Obtiene todos los porcentaje de interés
           content:
             application/json:
               schema:
@@ -894,7 +879,7 @@ paths:
                   data:
                     type: array
                     items:
-                      $ref: '#/components/schemas/user'
+                      $ref: '#/components/schemas/interestLevel'
         500:
           description: Internal server error
           content:
@@ -907,18 +892,18 @@ paths:
     get:
       tags:
         - Interés
-      summary: Endpoint para obtener usuario por id
+      summary: Endpoint para obtener porcentaje de interés por id
       parameters:
       - name: id
         in: path
-        description: ID del usuario
+        description: ID del porcentaje de interés
         required: true
         schema:
           type: string
           example: 636a6cdb659766c01da966b8
       responses:
         200:
-          description: Obtiene un usuario por id
+          description: Obtiene un porcentaje de interés por id
           content:
             application/json:
               schema:
@@ -930,7 +915,7 @@ paths:
                   data:
                     type: array
                     items:
-                      $ref: '#/components/schemas/user'
+                      $ref: '#/components/schemas/interestLevel'
         500:
           description: Internal server error
           content:
@@ -942,11 +927,11 @@ paths:
     patch:
       tags:
         - Interés
-      summary: Endpoint para actualizar un usuario por id
+      summary: Endpoint para actualizar un porcentaje de interés por id
       parameters:
       - name: id
         in: path
-        description: ID del usuario
+        description: ID del porcentaje de interés
         required: true
         schema:
           type: string
@@ -957,28 +942,14 @@ paths:
             schema:
               type: object
               properties:
-                firstname:
-                  type: string
-                  example: testing
-                  required: true
-                lastname:
-                  type: string
-                  example: testing
-                  required: true
-                email:
-                  type: string
-                  example: test@test.com
-                  required: true
-                password: 
-                  type: string
-                  example: 12345678
-                  required: true
-                role:
-                  type: string
-                  example: 6361d486f06640c24f0fe334
+                interest:
+                  type: number
+                  example: 75
+                  required: true   
+                
       responses:
         201:
-          description: Usuario actualizado con exito
+          description: Porcentaje de interés actualizado con exito
           content:
             application/json:
               schema:
@@ -989,7 +960,7 @@ paths:
                     example: 201
                   message:
                     type: string
-                    example: Usuario actualizado!
+                    example: Interest percentage updated succesfully!
         500:
           description: Internal server error
           content:
@@ -1001,18 +972,18 @@ paths:
     delete:
       tags:
         - Interés
-      summary: Endpoint para eliminar un usuario por id
+      summary: Endpoint para eliminar un porcentaje de interés por id
       parameters:
       - name: id
         in: path
-        description: ID del usuario
+        description: ID del porcentaje de interés
         required: true
         schema:
           type: string
           example: 638248940ea30b1d0fc6cd25
       responses:
         200:
-          description: Elimina un usuario por id
+          description: Elimina un porcentaje de interés por id
           content:
             application/json:
               schema:
@@ -1023,7 +994,7 @@ paths:
                     example: 200
                   message:
                     type: string
-                    example: User deleted succesfully
+                    example: Interest percentage deleted succesfully
         500:
           description: Internal server error
           content:
@@ -2060,6 +2031,12 @@ components:
         name:
           type: string
           example: WhatsApp
+    interestLevel:
+      type: object
+      properties:
+        interest:
+          type: number
+          example: 75
     city:
       type: object
       properties:
