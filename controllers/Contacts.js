@@ -54,7 +54,7 @@ class Contactcontroller {
 
     static async getById(req, res){
         try {
-            const contact = await contactModel.findById(req.params.id, "-__v").populate("company_id", "-__v").populate('cities_id', '-__v').populate('occupation_id', '-__v').populate('contact_information_id', '-__v').populate('interested_id', '-__v');
+            const contact = await contactModel.findById(req.params.id, "-__v").populate({path: 'company_id', populate: {path: 'cities_id', populate: {path: 'countries_id', populate: {path: 'regions_id'}}}}).populate({path: 'cities_id', populate: {path: 'countries_id', populate: {path: 'regions_id'}}}).populate('occupation_id', '-__v').populate('contact_information_id', '-__v').populate('interested_id', '-__v');
             return res.json({
                 status: 200,
                 data: contact
