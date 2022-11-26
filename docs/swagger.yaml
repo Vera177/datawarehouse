@@ -674,6 +674,247 @@ paths:
                 $ref: '#/components/schemas/error'
       security:
         - Authorization: [] 
+  /contact:
+    post:
+      tags:
+        - Contactos
+      summary: Endpoint para crear nuevo contacto
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                firstname:
+                  type: string
+                  example: testing
+                  required: true
+                lastname:
+                  type: string
+                  example: testing
+                  required: true
+                email:
+                  type: string
+                  example: test@test.com
+                  required: true
+                adress:
+                  type: string
+                  example: testing
+                  required: true
+                company:
+                  type: string
+                  example: 636b13775aa27d2080bfc214
+                  required: true
+                occupation:
+                  type: string
+                  example: 636927b922f3f09f9a4171c7
+                  required: true
+                contactInformation:
+                  type: string
+                  example: 6369291f171381ec50be6aa5
+                  required: true
+                interestedPercentage:
+                  type: string
+                  example: 63693c660c0857acd351d488
+                  required: true
+                City:
+                  type: string
+                  example: 637aef6d47ac8eb3a18a0c85
+      responses:
+        201:
+          description: Contacto creado con exito
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: number
+                    example: 201
+                  message:
+                    type: string
+                    example: Contacto creado!
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+      security:
+        - Authorization: []
+    get:
+      tags:
+        - Contactos
+      summary: Endpoint para obtener todos los contactos
+      responses:
+        200:
+          description: Obtiene todos los contactos
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: 
+                    type: 200
+                    example: 200
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/contact'
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+      security:
+        - Authorization: []
+  /contact/{id}:
+    get:
+      get:
+      tags:
+        - Contactos
+      summary: Endpoint para obtener un contacto por id
+      parameters:
+      - name: id
+        in: path
+        description: ID del contacto
+        required: true
+        schema:
+          type: string
+          example: 636a6cdb659766c01da966b8
+      responses:
+        200:
+          description: Obtiene un contacto por id
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: 
+                    type: 200
+                    example: 200
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/contact'
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+      security:
+        - Authorization: []
+    patch:
+      tags:
+        - Contactos
+      summary: Endpoint para actualizar un contacto por id
+      parameters:
+      - name: id
+        in: path
+        description: ID del contacto
+        required: true
+        schema:
+          type: string
+          example: 638248940ea30b1d0fc6cd25
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                firstname:
+                  type: string
+                  example: testing
+                  required: true
+                lastname:
+                  type: string
+                  example: testing
+                  required: true
+                email:
+                  type: string
+                  example: test@test.com
+                  required: true
+                adress:
+                  type: string
+                  example: testing
+                  required: true
+                company:
+                  type: string
+                  example: 636b13775aa27d2080bfc214
+                  required: true
+                occupation:
+                  type: string
+                  example: 636927b922f3f09f9a4171c7
+                  required: true
+                contactInformation:
+                  type: string
+                  example: 6369291f171381ec50be6aa5
+                  required: true
+                interestedPercentage:
+                  type: string
+                  example: 63693c660c0857acd351d488
+                  required: true
+                City:
+                  type: string
+                  example: 637aef6d47ac8eb3a18a0c85
+      responses:
+        201:
+          description: contacto actualizado con exito
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: number
+                    example: 201
+                  message:
+                    type: string
+                    example: Contacto actualizado!
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+      security:
+        - Authorization: [] 
+    delete:
+      tags:
+        - Contactos
+      summary: Endpoint para eliminar un contacto por id
+      parameters:
+      - name: id
+        in: path
+        description: ID del contacto
+        required: true
+        schema:
+          type: string
+          example: 638248940ea30b1d0fc6cd25
+      responses:
+        200:
+          description: Elimina un contacto por id
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: 
+                    type: 200
+                    example: 200
+                  message:
+                    type: array
+                    example: Contact deleted succesfully
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+      security:
+        - Authorization: [] 
 
 components:
   schemas:
@@ -731,6 +972,44 @@ components:
         city:
           type: string
           example: 6361d486f06640c24f0fe334
+    contact:
+      type: object
+      properties:
+        firstname:
+          type: string
+          example: testing
+          required: true
+        lastname:
+          type: string
+          example: testing
+          required: true
+        email:
+          type: string
+          example: test@test.com
+          required: true
+        adress:
+          type: string
+          example: testing
+          required: true
+        company:
+          type: string
+          example: 636b13775aa27d2080bfc214
+          required: true
+        occupation:
+          type: string
+          example: 636927b922f3f09f9a4171c7
+          required: true
+        contactInformation:
+          type: string
+          example: 6369291f171381ec50be6aa5
+          required: true
+        interestedPercentage:
+          type: string
+          example: 63693c660c0857acd351d488
+          required: true
+        City:
+          type: string
+          example: 637aef6d47ac8eb3a18a0c85
 
   securitySchemes:
     Authorization:
