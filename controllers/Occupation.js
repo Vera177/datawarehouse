@@ -5,10 +5,10 @@ class Occupationcontroller {
     static async create(req, res) {
         const { name } = req.body;
         try {
-            const contactCreated = new occupationModel({
+            const occupationCreated = new occupationModel({
                 name
             });
-            await contactCreated.save();
+            await occupationCreated.save();
             return res.status(201).json({
                 status: 201,
                 message: `${name} created succesfully`
@@ -20,7 +20,7 @@ class Occupationcontroller {
 
     static async getAll(req, res) {
         try {
-            const data = await contactModel.find().populate('company_id');
+            const data = await occupationModel.find();
             // const contacts = await contactModel.populate('Company');
             // const data = contacts.map(contact => {
             //     return {
