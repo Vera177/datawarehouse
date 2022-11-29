@@ -80,12 +80,31 @@
         width: 14px;
         margin-left: 3px;
     }
-
     .contactChannel{
         background-color: $bg-contact-color;
         color: $bg-contact-text;
         border: none;
         padding: 5px 10px;
         border-radius: 4px;
+    }
+}
+
+.contactsTableBody {
+
+    .contactName{
+        // display: flex;
+        display: grid;
+        grid-template-columns: 1fr;
+        align-content: center;
+        width: 100%;
+        
+        .image{
+            width: 7%;
+            height: 7%;
+        }
+
+        .contactImage{
+            border-radius: 24px;
+        }
     }
 }
