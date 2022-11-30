@@ -22,9 +22,6 @@
 .companiesTable {
     margin: 4% 2%;
     border: $bordersolidblack;
-    display: flex;
-    flex-direction: column;
-    align-content: space-around;
     text-align: center;
 
     > thead {
