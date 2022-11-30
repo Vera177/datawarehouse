@@ -46,6 +46,7 @@
         border-radius: 3px;
         width: 173px;
         height: 42px;
+        cursor: pointer;
     }
 }
 
@@ -150,6 +151,7 @@
     .interestContainer{
         display: grid;
         grid-template-columns: 8fr 1fr;
+        grid-template-rows: 1fr 1fr;
         column-gap: 2%;
 
         .interestLabel{
@@ -175,9 +177,11 @@
 
     .btnCancel{
         grid-column: 7/8;
+        cursor: pointer;
     }
 
     .btnSaveContact{
         grid-column: 8/9;
+        cursor: pointer;
     }
 }
