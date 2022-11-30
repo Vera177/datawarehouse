@@ -108,3 +108,76 @@
         }
     }
 }
+
+/* modal */
+
+.titleContactsModal{
+    display: flex;
+    justify-content: space-between;
+    background-color: $blue;
+    color: $white;
+    padding: 3.5%;
+
+    .newContactTitle{
+        color: $white;
+    }
+}
+
+.contactInformation{
+    display: grid;
+    border: 3px solid $bg-contact-text;
+    border-radius: 6.5px;
+    margin: 2% 3% 1% 2%;
+    padding: 1% 1% 0 1%;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+
+    .requiredRed{
+        color: red;
+    }
+}
+
+.plusContactInformation{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    align-items: center;
+    padding: 3% 3% 3% 2%;
+    gap: 22% 2%;
+
+    >div{
+        display: grid;
+    }
+
+    .interestContainer{
+        display: grid;
+        grid-template-columns: 8fr 1fr;
+        column-gap: 2%;
+
+        .interestLabel{
+            grid-column: 1 / 2;
+        }
+    }
+
+    .addChannel{
+        display: grid;
+        grid-template-rows: 1fr 1fr;
+
+        >input{
+            grid-row: 2 / 3;
+        }
+    }
+}
+
+.closeModalButtons{
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    justify-items: end;
+    padding: 3%;
+
+    .btnCancel{
+        grid-column: 7/8;
+    }
+
+    .btnSaveContact{
+        grid-column: 8/9;
+    }
+}
