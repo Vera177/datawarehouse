@@ -44,3 +44,17 @@
         }
     }
 }
+
+/* modal */
+
+.addNewCompanie{
+    display: grid;
+    border-radius: 6.5px;
+    margin: 2% 3% 1% 2%;
+    padding: 1% 1% 0 1%;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+
+    .requiredRed{
+        color: red;
+    }
+}

@@ -55,43 +55,41 @@
         </div>
     </table>
 
-{{!-- Modal --}}
+ {{!-- Modal --}}
 
   <div id="companies-modal" class="uk-modal-container" uk-modal>
     <div class="uk-modal-dialog">
       <div class="contactsContainer">
         <div class="titleContactsModal">
-          <h2 class="uk-modal-title newContactTitle">Nueva región/pais/ciudad</h2>
+          <h2 class="uk-modal-title newContactTitle">Nueva compañía</h2>
           <a class="uk-modal-close" type="a"><img src="../assets/close.png" alt="close modal"></a>
         </div>
       </div>
       <form action="">
-        <div class="plusContactInformation">
-          <div>
-            <label for="region">Región</label>
-            <select id="region" name="region">
-              <option hidden selected value="">Seleccionar región</option>
-              <option value="Sudamérica">Sudamérica</option>
-            </select>
-          </div>
-          <div>
-            <label for="country">País</label>
-            <select id="country" name="country">
-              <option hidden selected value="">Seleccionar país</option>
-              <option value="country">Argentina</option>
-            </select>
-          </div>
-          <div>
-            <label for="city">Ciudad</label>
-            <select id="city" name="city">
-              <option hidden selected value="">Seleccionar ciudad</option>
-              <option value="city">Buenos Aires</option>
-            </select>
-          </div>
-          <div>
-            <label for="direction">Dirección</label>
-            <input type="text" name="direction" placeholder="Ingresa una dirección">
-          </div>
+        <div class="addNewCompanie">
+            <div>
+                <label for="name">Nombre<span class="requiredRed">*</span></label>
+                <input type="text" id="name" required>
+            </div>
+            <div>
+                <label for="region">Dirección</label>
+                <input type="text" placeholder="Ingresa una dirección">
+            </div>
+            <div>
+                <label for="email">Email<span class="requiredRed">*</span></label>
+                <input type="email" id="email" required>
+            </div>
+            <div>
+                <label for="phone">Teléfono<span class="requiredRed">*</span></label>
+                <input type="tel" id="phone" required>
+            </div>
+            <div>
+                <label for="city">Ciudad<span class="requiredRed">*</span></label>
+                <select id="city" name="city">
+                <option hidden selected value="">Seleccionar ciudad</option>
+                <option value="city">Buenos Aires</option>
+                </select>
+            </div>
         </div>
       </form>
         <div class="closeModalButtons">
@@ -100,6 +98,7 @@
         </div>
     </div>
   </div>
+
 </section>
 {{> partials/footer}}
 {{>partials/foot}}
