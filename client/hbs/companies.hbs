@@ -2,56 +2,104 @@
 {{> partials/header}}
 <div class="companiesTitleContainer">
     <h3>Compañías</h3>
-    <button class="btnAddCompanies">Agregar</button class="btnAddCompanies">
+    <button class="btnAddCompanies" uk-toggle="target: #companies-modal">Agregar</button class="btnAddCompanies">
 </div>
-<table class="companiesTable">
-    <thead>
-        <tr>
-            <th>
-                Nombre
-            </th>
-            <th>
-                Dirección
-            </th>
-            <th>
-                Email
-            </th>
-            <th>
-                Teléfono
-            </th>
-            <th>
-                Ciudad
-            </th>
-            <th>
-                Acciones
-            </th>
-        </tr>
-    </thead>
-    <div>
-        <tbody>
+<section>
+    <table class="companiesTable">
+        <thead>
             <tr>
-                <td>
-                    Sofftek
-                </td>
-                <td>
-                    Avenida siempre viva 273
-                </td>
-                <td>
-                    Sofftek@gmail.com
-                </td>
-                <td>
-                    42575555
-                </td>
-                <td>
-                    Buenos Aires
-                </td>
-                <td>
-                    <button class="btnEditCompany">Edit</button>
-                    <button class="btnDeletecompany">X</button>
-                </td>
+                <th>
+                    Nombre
+                </th>
+                <th>
+                    Dirección
+                </th>
+                <th>
+                    Email
+                </th>
+                <th>
+                    Teléfono
+                </th>
+                <th>
+                    Ciudad
+                </th>
+                <th>
+                    Acciones
+                </th>
             </tr>
-        </tbody>
+        </thead>
+        <div>
+            <tbody>
+                <tr>
+                    <td>
+                        Sofftek
+                    </td>
+                    <td>
+                        Avenida siempre viva 273
+                    </td>
+                    <td>
+                        Sofftek@gmail.com
+                    </td>
+                    <td>
+                        42575555
+                    </td>
+                    <td>
+                        Buenos Aires
+                    </td>
+                    <td>
+                        <button class="btnEditCompany">Edit</button>
+                        <button class="btnDeletecompany">X</button>
+                    </td>
+                </tr>
+            </tbody>
+        </div>
+    </table>
+
+{{!-- Modal --}}
+
+  <div id="companies-modal" class="uk-modal-container" uk-modal>
+    <div class="uk-modal-dialog">
+      <div class="contactsContainer">
+        <div class="titleContactsModal">
+          <h2 class="uk-modal-title newContactTitle">Nueva región/pais/ciudad</h2>
+          <a class="uk-modal-close" type="a"><img src="../assets/close.png" alt="close modal"></a>
+        </div>
+      </div>
+      <form action="">
+        <div class="plusContactInformation">
+          <div>
+            <label for="region">Región</label>
+            <select id="region" name="region">
+              <option hidden selected value="">Seleccionar región</option>
+              <option value="Sudamérica">Sudamérica</option>
+            </select>
+          </div>
+          <div>
+            <label for="country">País</label>
+            <select id="country" name="country">
+              <option hidden selected value="">Seleccionar país</option>
+              <option value="country">Argentina</option>
+            </select>
+          </div>
+          <div>
+            <label for="city">Ciudad</label>
+            <select id="city" name="city">
+              <option hidden selected value="">Seleccionar ciudad</option>
+              <option value="city">Buenos Aires</option>
+            </select>
+          </div>
+          <div>
+            <label for="direction">Dirección</label>
+            <input type="text" name="direction" placeholder="Ingresa una dirección">
+          </div>
+        </div>
+      </form>
+        <div class="closeModalButtons">
+          <button class="uk-modal-close btnCancel" type="button">Cancelar</button>
+          <button class="uk-modal-close btnSaveContact" type="button">Guardar contacto</button>
+        </div>
     </div>
-</table>
+  </div>
+</section>
 {{> partials/footer}}
 {{>partials/foot}}
