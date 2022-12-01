@@ -1,5 +1,6 @@
 .contactsSection{
     margin: 2% 2%;
+    font-family: $TxtOpenSans;
 
     .titleContacts{
         font-weight:bolder;
@@ -117,7 +118,7 @@
     justify-content: space-between;
     background-color: $blue;
     color: $white;
-    padding: 3.5%;
+    padding: 1% 1% 7% 2.5%;
 
     .newContactTitle{
         color: $white;
@@ -128,9 +129,12 @@
     display: grid;
     border: 3px solid $bg-contact-text;
     border-radius: 6.5px;
-    margin: 2% 3% 1% 2%;
-    padding: 1% 1% 0 1%;
+    margin: 2% 0.5% -8% 1.5%;
+    padding: 3% 1% 3% 1%;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    position: relative;
+    top: -15vh;
+    background-color: white;
 
     .requiredRed{
         color: red;
