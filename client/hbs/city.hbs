@@ -1,8 +1,62 @@
 {{>partials/head}}
 {{> partials/header}}
 <section class="sectionCity">
-    <button class="btnTitleCity">Agregar región</button>
+    <button class="btnTitleCity" uk-toggle="target: #companies-modal">Agregar región</button>
 </section>
+{{!-- <li id="cnt_input_new_${itemAdd}_${id}" class="hide">
+    <div>
+        <input id="input_add_${itemAdd}_${id}" type="text" placeholder="Ingrese" autofocus>
+        <div>
+            <i id="btn_ok_add_${itemAdd}_${id}" class="fas fa-check tag-hover" data-text="Guardar"></i>
+            <i id="btn_cancel_add_${itemAdd}_${id}" class="fas fa-times tag-hover" data-text="Cancelar"></i>
+        </div>
+    </div>
+</li> --}}
 {{> partials/treeview}}
+
+ {{!-- Modal --}}
+ 
+<section> 
+  <div id="companies-modal" class="uk-modal-container" uk-modal>
+    <div class="uk-modal-dialog">
+      <div class="contactsContainer">
+        <div class="titleContactsModal">
+          <h2 class="uk-modal-title newContactTitle">Nueva región</h2>
+          <a class="uk-modal-close" type="a"><img src="../assets/close.png" alt="close modal"></a>
+        </div>
+      </div>
+      <form action="">
+        <div class="addNewRegionCity">
+          <div>
+            <label for="region">Región</label>
+            <input type="text" name="region" placeholder="Ingrese nueva región">
+          </div>
+          {{!-- <div>
+            <label for="country">País</label>
+            <select id="country" name="country">
+              <option hidden selected value="">Seleccionar país</option>
+              <option value="country">Argentina</option>
+            </select>
+          </div>
+          <div>
+            <label for="city">Ciudad</label>
+            <select id="city" name="city">
+              <option hidden selected value="">Seleccionar ciudad</option>
+              <option value="city">Buenos Aires</option>
+            </select>
+          </div>
+          <div>
+            <label for="direction">Dirección</label>
+            <input type="text" name="direction" placeholder="Ingresa una dirección">
+          </div>
+        </div> --}}
+      </form>
+        <div class="closeModalCityButtons">
+          <button class="uk-modal-close btnCancel" type="button">Cancelar</button>
+          <button class="uk-modal-close btnSaveContact" type="button">Guardar región</button>
+        </div>
+    </div>
+  </div>
+</section>
 {{> partials/footer}}
 {{>partials/foot}}

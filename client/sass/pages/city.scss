@@ -11,6 +11,7 @@
         border-radius: 3px;
         width: 173px;
         height: 42px;
+        cursor: pointer;
     }
 }
 
@@ -102,4 +103,39 @@ ul,
 
 .active {
     display: block;
+}
+
+/* modal */
+
+.addNewRegionCity{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    align-items: center;
+    padding: 3% 3% 3% 2%;
+    gap: 22% 2%;
+
+    >div{
+        display: grid;
+    }
+    
+}
+
+.closeModalCityButtons{
+    display: grid;
+    grid-row: 2/3;
+    grid-column: 2/3;
+    grid-template-columns: 1fr 1fr;
+    justify-items: end;
+    padding: 3%;
+
+    .btnCancel{
+        grid-column: 1/2;
+        cursor: pointer;
+    }
+
+    .btnSaveContact{
+        grid-column: 2/3;
+        cursor: pointer;
+    }
 }
