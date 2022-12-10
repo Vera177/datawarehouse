@@ -67,10 +67,11 @@
     .contactsTableBody>tr>.interestPercentage{
             display: flex;
             justify-content: space-around;
+            align-items: center;
 
-            div{
-                width: 60%;
-            }
+            // div{
+            //     width: 60%;
+            // }
     }
 
     .contactsTableBody>tr>.tripleDot{
