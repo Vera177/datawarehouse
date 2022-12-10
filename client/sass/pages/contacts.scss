@@ -1,32 +1,32 @@
-.contactsSection{
+.contactsSection {
     margin: 2% 2%;
     font-family: $TxtOpenSans;
 
-    .titleContacts{
-        font-weight:bolder;
-        font-size:x-large;
-        font-family: 'Open Sans', sans-serif;
+    .titleContacts {
+        font-weight: bolder;
+        font-size: x-large;
+        font-family: "Open Sans", sans-serif;
     }
 }
 
-.uk-margin{
+.uk-margin {
     display: flex;
     justify-content: space-between;
     height: 15vh;
 
-    .search{
+    .search {
         width: 50%;
         display: flex;
 
-        .uk-search-default{
+        .uk-search-default {
             width: 90%;
 
-            .uk-search-input{
+            .uk-search-input {
                 border-radius: 5px;
             }
         }
 
-        .iconSearch{
+        .iconSearch {
             margin: 0 0.7%;
             border: 1px solid #e5e5e5;
             padding-left: 9px;
@@ -39,7 +39,7 @@
         }
     }
 
-    div>.addContactBtn{
+    div > .addContactBtn {
         background-color: $blue;
         color: $white;
         font-family: $TxtOpenSans;
@@ -51,39 +51,50 @@
     }
 }
 
-.uk-table>thead>tr>th, .uk-table>tbody>tr>td{
-    font-family: 'Open Sans', sans-serif;
+.uk-table > thead > tr > th,
+.uk-table > tbody > tr > td {
+    font-family: "Open Sans", sans-serif;
     color: #000000;
     font-size: inherit;
 }
 
-.uk-table{
+.uk-table > thead > tr > .checkboxTHead, .uk-table > tbody > tr > th {
+    padding: 16px 12px;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 0.875rem;
+    font-weight: 400;
+    color: #999;
+    text-transform: uppercase;
+}
+
+.uk-table {
     border: 1px solid #e5e5e5;
 
-    .contactsTableHead{
+    .contactsTableHead {
         border-bottom: 1px solid #e5e5e5;
     }
 
-    .contactsTableBody>tr>.interestPercentage{
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
+    .contactsTableBody > tr > .interestPercentage {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
 
-            // div{
-            //     width: 60%;
-            // }
+        // div{
+        //     width: 60%;
+        // }
     }
 
-    .contactsTableBody>tr>.tripleDot{
+    .contactsTableBody > tr > .tripleDot {
         text-align: center;
-    }    
+    }
 
     .upDownArrow {
         height: 14px;
         width: 14px;
         margin-left: 3px;
     }
-    .contactChannel{
+    .contactChannel {
         background-color: $bg-contact-color;
         color: $bg-contact-text;
         border: none;
@@ -93,20 +104,19 @@
 }
 
 .contactsTableBody {
-
-    .contactName{
+    .contactName {
         // display: flex;
         display: grid;
         grid-template-columns: 1fr;
         align-content: center;
         width: 100%;
-        
-        .image{
+
+        .image {
             width: 7%;
             height: 7%;
         }
 
-        .contactImage{
+        .contactImage {
             border-radius: 24px;
         }
     }
@@ -114,19 +124,19 @@
 
 /* modal */
 
-.titleContactsModal{
+.titleContactsModal {
     display: flex;
     justify-content: space-between;
     background-color: $blue;
     color: $white;
     padding: 1% 1% 7% 2.5%;
 
-    .newContactTitle{
+    .newContactTitle {
         color: $white;
     }
 }
 
-.contactInformation{
+.contactInformation {
     display: grid;
     border: 3px solid $bg-contact-text;
     border-radius: 6.5px;
@@ -137,55 +147,55 @@
     top: -15vh;
     background-color: white;
 
-    .requiredRed{
+    .requiredRed {
         color: red;
     }
 }
 
-.plusContactInformation{
+.plusContactInformation {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     align-items: center;
     padding: 3% 3% 3% 2%;
     gap: 22% 2%;
 
-    >div{
+    > div {
         display: grid;
     }
 
-    .interestContainer{
+    .interestContainer {
         display: grid;
         grid-template-columns: 8fr 1fr;
         grid-template-rows: 1fr 1fr;
         column-gap: 2%;
 
-        .interestLabel{
+        .interestLabel {
             grid-column: 1 / 2;
         }
     }
 
-    .addChannel{
+    .addChannel {
         display: grid;
         grid-template-rows: 1fr 1fr;
 
-        >input{
+        > input {
             grid-row: 2 / 3;
         }
     }
 }
 
-.closeModalButtons{
+.closeModalButtons {
     display: grid;
     grid-template-columns: repeat(8, 1fr);
     justify-items: end;
     padding: 3%;
 
-    .btnCancel{
+    .btnCancel {
         grid-column: 7/8;
         cursor: pointer;
     }
 
-    .btnSaveContact{
+    .btnSaveContact {
         grid-column: 8/9;
         cursor: pointer;
     }
