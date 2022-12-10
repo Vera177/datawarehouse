@@ -110,15 +110,14 @@
 
 .contactsTableBody {
     .contactName {
-        // display: flex;
-        display: grid;
-        grid-template-columns: 1fr;
-        align-content: center;
-        width: 100%;
+        display: flex;
+        align-items: center;
+        width: 18vw;
 
         .image {
-            width: 7%;
-            height: 7%;
+            width: 24px;
+            height: 24px;
+            margin-right: 2%;
         }
 
         .contactImage {
