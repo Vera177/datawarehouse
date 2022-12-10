@@ -94,12 +94,17 @@
         width: 14px;
         margin-left: 3px;
     }
+
     .contactChannel {
         background-color: $bg-contact-color;
         color: $bg-contact-text;
         border: none;
         padding: 5px 10px;
         border-radius: 4px;
+    }
+
+    .secondTextGrey{
+        color: $second-text-color;
     }
 }
 
