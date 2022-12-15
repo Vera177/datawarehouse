@@ -2,8 +2,9 @@ import request from './helpers/request';
 
 const companyTBody = document.getElementById('companiesTableBody');
 
+const allowedCompanyURL = "./companies.html";
+
 function printCompanyRow(response){
-    console.log(response);
     response.forEach(element => {
         companyTBody.innerHTML += `<tr>
             <td>
@@ -29,15 +30,17 @@ function printCompanyRow(response){
         });
 }
 
-if (localStorage.getItem('token')) {
-    request('/api/company', {
-        method: 'GET',
-        headers: {
-            'Authorization': `Bearer ${localStorage.getItem("token")}`
-        }
-    }).then(response => {
-        printCompanyRow(response.data);
-    }).catch(error => {
-        console.log(error);
-    })
+if(allowedCompanyURL.includes(location.pathname)){
+    if (localStorage.getItem('token')) {
+        request('/api/company', {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem("token")}`
+            }
+        }).then(response => {
+            printCompanyRow(response.data);
+        }).catch(error => {
+            console.log(error);
+        })
+    }
 }
