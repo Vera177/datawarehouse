@@ -2,7 +2,7 @@
 {{> partials/header}}
 <div class="companiesTitleContainer">
     <h3>Compañías</h3>
-    <button class="btnAddCompanies" uk-toggle="target: #companies-modal">Agregar</button class="btnAddCompanies">
+    <button id="btnAddCompanies" class="btnAddCompanies" uk-toggle="target: #companies-modal">Agregar</button>
 </div>
 <section>
     <table class="companiesTable">
@@ -51,7 +51,7 @@
             </div>
             <div>
                 <label for="region">Dirección</label>
-                <input type="text" placeholder="Ingresa una dirección">
+                <input type="text" id="adress" placeholder="Ingresa una dirección">
             </div>
             <div>
                 <label for="email">Email<span class="requiredRed">*</span></label>
@@ -61,18 +61,17 @@
                 <label for="phone">Teléfono<span class="requiredRed">*</span></label>
                 <input type="tel" id="phone" required>
             </div>
-            <div>
+            <div id="cityModalInputContainer">
                 <label for="city">Ciudad<span class="requiredRed">*</span></label>
                 <select id="city" name="city">
                 <option hidden selected value="">Seleccionar ciudad</option>
-                <option value="city">Buenos Aires</option>
                 </select>
             </div>
         </div>
       </form>
         <div class="closeModalButtons">
           <button class="uk-modal-close btnCancel" type="button">Cancelar</button>
-          <button class="uk-modal-close btnSaveContact" type="button">Guardar compañía</button>
+          <button class="uk-modal-close btnSaveContact" id="btnSaveContact" type="button">Guardar compañía</button>
         </div>
     </div>
   </div>
