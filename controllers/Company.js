@@ -6,17 +6,19 @@ class Companycontroller {
     static async create(req, res) {
         const { name, adress, email, phone, city } = req.body;
         try {
-            const city2 = cityModel.findOne({city}).then(data => {
+            const city2 = cityModel.findOne({'name': city}).then(data => {
+                console.log(data);
                 const city3 = data._id;
+                console.log(city3);
                 const city4 = city3.toString();                
                 const companyCreated = new companyModel({
                     name, adress, email, phone, cities_id: city4
                 });
                 companyCreated.save();
-            });
-            return res.status(201).json({
-                status: 201,
-                message: 'Company created'
+                return res.status(201).json({
+                    status: 201,
+                    message: 'Company created'
+                });
             });
         } catch (error) {
             return res.status(500).json(error);
