@@ -7,9 +7,7 @@ class Companycontroller {
         const { name, adress, email, phone, city } = req.body;
         try {
             const city2 = cityModel.findOne({'name': city}).then(data => {
-                console.log(data);
                 const city3 = data._id;
-                console.log(city3);
                 const city4 = city3.toString();                
                 const companyCreated = new companyModel({
                     name, adress, email, phone, cities_id: city4
