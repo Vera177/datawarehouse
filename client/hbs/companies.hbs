@@ -2,7 +2,7 @@
 {{> partials/header}}
 <div class="companiesTitleContainer">
     <h3>Compañías</h3>
-    <button id="btnAddCompanies" class="btnAddCompanies" uk-toggle="target: #companies-modal">Agregar</button>
+    <button id="btnAddCompanies" class="btnAddCompanies">Agregar</button>
 </div>
 <section>
     <table class="companiesTable">
@@ -33,48 +33,99 @@
         </div>
     </table>
 
- {{!-- Modal --}}
+    {{!-- Modal --}}
 
-  <div id="companies-modal" class="uk-modal-container" uk-modal>
-    <div class="uk-modal-dialog">
-      <div class="contactsContainer">
-        <div class="titleContactsModal">
-          <h2 class="uk-modal-title newContactTitle">Nueva compañía</h2>
-          <a class="uk-modal-close" type="a"><img src="../assets/close.png" alt="close modal"></a>
-        </div>
-      </div>
-      <form action="">
-        <div class="addNewCompanie">
-            <div>
-                <label for="name">Nombre<span class="requiredRed">*</span></label>
-                <input type="text" id="name" required>
+    <div id="companies-modal" class="uk-modal-container" uk-modal>
+        <div class="uk-modal-dialog">
+            <div class="contactsContainer">
+                <div class="titleContactsModal">
+                    <h2 class="uk-modal-title newContactTitle">Nueva compañía</h2>
+                    <a class="uk-modal-close" type="a"><img src="../assets/close.png" alt="close modal"></a>
+                </div>
             </div>
-            <div>
-                <label for="region">Dirección</label>
-                <input type="text" id="adress" placeholder="Ingresa una dirección">
+            <form action="">
+                <div class="addNewCompanie">
+                    <div>
+                        <label for="name">Nombre<span class="requiredRed">*</span></label>
+                        <input type="text" id="name" required>
+                    </div>
+                    <div>
+                        <label for="region">Dirección</label>
+                        <input type="text" id="adress" placeholder="Ingresa una dirección">
+                    </div>
+                    <div>
+                        <label for="email">Email<span class="requiredRed">*</span></label>
+                        <input type="email" id="email" required>
+                    </div>
+                    <div>
+                        <label for="phone">Teléfono<span class="requiredRed">*</span></label>
+                        <input type="tel" id="phone" required>
+                    </div>
+                    <div id="cityModalInputContainer">
+                        <label for="city">Ciudad<span class="requiredRed">*</span></label>
+                        <select id="city" name="city">
+                            <option hidden selected value="">Seleccionar ciudad</option>
+                        </select>
+                    </div>
+                </div>
+            </form>
+            <div class="closeModalButtons">
+                <button class="uk-modal-close btnCancel" type="button">Cancelar</button>
+                <button class="uk-modal-close btnSaveContact" id="btnSaveContact" type="button">Guardar
+                    compañía</button>
             </div>
-            <div>
-                <label for="email">Email<span class="requiredRed">*</span></label>
-                <input type="email" id="email" required>
-            </div>
-            <div>
-                <label for="phone">Teléfono<span class="requiredRed">*</span></label>
-                <input type="tel" id="phone" required>
-            </div>
-            <div id="cityModalInputContainer">
-                <label for="city">Ciudad<span class="requiredRed">*</span></label>
-                <select id="city" name="city">
-                <option hidden selected value="">Seleccionar ciudad</option>
-                </select>
-            </div>
-        </div>
-      </form>
-        <div class="closeModalButtons">
-          <button class="uk-modal-close btnCancel" type="button">Cancelar</button>
-          <button class="uk-modal-close btnSaveContact" id="btnSaveContact" type="button">Guardar compañía</button>
         </div>
     </div>
-  </div>
+
+    <div id="edit-company" class="uk-modal-container" uk-modal>
+        <div class="uk-modal-dialog">
+            <div class="contactsContainer">
+                <div class="titleContactsModal">
+                    <h2 class="uk-modal-title newContactTitle">Nueva compañía</h2>
+                    <a class="uk-modal-close" type="a"><img src="../assets/close.png" alt="close modal"></a>
+                </div>
+            </div>
+            <form action="">
+                <div class="addNewCompanie">
+                    <div>
+                        <label for="edit-name">Nombre<span class="requiredRed">*</span></label>
+                        <input type="text" id="edit-name" required>
+                    </div>
+                    <div>
+                        <label for="edit-region">Dirección</label>
+                        <input type="text" id="edit-adress" placeholder="Ingresa una dirección">
+                    </div>
+                    <div>
+                        <label for="edit-email">Email<span class="requiredRed">*</span></label>
+                        <input type="email" id="edit-email" required>
+                    </div>
+                    <div>
+                        <label for="edit-phone">Teléfono<span class="requiredRed">*</span></label>
+                        <input type="tel" id="edit-phone" required>
+                    </div>
+                    <div id="cityModalInputContainer">
+                        <label for="edit-city">Ciudad<span class="requiredRed">*</span></label>
+                        <select id="edit-city" name="city">
+                            <option hidden selected value="">Seleccionar ciudad</option>
+                        </select>
+                    </div>
+                </div>
+            </form>
+            <div class="closeModalButtons">
+                <button class="uk-modal-close btnCancel" type="button">Cancelar</button>
+                <button class="uk-modal-close btnSaveContact" id="btnEditContact" type="button">
+                    Editar compañía
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="delete-company" class="uk-modal-container" uk-modal>
+        <div class="uk-modal-dialog">
+            <button class="uk-modal-close" id="closeModal">Cancelar</button>
+            <button class="uk-modal-close" id="deleteCompany">Confirmar</button>
+        </div>
+    </div>
 
 </section>
 {{> partials/footer}}
