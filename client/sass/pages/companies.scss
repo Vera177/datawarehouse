@@ -19,6 +19,34 @@
         cursor: pointer;
     }
 }
+.deleteModalContainer{
+    display: flex;
+    flex-direction: column;
+    // padding: 20vh;
+
+    .titleDeleteModal{
+        align-self: center;
+        padding: 10vh;
+    }
+
+    .buttonsModalDelete{
+        display: flex;
+        justify-content: flex-end;
+        padding: 5vh;
+
+        >button{
+            margin-left: 6px;
+            background-color: $blue;
+            color: $white;
+            font-family: $TxtOpenSans;
+            border-color: transparent;
+            border-radius: 3px;
+            width: 173px;
+            height: 42px;
+            cursor: pointer;
+        }
+    }
+}
 
 .companiesTable {
     margin: 4% 2%;
