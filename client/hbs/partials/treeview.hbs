@@ -1,39 +1,6 @@
 <section class="optionsTreeView">
-    <ul id="myUL">
-        <div class="countryContainer">
-            <li><span class="caret">Sudamérica</span>
-                <ul class="nested">
-                    <li><span class="caret">Argentina</span>
-                        <button class="btnEditCity">Edit</button>
-                        <button class="btnDeleteCity">Delete</button>
-                        <button class="btnAddCity">Add city</button>
-                        <ul class="nested">
-                            <li>Buenos Aires</li>
-                            <button class="btnEditCity">Edit</button>
-                            <button class="btnDeleteCity">Delete</button>
-                            <li>Córdoba</li>
-                            <button class="btnEditCity">Edit</button>
-                            <button class="btnDeleteCity">Delete</button>
-                        </ul>
-                    <li><span class="caret">Colombia</span>
-                        <button class="btnEditCity">Edit</button>
-                        <button class="btnDeleteCity">Delete</button>
-                        <button class="btnAddCity">Add city</button>
-                        <ul class="nested">
-                            <li>Bogotá</li>
-                            <button class="btnEditCity">Edit</button>
-                            <button class="btnDeleteCity">Delete</button>
-                            <li>Medellín</li>
-                            <button class="btnEditCity">Edit</button>
-                            <button class="btnDeleteCity">Delete</button>
-                        </ul>
-                    </li>
-            </li>
-    </ul>
-    </li>
-    <button class="btnAddCountry">Add country</button>
-    </div>
-    <div class="countryContainer">
+    <ul id="cityTreeView">
+    {{!-- <div class="countryContainer">
         <li><span class="caret">Norteamérica</span>
             <ul class="nested">
                 <li><span class="caret">México</span>
@@ -52,17 +19,6 @@
             </ul>
         </li>
         <button class="btnAddCountry">Add country</button>
-    </div>
+    </div> --}}
     </ul>
 </section>
-<script>
-    var toggler = document.getElementsByClassName("caret");
-    var i;
-
-    for (i = 0; i < toggler.length; i++) {
-        toggler[i].addEventListener("click", function () {
-            this.parentElement.querySelector(".nested").classList.toggle("active");
-            this.classList.toggle("caret-down");
-        });
-    }
-</script>
