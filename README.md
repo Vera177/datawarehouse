@@ -44,5 +44,9 @@ Simultáneamente abrimos otra terminal y escribimos:
 ```
 npm run build:dev
 ```
+
+Correr el cliente en el puerto 3000
+
+
 _Para consultar nuestra base de datos, podemos utilizar Postman en conjunto con Swagger, donde tenemos documentados nuestros endpoints. Con nuestro proyecto levantado, nos vamos a dirigir a http://localhost:3000/api-docs/_
 
