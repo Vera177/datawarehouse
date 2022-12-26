@@ -5,13 +5,13 @@ class Occupationcontroller {
     static async create(req, res) {
         const { name } = req.body;
         try {
-            const contactCreated = new occupationModel({
+            const occupationCreated = new occupationModel({
                 name
             });
-            await contactCreated.save();
+            await occupationCreated.save();
             return res.status(201).json({
                 status: 201,
-                message: 'Occupation created'
+                message: `${name} created succesfully`
             });
         } catch (error) {
             return res.status(500).json(error);
@@ -20,7 +20,7 @@ class Occupationcontroller {
 
     static async getAll(req, res) {
         try {
-            const data = await contactModel.find().populate('company_id');
+            const data = await occupationModel.find();
             // const contacts = await contactModel.populate('Company');
             // const data = contacts.map(contact => {
             //     return {
@@ -62,7 +62,7 @@ class Occupationcontroller {
             const occupation = await occupationModel.updateOne({ _id: req.params.id }, { $set: { name } });
             return res.json({
                 status: 200,
-                data: occupation
+                data: `${name} updated succesfully`
             })
         } catch (error) {
             return res.status(500).json(error);
@@ -74,7 +74,7 @@ class Occupationcontroller {
             const occupation = await occupationModel.deleteOne({ _id: req.params.id });
             return res.json({
                 status: 200,
-                data: occupation
+                data: 'Occupation deleted succesfully'
             })
         } catch (error) {
             return res.status(500).json(error);

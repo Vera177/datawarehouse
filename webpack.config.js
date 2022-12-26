@@ -3,6 +3,7 @@ const pkg = require('./package.json');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const webpack = require('webpack');
 
 const configServer = require('./config');
@@ -88,6 +89,14 @@ module.exports = (_env, argv) => {
         }
       }),
       new CleanWebpackPlugin(),
+      new CopyWebpackPlugin({
+        patterns: [
+          {
+            from: './assets',
+            to: './assets'
+          }
+        ]
+      }),
       new HtmlWebpackPlugin({
         title: 'Data warehouse',
         inject: true,

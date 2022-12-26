@@ -12,6 +12,7 @@ if(btnSubmit){
             body: { email: txtUser.value, password: txtPassword.value },
         }).then((res) => {
             localStorage.setItem("token", res.token);
+            localStorage.setItem("role", res.userRole.name);
             window.location.replace('/index.html');
         }).catch(err => {
           console.log(err);

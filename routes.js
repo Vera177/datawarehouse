@@ -14,8 +14,10 @@ const Regioncontroller = require('./controllers/Region');
 
 /* user's roles*/
 router.post('/role', RolesController.create);
-router.get('/role', RolesController.getAll);
-router.get('/role/:id', RolesController.getById);
+router.get('/role', jwtMiddleware, adminCheckMiddleware, RolesController.getAll);
+router.get('/role/:id', jwtMiddleware, adminCheckMiddleware, RolesController.getById);
+router.patch('/role/:id', jwtMiddleware, adminCheckMiddleware, RolesController.update);
+router.delete('/role/:id', jwtMiddleware, adminCheckMiddleware, RolesController.delete)
 
 /* users */
 router.post('/user', jwtMiddleware, adminCheckMiddleware, Usercontroller.create);
@@ -63,6 +65,7 @@ router.delete('/interest/:id', jwtMiddleware, Interestcontroller.delete);
 /* city */
 router.post('/city',  jwtMiddleware, Citycontroller.create);
 router.get('/city',  jwtMiddleware, Citycontroller.getAll);
+router.get('/city/:id',  jwtMiddleware, Citycontroller.getById);
 router.patch('/city/:id', jwtMiddleware, Citycontroller.update);
 router.delete('/city/:id', jwtMiddleware, Citycontroller.delete);
 

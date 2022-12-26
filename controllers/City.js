@@ -21,7 +21,8 @@ class Citycontroller {
 
     static async getAll(req, res) {
         try {
-            const data = await cityModel.find().populate('countries_id');
+            const data = await cityModel.find().populate({path: 'countries_id', populate: {path: 'regions_id'}});
+            // const data2 = data.populate('region_id');
             // const contacts = await contactModel.populate('Company');
             // const data = contacts.map(contact => {
             //     return {
@@ -63,7 +64,7 @@ class Citycontroller {
             const city = await cityModel.updateOne({ _id: req.params.id }, { $set: { name } });
             return res.json({
                 status: 200,
-                data: city
+                data: `${name} updated succesfully`
             })
         } catch (error) {
             return res.status(500).json(error);
@@ -75,7 +76,7 @@ class Citycontroller {
             const city = await cityModel.deleteOne({ _id: req.params.id });
             return res.json({
                 status: 200,
-                data: city
+                data: 'City deleted succesfully'
             })
         } catch (error) {
             return res.status(500).json(error);

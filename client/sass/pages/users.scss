@@ -15,7 +15,12 @@ body > .uk-container{
     flex-direction: column;
     padding: 2% 0;
 
-    .createUser{
+    .createUser {
+        display: flex;
+        flex-direction: column;
+    }
+
+    content > .createUser {
         display: flex;
         flex-direction: column;
     }
@@ -30,7 +35,15 @@ body > .uk-container{
         }
     }
 
-    .createUser > #create{
+    .createUser > #createUserbtn{
         align-self: flex-end;
+        background-color: $blue;
+        color: $white;
+        font-family: $TxtOpenSans;
+        border-color: transparent;
+        border-radius: 3px;
+        width: 173px;
+        height: 42px;
+        cursor: pointer;
     }
 }

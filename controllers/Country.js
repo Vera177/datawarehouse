@@ -64,7 +64,7 @@ class Countrycontroller {
             const country = await countryModel.updateOne({ _id: req.params.id }, { $set: { name } });
             return res.json({
                 status: 200,
-                data: country
+                data: `${name} updated succesfully`
             })
         } catch (error) {
             return res.status(500).json(error);
@@ -76,7 +76,7 @@ class Countrycontroller {
             const country = await countryModel.deleteOne({ _id: req.params.id });
             return res.json({
                 status: 200,
-                data: country
+                data: 'Country deleted succesfully'
             })
         } catch (error) {
             return res.status(500).json(error);

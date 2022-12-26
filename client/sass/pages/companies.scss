@@ -1,41 +1,88 @@
-.companiesTitleContainer{
-    margin: 4% 5%;
-    width: 85%;
+.companiesTitleContainer {
+    margin: 4% 2%;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    
+    h3 {
+        font-family: $TxtOpenSans;
+    }
 
-    div{
-        border: 1px solid black;
-        width: 13%;
-        height: 12%;
-        text-align: center;
-        padding: 1%;
+    .btnAddCompanies {
+        background-color: $blue;
+        color: $white;
+        font-family: $TxtOpenSans;
+        border-color: transparent;
+        border-radius: 3px;
+        width: 173px;
+        height: 42px;
+        cursor: pointer;
+    }
+}
+.deleteModalContainer{
+    display: flex;
+    flex-direction: column;
+    // padding: 20vh;
+
+    .titleDeleteModal{
+        align-self: center;
+        padding: 10vh;
+    }
+
+    .buttonsModalDelete{
+        display: flex;
+        justify-content: flex-end;
+        padding: 5vh;
+
+        >button{
+            margin-left: 6px;
+            background-color: $blue;
+            color: $white;
+            font-family: $TxtOpenSans;
+            border-color: transparent;
+            border-radius: 3px;
+            width: 173px;
+            height: 42px;
+            cursor: pointer;
+        }
     }
 }
 
-.companiesTable{
-    border: 1px solid black;
-    display: flex;
-    flex-direction: column;
-    align-content: space-around;
-    width: 85%;
-    margin: 0 5%;
+.companiesTable {
+    margin: 4% 2%;
+    border: $bordersolidblack;
     text-align: center;
 
-    >thead{
+    > thead {
         padding: 1%;
+        font-family: $TxtOpenSans;
+        color: $black;
 
-        tr>th{
+        tr > th {
             width: 5%;
         }
     }
 
-    >tbody{
+    > tbody {
         padding: 1%;
+        color: $black;
 
-        tr>td{
+        tr > td {
             width: 5%;
         }
+    }
+}
+
+/* modal */
+
+.addNewCompanie{
+    display: grid;
+    border-radius: 6.5px;
+    margin: 2% 3% 1% 2%;
+    padding: 1% 1% 0 1%;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+
+    .requiredRed{
+        color: red;
     }
 }

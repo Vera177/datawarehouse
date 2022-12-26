@@ -11,7 +11,7 @@ class Regioncontroller {
             await regionCreated.save();
             return res.status(201).json({
                 status: 201,
-                message: 'Region created'
+                message: `${name} created succesfully`
             });
         } catch (error) {
             return res.status(500).json(error);
@@ -62,7 +62,7 @@ class Regioncontroller {
             const region = await regionModel.updateOne({ _id: req.params.id }, { $set: { name } });
             return res.json({
                 status: 200,
-                data: region
+                data: `${name} updated succesfully`
             })
         } catch (error) {
             return res.status(500).json(error);
@@ -74,7 +74,7 @@ class Regioncontroller {
             const region = await regionModel.deleteOne({ _id: req.params.id });
             return res.json({
                 status: 200,
-                data: region
+                data: 'Region deleted succesfully'
             })
         } catch (error) {
             return res.status(500).json(error);

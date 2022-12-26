@@ -62,7 +62,7 @@ class Contactinformationcontroller {
             const contactinformation = await contactInformationModel.updateOne({ _id: req.params.id }, { $set: { name } });
             return res.json({
                 status: 200,
-                data: contactinformation
+                data: `${name} updated succesfully`
             })
         } catch (error) {
             return res.status(500).json(error);
@@ -74,7 +74,7 @@ class Contactinformationcontroller {
             const contactinformation = await contactInformationModel.deleteOne({ _id: req.params.id });
             return res.json({
                 status: 200,
-                data: contactinformation
+                data: 'Contact information deleted succesfully'
             })
         } catch (error) {
             return res.status(500).json(error);

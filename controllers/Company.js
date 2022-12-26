@@ -21,7 +21,7 @@ class Companycontroller {
 
     static async getAll(req, res) {
         try {
-            const data = await companyModel.find().populate('cities_id');
+            const data = await companyModel.find().populate({path: 'cities_id', populate: {path: 'countries_id', populate: {path: 'regions_id'}}});
             // const contacts = await contactModel.populate('Company');
             // const data = contacts.map(contact => {
             //     return {
@@ -63,7 +63,7 @@ class Companycontroller {
             const company = await companyModel.updateOne({ _id: req.params.id},{ $set: {name, adress, email, phone, cities_id}});
             return res.json({
                 status: 200,
-                data: company
+                data: 'Company updated succesfully'
             })
         } catch (error) {
             return res.status(500).json(error);
@@ -75,7 +75,7 @@ class Companycontroller {
             const company = await companyModel.deleteOne({ _id: req.params.id});
             return res.json({
                 status: 200,
-                data: company
+                data: 'Company deleted succesfully'
             })
         } catch (error) {
             return res.status(500).json(error);

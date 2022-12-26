@@ -8,15 +8,207 @@ info:
 servers:
   - url: http://localhost:3000/api/
 tags:
+  - name: Roles
+    description: Obtener, crear, actualizar un rol por id, obtener por id y eliminar por id
   - name: Usuarios
-    description: Obtener, crear, actualizar producto por id, obtener por id y eliminar por id un usuario
-  - name: Región/Ciudad
-    description: Obtener, crear, actualizar producto por id, obtener por id y eliminar por id una Región/Ciudad
+    description: Obtener, crear, actualizar un usuario por id, obtener por id y eliminar por id
+  - name: Cargo
+    description: Obtener, crear, actualizar un Cargo por id, obtener por id y eliminar por id
+  - name: Canal preferido
+    description: Obtener, crear, actualizar un canal preferido por id, obtener por id y eliminar por id
+  - name: Interés
+    description: Obtener, crear, actualizar un porcentaje de interés por id, obtener por id y eliminar por id
+  - name: Ciudad
+    description: Obtener, crear, actualizar una ciudad por id, obtener por id y eliminar por id
+  - name: País
+    description: Obtener, crear, actualizar una país por id, obtener por id y eliminar por id
+  - name: Región
+    description: Obtener, crear, actualizar una región por id, obtener por id y eliminar por id
   - name: Compañías
-    description: Obtener, crear, actualizar producto por id, obtener por id y eliminar por id una Compañía
+    description: Obtener, crear, actualizar una compañía por id, obtener por id y eliminar por id
   - name: Contactos
-    description: Obtener, crear, actualizar producto por id, obtener por id y eliminar por id una Región/Ciudad
+    description: Obtener, crear, actualizar un contacto por id, obtener por id y eliminar por id
 paths:
+  /role:
+    post:
+      tags:
+        - Roles
+      summary: Endpoint para crear rol
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: admin
+                  required: true
+      responses:
+        201:
+          description: Rol creado con exito
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: number
+                    example: 201
+                  message:
+                    type: string
+                    example: Rol creado!
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+      security:
+        - Authorization: []
+    get:
+      tags:
+        - Roles
+      summary: Endpoint para obtener roles
+      responses:
+        200:
+          description: Obtiene todos los roles
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: 
+                    type: 200
+                    example: 200
+                  data:
+                    type: array
+                    message:
+                      type: string
+                      example: admin
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+      security:
+        - Authorization: []
+  /role/{id}:
+    get:
+      get:
+      tags:
+        - Roles
+      summary: Endpoint para obtener rol por id
+      parameters:
+      - name: id
+        in: path
+        description: ID del rol
+        required: true
+        schema:
+          type: string
+          example: 636a6cdb659766c01da966b8
+      responses:
+        200:
+          description: Obtiene un rol por id
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: 
+                    type: 200
+                    example: 200
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/user'
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+      security:
+        - Authorization: []
+    patch:
+      tags:
+        - Roles
+      summary: Endpoint para actualizar un rol por id
+      parameters:
+      - name: id
+        in: path
+        description: ID del usuario
+        required: true
+        schema:
+          type: string
+          example: 638248940ea30b1d0fc6cd25
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: testing
+                  required: true
+      responses:
+        201:
+          description: Rol actualizado con exito
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: number
+                    example: 201
+                  message:
+                    type: string
+                    example: Rol actualizado!
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+      security:
+        - Authorization: [] 
+    delete:
+      tags:
+        - Roles
+      summary: Endpoint para eliminar un usuario por id
+      parameters:
+      - name: id
+        in: path
+        description: ID del usuario
+        required: true
+        schema:
+          type: string
+          example: 638248940ea30b1d0fc6cd25
+      responses:
+        200:
+          description: Elimina un usuario por id
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: 
+                    type: 200
+                    example: 200
+                  message:
+                    type: string
+                    example: Role deleted succesfully
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+      security:
+        - Authorization: [] 
   /login:
     post:
       tags:
@@ -120,6 +312,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/error'
+      security:
+        - Authorization: []
     get:
       tags:
         - Usuarios
@@ -147,429 +341,1659 @@ paths:
                 $ref: '#/components/schemas/error'
       security:
         - Authorization: []
-#   /product/:
-#     get:
-#       tags:
-#         - Región/Ciudad
-#       summary: Endpoint para obtener todos los productos
-#       responses:
-#         200:
-#           description: Obtiene todos los productos
-#           content:
-#             application/json:
-#               schema:
-#                 type: object
-#                 properties:
-#                   status: 
-#                     type: 200
-#                     example: 200
-#                   data:
-#                     type: array
-#                     items:
-#                       $ref: '#/components/schemas/user'
-#         500:
-#           description: Internal server error
-#           content:
-#             application/json:
-#               schema:
-#                 $ref: '#/components/schemas/error'  
-#     post:
-#       tags:
-#         - Región/Ciudad
-#       summary: Endpoint para crear productos
-#       requestBody:
-#         content:
-#           application/json:
-#             schema:
-#               type: object
-#               properties:
-#                 name:
-#                   type: string
-#                   example: Bacalao
-#                   required: true
-#                 price:
-#                   type: number
-#                   example: 300
-#                   required: true
-#                 url_image:
-#                   type: string
-#                   example: https://www.casanhelp.com.ar/wp-content/uploads/2020/05/bagel-de-salmon-169.jpg
-#       responses:
-#         201:
-#           description: Producto creado con exito
-#           content:
-#             application/json:
-#               schema:
-#                 type: object
-#                 properties:
-#                   status:
-#                     type: number
-#                     example: 201
-#                   message:
-#                     type: string
-#                     example: Producto creado!
-#         500:
-#           description: Internal server error
-#           content:
-#             application/json:
-#               schema:
-#                 $ref: '#/components/schemas/error'
-#       security:
-#         - Authorization: []
-#   /product/{id}:
-#     get:
-#       tags:
-#         - Región/Ciudad
-#       summary: Endpoint para obtener producto por id
-#       parameters:
-#       - name: id
-#         in: path
-#         description: ID del producto
-#         required: true
-#         schema:
-#           type: number
-#           example: 1
-#       responses:
-#         200:
-#           description: Obtiene producto por id
-#           content:
-#             application/json:
-#               schema:
-#                 type: object
-#                 properties:
-#                   status: 
-#                     type: 200
-#                     example: 200
-#                   data:
-#                     type: array
-#                     items:
-#                       $ref: '#/components/schemas/user'
-#         500:
-#           description: Internal server error
-#           content:
-#             application/json:
-#               schema:
-#                 $ref: '#/components/schemas/error'
-#     patch:
-#       tags:
-#         - Región/Ciudad
-#       summary: Endpoint para actualizar producto
-#       parameters:
-#       - name: id
-#         in: path
-#         description: ID del producto
-#         required: true
-#         schema:
-#           type: number
-#           example: 1
-#       requestBody:
-#         content:
-#           application/json:
-#             schema:
-#               type: object
-#               properties:
-#                 name:
-#                   type: string
-#                   example: Tortilla de papa
-#                   required: true
-#                 price:
-#                   type: number
-#                   example: 400
-#                   required: true
-#                 url_image:
-#                   type: string
-#                   example: https://www.casanhelp.com.ar/wp-content/uploads/2020/05/bagel-de-salmon-169.jpg
-#       responses:
-#         201:
-#           description: Producto actualizado con exito
-#           content:
-#             application/json:
-#               schema:
-#                 type: object
-#                 properties:
-#                   status:
-#                     type: number
-#                     example: 201
-#                   message:
-#                     type: string
-#                     example: Producto actualizado!
-#         500:
-#           description: Internal server error
-#           content:
-#             application/json:
-#               schema:
-#                 $ref: '#/components/schemas/error'
-#       security:
-#         - Authorization: [] 
-#     delete:
-#       tags:
-#         - Región/Ciudad
-#       summary: Endpoint para eliminar producto por id
-#       parameters:
-#       - name: id
-#         in: path
-#         description: ID del producto
-#         required: true
-#         schema:
-#           type: number
-#           example: 1
-#       responses:
-#         200:
-#           description: Obtiene eliminar por id
-#           content:
-#             application/json:
-#               schema:
-#                 type: object
-#                 properties:
-#                   status: 
-#                     type: 200
-#                     example: 200
-#                   data:
-#                     type: array
-#                     items:
-#                       $ref: '#/components/schemas/user'
-#         500:
-#           description: Internal server error
-#           content:
-#             application/json:
-#               schema:
-#                 $ref: '#/components/schemas/error'
-#       security:
-#         - Authorization: []
-#   /order:
-#     get:
-#       tags:
-#         - Compañías
-#       summary: Endpoint para obtener todos los pedidos
-#       responses:
-#         200:
-#           description: Obtiene todos los pedidos
-#           content:
-#             application/json:
-#               schema:
-#                 type: object
-#                 properties:
-#                   status: 
-#                     type: 200
-#                     example: 200
-#                   data:
-#                     type: array
-#                     items:
-#                       $ref: '#/components/schemas/order'
-#         500:
-#           description: Internal server error
-#           content:
-#             application/json:
-#               schema:
-#                 $ref: '#/components/schemas/error'
-#       security:
-#         - Authorization: []  
-#     post:
-#       tags:
-#         - Compañías
-#       summary: Endpoint para crear un pedido
-#       requestBody:
-#         content:
-#           application/json:
-#             schema:
-#               type: object
-#               properties:
-#                 date:
-#                   type: date
-#                   example: "2022-03-21T21:24:00.000Z"
-#                   required: true
-#                 users_id:
-#                   type: number
-#                   example: 2
-#                 pay_method_id:
-#                   type: number
-#                   example: 1
-#       responses:
-#         201:
-#           description: Producto creado con exito
-#           content:
-#             application/json:
-#               schema:
-#                 type: object
-#                 properties:
-#                   status:
-#                     type: number
-#                     example: 201
-#                   message:
-#                     type: string
-#                     example: Producto creado!
-#         500:
-#           description: Internal server error
-#           content:
-#             application/json:
-#               schema:
-#                 $ref: '#/components/schemas/error'
-#       security:
-#         - Authorization: []
-#   /order/{orderId}/product/{productId}: 
-#     post:
-#       tags:
-#         - Contactos
-#       parameters:
-#       - name: orderId
-#         in: path
-#         description: ID de la orden
-#         required: true
-#         schema:
-#           type: number
-#           example: 1
-#       - name: productId
-#         in: path
-#         description: ID del producto a agregar
-#         required: true
-#         schema:
-#           type: number
-#           example: 1
-#       tags:
-#         - order
-#       summary: Endpoint para agregar productos a un pedido
-#       requestBody:
-#         content:
-#           application/json:
-#             schema:
-#               type: object
-#               properties:
-#                 amount:
-#                   type: number
-#                   example: 1
-#       responses:
-#         201:
-#           description: Producto agregado con exito
-#           content:
-#             application/json:
-#               schema:
-#                 type: object
-#                 properties:
-#                   status:
-#                     type: number
-#                     example: 201
-#                   message:
-#                     type: string
-#                     example: Producto agregado!
-#         500:
-#           description: Internal server error
-#           content:
-#             application/json:
-#               schema:
-#                 $ref: '#/components/schemas/error'
-#       security:
-#         - Authorization: []
-#   /order/{id}:
-#     get:
-#       tags:
-#         - Compañías
-#       summary: Endpoint para obtener orden por id
-#       parameters:
-#       - name: id
-#         in: path
-#         description: ID de la orden
-#         required: true
-#         schema:
-#           type: number
-#           example: 1
-#       responses:
-#         200:
-#           description: Obtiene una orden por su id
-#           content:
-#             application/json:
-#               schema:
-#                 type: object
-#                 properties:
-#                   status: 
-#                     type: 200
-#                     example: 200
-#                   data:
-#                     type: array
-#                     items:
-#                       $ref: '#/components/schemas/order'
-#         500:
-#           description: Internal server error
-#           content:
-#             application/json:
-#               schema:
-#                 $ref: '#/components/schemas/error'
-#       security:
-#         - Authorization: []  
-#     patch:
-#       tags:
-#         - Compañías
-#       summary: Endpoint para actualizar estado del pedido
-#       parameters:
-#       - name: id
-#         in: path
-#         description: ID del pedido
-#         required: true
-#         schema:
-#           type: number
-#           example: 1
-#       requestBody:
-#         content:
-#           application/json:
-#             schema:
-#               $ref: '#/components/schemas/status'
-#       responses:
-#         201:
-#           description: Estado del producto actualizado con exito
-#           content:
-#             application/json:
-#               schema:
-#                 type: object
-#                 properties:
-#                   status:
-#                     type: number
-#                     example: 201
-#                   message:
-#                     type: string
-#                     example: Estado del producto actualizado!
-#         500:
-#           description: Internal server error
-#           content:
-#             application/json:
-#               schema:
-#                 $ref: '#/components/schemas/error'
-     
-#       security:
-#         - Authorization: []
-#     delete:
-#       tags:
-#         - Compañías
-#       summary: Endpoint para eliminar una orden por id
-#       parameters:
-#       - name: id
-#         in: path
-#         description: ID de la orden
-#         required: true
-#         schema:
-#           type: number
-#           example: 1
-#       responses:
-#         200:
-#           description: Elimina una orden por su id
-#           content:
-#             application/json:
-#               schema:
-#                 type: object
-#                 properties:
-#                   status: 
-#                     type: 200
-#                     example: 200
-#                   data:
-#                     type: array
-#                     items:
-#                       $ref: '#/components/schemas/user'
-#         500:
-#           description: Internal server error
-#           content:
-#             application/json:
-#               schema:
-#                 $ref: '#/components/schemas/error'
-#       security:
-#         - Authorization: []
+  /user/{id}:
+    get:
+      tags:
+        - Usuarios
+      summary: Endpoint para obtener usuario por id
+      parameters:
+      - name: id
+        in: path
+        description: ID del usuario
+        required: true
+        schema:
+          type: string
+          example: 636a6cdb659766c01da966b8
+      responses:
+        200:
+          description: Obtiene un usuario por id
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: 
+                    type: 200
+                    example: 200
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/user'
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+      security:
+        - Authorization: []
+    patch:
+      tags:
+        - Usuarios
+      summary: Endpoint para actualizar un usuario por id
+      parameters:
+      - name: id
+        in: path
+        description: ID del usuario
+        required: true
+        schema:
+          type: string
+          example: 638248940ea30b1d0fc6cd25
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                firstname:
+                  type: string
+                  example: testing
+                  required: true
+                lastname:
+                  type: string
+                  example: testing
+                  required: true
+                email:
+                  type: string
+                  example: test@test.com
+                  required: true
+                password: 
+                  type: string
+                  example: 12345678
+                  required: true
+                role:
+                  type: string
+                  example: 6361d486f06640c24f0fe334
+      responses:
+        201:
+          description: Usuario actualizado con exito
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: number
+                    example: 201
+                  message:
+                    type: string
+                    example: Usuario actualizado!
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+      security:
+        - Authorization: [] 
+    delete:
+      tags:
+        - Usuarios
+      summary: Endpoint para eliminar un usuario por id
+      parameters:
+      - name: id
+        in: path
+        description: ID del usuario
+        required: true
+        schema:
+          type: string
+          example: 638248940ea30b1d0fc6cd25
+      responses:
+        200:
+          description: Elimina un usuario por id
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: 
+                    type: 200
+                    example: 200
+                  message:
+                    type: string
+                    example: User deleted succesfully
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+      security:
+        - Authorization: []
+  /occupation:
+    post:
+      tags:
+        - Cargo
+      summary: Endpoint para crear un puesto de trabajo
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Developer
+                  required: true                
+      responses:
+        201:
+          description: Puesto de trabajo creado con exito
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: number
+                    example: 201
+                  message:
+                    type: string
+                    example: Occupation created succesfully!
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+      security:
+        - Authorization: []
+    get:
+      tags:
+        - Cargo
+      summary: Endpoint para obtener puestos de trabajo
+      responses:
+        200:
+          description: Obtiene todos los puestos de trabajo
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: 
+                    type: 200
+                    example: 200
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/occupation'
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+      security:
+        - Authorization: []
+  /occupation/{id}:
+    get:
+      tags:
+        - Cargo
+      summary: Endpoint para obtener un puesto de trabajo por id
+      parameters:
+      - name: id
+        in: path
+        description: ID del puesto de trabajo
+        required: true
+        schema:
+          type: string
+          example: 636a6cdb659766c01da966b8
+      responses:
+        200:
+          description: Obtiene un puesto de trabajo por id
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: 
+                    type: 200
+                    example: 200
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/occupation'
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+      security:
+        - Authorization: []
+    patch:
+      tags:
+        - Cargo
+      summary: Endpoint para actualizar un puesto de trabajo por id
+      parameters:
+      - name: id
+        in: path
+        description: ID del puesto de trabajo
+        required: true
+        schema:
+          type: string
+          example: 638248940ea30b1d0fc6cd25
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Developer
+                  required: true                
+      responses:
+        201:
+          description: Puesto de trabajo actualizado con exito
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: number
+                    example: 201
+                  message:
+                    type: string
+                    example: Occupation updated succesfully
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+      security:
+        - Authorization: [] 
+    delete:
+      tags:
+        - Cargo
+      summary: Endpoint para eliminar un puesto de trabajo por id
+      parameters:
+      - name: id
+        in: path
+        description: ID del puesto de trabajo
+        required: true
+        schema:
+          type: string
+          example: 638248940ea30b1d0fc6cd25
+      responses:
+        200:
+          description: Elimina un puesto de trabajo por id
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: 
+                    type: 200
+                    example: 200
+                  message:
+                    type: string
+                    example: Occupation deleted succesfully
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+      security:
+        - Authorization: []
+  /contactinformation:
+    post:
+      tags:
+        - Canal preferido
+      summary: Endpoint para canal de contacto
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: WhatsApp                
+      responses:
+        201:
+          description: Canal de contacto creado con exito
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: number
+                    example: 201
+                  message:
+                    type: string
+                    example: Contact information created!
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/contactInformation'
+      security:
+        - Authorization: []
+    get:
+      tags:
+        - Canal preferido
+      summary: Endpoint para obtener canal de contacto
+      responses:
+        200:
+          description: Obtiene todos los canales de contacto
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: 
+                    type: 200
+                    example: 200
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/contactInformation'
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+      security:
+        - Authorization: []
+  /contactinformation/{id}:
+    get:
+      tags:
+        - Canal preferido
+      summary: Endpoint para obtener un canal de contacto por id
+      parameters:
+      - name: id
+        in: path
+        description: ID del canal de contacto
+        required: true
+        schema:
+          type: string
+          example: 636a6cdb659766c01da966b8
+      responses:
+        200:
+          description: Obtiene un canal de contacto por id
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: 
+                    type: 200
+                    example: 200
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/contactInformation'
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+      security:
+        - Authorization: []
+    patch:
+      tags:
+        - Canal preferido
+      summary: Endpoint para actualizar un canal de contacto por id
+      parameters:
+      - name: id
+        in: path
+        description: ID del canal de contacto
+        required: true
+        schema:
+          type: string
+          example: 638248940ea30b1d0fc6cd25
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: WhatsApp                
+      responses:
+        201:
+          description: Canal de contacto actualizado con exito
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: number
+                    example: 201
+                  message:
+                    type: string
+                    example: Contact information updated succesfully!
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+      security:
+        - Authorization: [] 
+    delete:
+      tags:
+        - Canal preferido
+      summary: Endpoint para eliminar un canal de contacto por id
+      parameters:
+      - name: id
+        in: path
+        description: ID del canal de contacto
+        required: true
+        schema:
+          type: string
+          example: 638248940ea30b1d0fc6cd25
+      responses:
+        200:
+          description: Elimina un canal de contacto por id
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: 
+                    type: 200
+                    example: 200
+                  message:
+                    type: string
+                    example: Contact information deleted succesfully
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+      security:
+        - Authorization: []
+  /interest:
+    post:
+      tags:
+        - Interés
+      summary: Endpoint para crear un nuevo porcentaje de interés
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                interest:
+                  type: number
+                  example: 75
+                  required: true                
+      responses:
+        201:
+          description: Porcentaje de interés creado con exito
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: number
+                    example: 201
+                  message:
+                    type: string
+                    example: Interest number created!
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+      security:
+        - Authorization: []
+    get:
+      tags:
+        - Interés
+      summary: Endpoint para obtener porcentaje de interés del contacto
+      responses:
+        200:
+          description: Obtiene todos los porcentaje de interés
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: 
+                    type: 200
+                    example: 200
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/interestLevel'
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+      security:
+        - Authorization: []
+  /interest/{id}:
+    get:
+      tags:
+        - Interés
+      summary: Endpoint para obtener porcentaje de interés por id
+      parameters:
+      - name: id
+        in: path
+        description: ID del porcentaje de interés
+        required: true
+        schema:
+          type: string
+          example: 636a6cdb659766c01da966b8
+      responses:
+        200:
+          description: Obtiene un porcentaje de interés por id
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: 
+                    type: 200
+                    example: 200
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/interestLevel'
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+      security:
+        - Authorization: []
+    patch:
+      tags:
+        - Interés
+      summary: Endpoint para actualizar un porcentaje de interés por id
+      parameters:
+      - name: id
+        in: path
+        description: ID del porcentaje de interés
+        required: true
+        schema:
+          type: string
+          example: 638248940ea30b1d0fc6cd25
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                interest:
+                  type: number
+                  example: 75
+                  required: true   
+                
+      responses:
+        201:
+          description: Porcentaje de interés actualizado con exito
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: number
+                    example: 201
+                  message:
+                    type: string
+                    example: Interest percentage updated succesfully!
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+      security:
+        - Authorization: [] 
+    delete:
+      tags:
+        - Interés
+      summary: Endpoint para eliminar un porcentaje de interés por id
+      parameters:
+      - name: id
+        in: path
+        description: ID del porcentaje de interés
+        required: true
+        schema:
+          type: string
+          example: 638248940ea30b1d0fc6cd25
+      responses:
+        200:
+          description: Elimina un porcentaje de interés por id
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: 
+                    type: 200
+                    example: 200
+                  message:
+                    type: string
+                    example: Interest percentage deleted succesfully
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+      security:
+        - Authorization: [] 
+  /city:
+    post:
+      tags:
+        - Ciudad
+      summary: Endpoint para crear una ciudad
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: testing
+                  required: true
+                country:
+                  type: string
+                  example: 637aefb347ac8eb3a18a0c8b
+      responses:
+        201:
+          description: Ciudad creada con exito
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: number
+                    example: 201
+                  message:
+                    type: string
+                    example: Ciudad creada!
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+      security:
+        - Authorization: []
+    get:
+      tags:
+        - Ciudad
+      summary: Endpoint para obtener todas las ciudades
+      responses:
+        200:
+          description: Obtiene todas los ciudades
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: 
+                    type: 200
+                    example: 200
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/city'
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+      security:
+        - Authorization: []
+  /city/{id}:
+    get:
+      tags:
+        - Ciudad
+      summary: Endpoint para obtener una ciudad por id
+      parameters:
+      - name: id
+        in: path
+        description: ID de la ciudad
+        required: true
+        schema:
+          type: string
+          example: 636a6cdb659766c01da966b8
+      responses:
+        200:
+          description: Obtiene una ciudad por id
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: 
+                    type: 200
+                    example: 200
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/city'
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+      security:
+        - Authorization: []
+    patch:
+      tags:
+        - Ciudad
+      summary: Endpoint para actualizar una ciudad por id
+      parameters:
+      - name: id
+        in: path
+        description: ID de la ciudad
+        required: true
+        schema:
+          type: string
+          example: 638248940ea30b1d0fc6cd25
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/city'
+      responses:
+        201:
+          description: Ciudad actualizada con exito
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: number
+                    example: 201
+                  message:
+                    type: string
+                    example: Ciudad actualizada!
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+      security:
+        - Authorization: [] 
+    delete:
+      tags:
+        - Ciudad
+      summary: Endpoint para eliminar una ciudad por id
+      parameters:
+      - name: id
+        in: path
+        description: ID de la ciudad
+        required: true
+        schema:
+          type: string
+          example: 638248940ea30b1d0fc6cd25
+      responses:
+        200:
+          description: Elimina una ciudad por id
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: 
+                    type: 200
+                    example: 200
+                  message:
+                    type: string
+                    example: City deleted succesfully
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+      security:
+        - Authorization: [] 
+  /country:
+    post:
+      tags:
+        - País
+      summary: Endpoint para crear un país
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Argentina
+                  required: true
+                region:
+                  type: string
+                  example: 63693b7e50e37588c95340ec
+                  required: true                
+      responses:
+        201:
+          description: País creado con exito
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: number
+                    example: 201
+                  message:
+                    type: string
+                    example: País creado!
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+      security:
+        - Authorization: []
+    get:
+      tags:
+        - País
+      summary: Endpoint para obtener países
+      responses:
+        200:
+          description: Obtiene todos los países
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: 
+                    type: 200
+                    example: 200
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/country'
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+      security:
+        - Authorization: []
+  /country/{id}:
+    get:
+      get:
+      tags:
+        - País
+      summary: Endpoint para obtener un pais por id
+      parameters:
+      - name: id
+        in: path
+        description: ID del país
+        required: true
+        schema:
+          type: string
+          example: 636a6cdb659766c01da966b8
+      responses:
+        200:
+          description: Obtiene un país por id
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: 
+                    type: 200
+                    example: 200
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/country'
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+      security:
+        - Authorization: []
+    patch:
+      tags:
+        - País
+      summary: Endpoint para actualizar un país por id
+      parameters:
+      - name: id
+        in: path
+        description: ID del país
+        required: true
+        schema:
+          type: string
+          example: 638248940ea30b1d0fc6cd25
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Argentina
+                Region:
+                  type: string
+                  example: 63693b7e50e37588c95340ec
+      responses:
+        201:
+          description: País actualizado con exito
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: number
+                    example: 201
+                  message:
+                    type: string
+                    example: País actualizado!
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+      security:
+        - Authorization: [] 
+    delete:
+      tags:
+        - País
+      summary: Endpoint para eliminar un país por id
+      parameters:
+      - name: id
+        in: path
+        description: ID del país
+        required: true
+        schema:
+          type: string
+          example: 638248940ea30b1d0fc6cd25
+      responses:
+        200:
+          description: Elimina un usupaísario por id
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: 
+                    type: 200
+                    example: 200
+                  message:
+                    type: string
+                    example: Country deleted succesfully
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+      security:
+        - Authorization: []
+  /region:
+    post:
+      tags:
+        - Región
+      summary: Endpoint para crear una región
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Sudamérica
+                  required: true      
+      responses:
+        201:
+          description: Región creada con exito
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: number
+                    example: 201
+                  message:
+                    type: string
+                    example: Región creada!
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+      security:
+        - Authorization: []
+    get:
+      tags:
+        - Región
+      summary: Endpoint para obtener regiones
+      responses:
+        200:
+          description: Obtiene todas los regiones
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: 
+                    type: 200
+                    example: 200
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Region'
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+      security:
+        - Authorization: []
+  /region/{id}:
+    get:
+      get:
+      tags:
+        - Región
+      summary: Endpoint para obtener una región por id
+      parameters:
+      - name: id
+        in: path
+        description: ID de la región
+        required: true
+        schema:
+          type: string
+          example: 636a6cdb659766c01da966b8
+      responses:
+        200:
+          description: Obtiene una región por id
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: 
+                    type: 200
+                    example: 200
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Region'
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+      security:
+        - Authorization: []
+    patch:
+      tags:
+        - Región
+      summary: Endpoint para actualizar una región por id
+      parameters:
+      - name: id
+        in: path
+        description: ID de la región
+        required: true
+        schema:
+          type: string
+          example: 638248940ea30b1d0fc6cd25
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Sudamérica
+                  required: true                
+      responses:
+        201:
+          description: Región actualizada con exito
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: number
+                    example: 201
+                  message:
+                    type: string
+                    example: Región actualizada!
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+      security:
+        - Authorization: [] 
+    delete:
+      tags:
+        - Región
+      summary: Endpoint para eliminar una región por id
+      parameters:
+      - name: id
+        in: path
+        description: ID de la región
+        required: true
+        schema:
+          type: string
+          example: 638248940ea30b1d0fc6cd25
+      responses:
+        200:
+          description: Elimina una región por id
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: 
+                    type: 200
+                    example: 200
+                  message:
+                    type: string
+                    example: Region deleted succesfully
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+      security:
+        - Authorization: [] 
+  /company:
+    post:
+      tags:
+        - Compañías
+      summary: Endpoint para crear nueva compañía
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: testing
+                  required: true
+                adress:
+                  type: string
+                  example: testing
+                  required: true
+                email:
+                  type: string
+                  example: test@test.com
+                  required: true
+                phone: 
+                  type: number
+                  example: 42599999
+                  required: true
+                city:
+                  type: string
+                  example: 6361d486f06640c24f0fe334
+      responses:
+        201:
+          description: Compañía creada con exito
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: number
+                    example: 201
+                  message:
+                    type: string
+                    example: Usuario creado!
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+      security:
+        - Authorization: []
+    get:
+      tags:
+        - Compañías
+      summary: Endpoint para obtener compañías
+      responses:
+        200:
+          description: Obtiene todas las compañías
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: 
+                    type: 200
+                    example: 200
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/company'
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+      security:
+        - Authorization: []
+  /company/{id}:
+    get:
+      get:
+      tags:
+        - Compañías
+      summary: Endpoint para obtener compañía por id
+      parameters:
+      - name: id
+        in: path
+        description: ID de la compañía
+        required: true
+        schema:
+          type: string
+          example: 636a6cdb659766c01da966b8
+      responses:
+        200:
+          description: Obtiene una compañía por id
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: 
+                    type: 200
+                    example: 200
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/company'
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+      security:
+        - Authorization: []
+    patch:
+      tags:
+        - Compañías
+      summary: Endpoint para actualizar una compañía por id
+      parameters:
+      - name: id
+        in: path
+        description: ID de la compañía
+        required: true
+        schema:
+          type: string
+          example: 638248940ea30b1d0fc6cd25
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: testing
+                  required: true
+                adress:
+                  type: string
+                  example: testing
+                  required: true
+                email:
+                  type: string
+                  example: test@test.com
+                  required: true
+                phone: 
+                  type: number
+                  example: 42599999
+                  required: true
+                city:
+                  type: string
+                  example: 6361d486f06640c24f0fe334
+      responses:
+        201:
+          description: Compañía actualizada con exito
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: number
+                    example: 201
+                  message:
+                    type: string
+                    example: Compañía actualizado!
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+      security:
+        - Authorization: [] 
+    delete:
+      tags:
+        - Compañías
+      summary: Endpoint para eliminar una compañía por id
+      parameters:
+      - name: id
+        in: path
+        description: ID de la compañía
+        required: true
+        schema:
+          type: string
+          example: 638248940ea30b1d0fc6cd25
+      responses:
+        200:
+          description: Elimina una compañía por id
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: 
+                    type: 200
+                    example: 200
+                  message:
+                    type: array
+                    example: Company deleted succesfully
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+      security:
+        - Authorization: [] 
+  /contact:
+    post:
+      tags:
+        - Contactos
+      summary: Endpoint para crear nuevo contacto
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                firstname:
+                  type: string
+                  example: testing
+                  required: true
+                lastname:
+                  type: string
+                  example: testing
+                  required: true
+                email:
+                  type: string
+                  example: test@test.com
+                  required: true
+                adress:
+                  type: string
+                  example: testing
+                  required: true
+                company:
+                  type: string
+                  example: 636b13775aa27d2080bfc214
+                  required: true
+                occupation:
+                  type: string
+                  example: 636927b922f3f09f9a4171c7
+                  required: true
+                contactInformation:
+                  type: string
+                  example: 6369291f171381ec50be6aa5
+                  required: true
+                interestedPercentage:
+                  type: string
+                  example: 63693c660c0857acd351d488
+                  required: true
+                City:
+                  type: string
+                  example: 637aef6d47ac8eb3a18a0c85
+      responses:
+        201:
+          description: Contacto creado con exito
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: number
+                    example: 201
+                  message:
+                    type: string
+                    example: Contacto creado!
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+      security:
+        - Authorization: []
+    get:
+      tags:
+        - Contactos
+      summary: Endpoint para obtener todos los contactos
+      responses:
+        200:
+          description: Obtiene todos los contactos
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: 
+                    type: 200
+                    example: 200
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/contact'
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+      security:
+        - Authorization: []
+  /contact/{id}:
+    get:
+      get:
+      tags:
+        - Contactos
+      summary: Endpoint para obtener un contacto por id
+      parameters:
+      - name: id
+        in: path
+        description: ID del contacto
+        required: true
+        schema:
+          type: string
+          example: 636a6cdb659766c01da966b8
+      responses:
+        200:
+          description: Obtiene un contacto por id
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: 
+                    type: 200
+                    example: 200
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/contact'
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+      security:
+        - Authorization: []
+    patch:
+      tags:
+        - Contactos
+      summary: Endpoint para actualizar un contacto por id
+      parameters:
+      - name: id
+        in: path
+        description: ID del contacto
+        required: true
+        schema:
+          type: string
+          example: 638248940ea30b1d0fc6cd25
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                firstname:
+                  type: string
+                  example: testing
+                  required: true
+                lastname:
+                  type: string
+                  example: testing
+                  required: true
+                email:
+                  type: string
+                  example: test@test.com
+                  required: true
+                adress:
+                  type: string
+                  example: testing
+                  required: true
+                company:
+                  type: string
+                  example: 636b13775aa27d2080bfc214
+                  required: true
+                occupation:
+                  type: string
+                  example: 636927b922f3f09f9a4171c7
+                  required: true
+                contactInformation:
+                  type: string
+                  example: 6369291f171381ec50be6aa5
+                  required: true
+                interestedPercentage:
+                  type: string
+                  example: 63693c660c0857acd351d488
+                  required: true
+                City:
+                  type: string
+                  example: 637aef6d47ac8eb3a18a0c85
+      responses:
+        201:
+          description: contacto actualizado con exito
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: number
+                    example: 201
+                  message:
+                    type: string
+                    example: Contacto actualizado!
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+      security:
+        - Authorization: [] 
+    delete:
+      tags:
+        - Contactos
+      summary: Endpoint para eliminar un contacto por id
+      parameters:
+      - name: id
+        in: path
+        description: ID del contacto
+        required: true
+        schema:
+          type: string
+          example: 638248940ea30b1d0fc6cd25
+      responses:
+        200:
+          description: Elimina un contacto por id
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: 
+                    type: 200
+                    example: 200
+                  message:
+                    type: array
+                    example: Contact deleted succesfully
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+      security:
+        - Authorization: [] 
+
 components:
   schemas:
     error:
@@ -595,76 +2019,120 @@ components:
           type: string
         role:           
             $ref: '#/components/schemas/role'
+    occupation:
+      type: object
+      properties:
+        name:
+          type: string
+          example: Developer
+    contactInformation:
+      type: object
+      properties:
+        name:
+          type: string
+          example: WhatsApp
+    interestLevel:
+      type: object
+      properties:
+        interest:
+          type: number
+          example: 75
+    city:
+      type: object
+      properties:
+        name:
+          type: string
+          example: Buenos Aires
+        country:
+          type: string
+          example: 637aefb347ac8eb3a18a0c8b
+    country:
+      type: object
+      properties:
+        name:
+          type: string
+          example: Argentina
+        Region:
+          type: string
+          example: 63693b7e50e37588c95340ec
+    Region:
+      type: object
+      properties:
+        name:
+          type: string
+          example: Sudamérica
     role:
       type: object
       properties:
         id:
-          type: number
-          example: 2
+          type: string
+          example: 63059c27a84e02e3af11f68b
         name:
           type: string
           example: user
-    # status:
-    #   type: object
-    #   properties:
-    #     status_id:
-    #       type: number
-    #       example: 1
-    #     name:
-    #       type: string
-    #       example: Nuevo
-    # pay_method:
-    #   type: object
-    #   properties:
-    #     id:
-    #       type: number
-    #       example: 1
-    #     name:
-    #       type: string
-    #       example: Efectivo
-    # product:
-    #   type: object
-    #   properties:
-    #     id:
-    #       type: number
-    #       example: 1
-    #     name:
-    #       type: string
-    #       example: Bagel de Salmon
-    #     price:
-    #       type: number
-    #       example: 425
-    #     url_image:
-    #       type: string
-    #       example: https://www.casanhelp.com.ar/wp-content/uploads/2020/05/bagel-de-salmon-169.jpg
-    #     amount:
-    #       type: number
-    #       example: 1
-    # order:
-    #   type: object
-    #   properties:
-    #     id:
-    #       type: number
-    #       example: 1
-    #     date:
-    #       type: string
-    #       format: date-time
-    #     total:
-    #       type: number
-    #       example: 1000
-    #     user:
-    #       $ref: '#/components/schemas/user'
-    #     role:           
-    #       $ref: '#/components/schemas/role' 
-    #     status:
-    #       $ref: '#/components/schemas/status' 
-    #     pay_method:
-    #       $ref: '#/components/schemas/pay_method'
-    #     product:
-    #       $ref: '#components/schemas/product'
+    company:
+      type: object
+      properties:
+        name:
+          type: string
+          example: testing
+          required: true
+        adress:
+          type: string
+          example: testing
+          required: true
+        email:
+          type: string
+          example: test@test.com
+          required: true
+        phone: 
+          type: number
+          example: 42599999
+          required: true
+        city:
+          type: string
+          example: 6361d486f06640c24f0fe334
+    contact:
+      type: object
+      properties:
+        firstname:
+          type: string
+          example: testing
+          required: true
+        lastname:
+          type: string
+          example: testing
+          required: true
+        email:
+          type: string
+          example: test@test.com
+          required: true
+        adress:
+          type: string
+          example: testing
+          required: true
+        company:
+          type: string
+          example: 636b13775aa27d2080bfc214
+          required: true
+        occupation:
+          type: string
+          example: 636927b922f3f09f9a4171c7
+          required: true
+        contactInformation:
+          type: string
+          example: 6369291f171381ec50be6aa5
+          required: true
+        interestedPercentage:
+          type: string
+          example: 63693c660c0857acd351d488
+          required: true
+        City:
+          type: string
+          example: 637aef6d47ac8eb3a18a0c85
 
-securitySchemes:
-  Authorization:
-    type: http
-    scheme: bearer
-    bearerFormat: JWT
+  securitySchemes:
+    Authorization:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
