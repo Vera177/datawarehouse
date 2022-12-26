@@ -62,6 +62,7 @@ class Usercontroller {
             if (!match) {
                 throw { status: 401, message: 'Usuario y/o contraseña invalidos' };
             }
+            const userRole = user.roles_id;
             const token = jwtHelper.encode({
                 checkUser: {
                     id: user._id,
@@ -70,7 +71,8 @@ class Usercontroller {
             });
             return res.json({
                 status: 200,
-                token: token
+                token: token,
+                userRole
             });            
         } catch (error) {
             return res.status(error.status || 500).json({

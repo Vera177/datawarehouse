@@ -3,7 +3,7 @@ import './createuser';
 import './checkHeaderAdminUser';
 import './home';
 import './companies';
-// import './city';
+import './city';
 
 const allowedURL = [
     "/login.html"
