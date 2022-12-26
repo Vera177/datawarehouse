@@ -38,7 +38,7 @@ function showEditModal(element) {
     const txf_email = document.getElementById('edit-email');
     const txf_phone = document.getElementById('edit-phone');
     const cmb_city = document.getElementById('edit-city');
-    const btnEditContact = document.getElementById('btnEditContact');
+    const btnEditCompany = document.getElementById('btnEditCompany');
 
     request(`/api/company/${element.target.dataset.id}`, {
         method: 'GET',
@@ -62,7 +62,7 @@ function showEditModal(element) {
             txf_email.value = resCompany.data.email;
             txf_phone.value = resCompany.data.phone;
             console.log(cmb_city.value);
-            btnEditContact.addEventListener('click', () => {
+            btnEditCompany.addEventListener('click', () => {
                 editCompany(resCompany.data._id, {
                     name: txf_name.value,
                     adress: txf_adress.value,
