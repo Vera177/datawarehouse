@@ -1,3 +1,40 @@
+form > .contactInformation > div > input {
+    border-radius: 3px;
+    border: 1px solid #CCCCCC;
+    width: 190px;
+    height: 35.5px;
+    margin-left: 16px;
+}
+
+form > .contactInformation > div > label {
+    margin-left: 16px;
+}
+
+form > .plusContactInformation > div > input, form > .plusContactInformation > div > select {
+    border-radius: 3px;
+    border: 1px solid #CCCCCC;
+    width: 190px;
+    height: 35.5px;
+}
+
+.trashContact{
+    color: $icons-color;
+    font-variation-settings:
+    'FILL' 1,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 48
+}
+
+.editContact{
+    color: $icons-color;
+    font-variation-settings:
+    'FILL' 1,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 48
+}
+
 .contactsSection {
     margin: 2% 2%;
     font-family: $TxtOpenSans;
@@ -111,7 +148,7 @@
 .contactsTableBody {
     .contactName {
         display: flex;
-        align-items: center;
+        flex-direction: column;
         width: 18vw;
 
         .image {
