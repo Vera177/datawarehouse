@@ -5,7 +5,7 @@
   <div class="uk-margin">
     <div class="search">
       <form class="uk-search uk-search-default">
-        <input type="search" class="uk-search-input" placeholder="Search">
+        <input type="search" id="inputSearch" class="uk-search-input" placeholder="Buscar por email">
       </form>
       <a href="https://google.com" class="uk-text-bold iconSearch uk-search-icon-flip" uk-search-icon></a>
     </div>
@@ -15,65 +15,27 @@
   </div>
 
 {{!-- table --}}
-  <table class="uk-table">
+  <table id="contactsTable" class="uk-table">
     <thead class="contactsTableHead">
       <tr>
         <th class="uk-text-capitalize checkboxTHead"><input type="checkbox"></th>
-        <th class="uk-text-capitalize">Contacto<img class="upDownArrow" src="../assets/arrow.png" alt="change order"></th>
-        <th class="uk-text-capitalize">País/Región<img class="upDownArrow" src="../assets/arrow.png" alt="change order"></th>
-        <th class="uk-text-capitalize">Compañía<img class="upDownArrow" src="../assets/arrow.png" alt="change order"></th>
-        <th class="uk-text-capitalize">Cargo<img class="upDownArrow" src="../assets/arrow.png" alt="change order"></th>
+        <th class="uk-text-capitalize">Contacto<img class="upDownArrow" src="/assets/arrow.png" alt="cambiar orden"></th>
+        <th class="uk-text-capitalize">País/Región<img class="upDownArrow" src="/assets/arrow.png" alt="cambiar orden"></th>
+        <th class="uk-text-capitalize">Compañía<img class="upDownArrow" src="/assets/arrow.png" alt="cambiar orden"></th>
+        <th class="uk-text-capitalize">Cargo<img class="upDownArrow" src="/assets/arrow.png" alt="cambiar orden"></th>
         <th class="uk-text-capitalize">Canal preferido</th>
-        <th class="uk-text-capitalize">Interés<img class="upDownArrow" src="../assets/arrow.png" alt="change order"></th>
+        <th class="uk-text-capitalize">Interés<img class="upDownArrow" src="/assets/arrow.png" alt="cambiar orden"></th>
         <th class="uk-text-capitalize">Acciones</th>
       </tr>
     </thead>
     <tbody class="contactsTableBody">
-      <tr>
-        <th class="uk-text-capitalize"><input type="checkbox"></th>
-        <td class="contactName">
-          <div class="image">
-            <img class="contactImage" src="https://lechatmagazine.com/wp-content/uploads/2020/05/tiktok-egirl-portada.jpg" alt="">
-          </div>
-          <div>Camila Soledad Pantó<br><label class="secondTextGrey">camilapanto123@gmail.com</label></div>
-          </td>
-        <td>Argentina<br><label class="secondTextGrey">Latam</label></td>
-        <td>Mercadolibre</td>
-        <td>UX Designer</td>
-        <td>
-          <button class="contactChannel">WhatsApp</button>
-        </td>
-        <td class="interestPercentage uk-table-expand">100%
-            <div class="progress">
-              <div class="progress-bar red"></div>
-            </div>
-        </td>
-        <td class="tripleDot"><span class="material-symbols-outlined">more_horiz</span></td>
-      </tr>
-      <tr>
-        <th class="uk-text-capitalize"><input type="checkbox"></th>
-        <td class="contactName">
-          <div class="image">
-            <img class="contactImage" src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="">
-          </div>
-          <div>Agustín Emanuel Soria<br><label class="secondTextGrey">agustinesoria96@gmail.com</label></div>
-          </td>
-        <td>Argentina<br><label class="secondTextGrey">Latam</label></td>
-        <td>Acámica</td>
-        <td>UI Designer</td>
-        <td>
-          <button class="contactChannel">Facebook</button>
-          <button class="contactChannel">WhatsApp</button>
-        </td>
-        <td class="interestPercentage uk-table-expand">100%
-            <div class="progress">
-              <div class="progress-bar red"></div>
-            </div>
-        </td>
-        <td class="tripleDot"><span class="material-symbols-outlined">more_horiz</span></td>
-      </tr>
     </tbody>
   </table>
+
+{{!-- <ul class="uk-pagination uk-flex-right">
+    <li><a href="#"><span uk-pagination-previous></span></a></li>
+    <li><a href="#"><span class="uk-margin-small-left" uk-pagination-next></span></a></li>
+</ul> --}}
 
 {{!-- Modal --}}
 
@@ -165,13 +127,23 @@
               </select>
           </div>
           <div class="addChannel">
-            <input type="text" placeholder="Agregar canal">
+            <input type="text" placeholder="+ Agregar canal">
           </div>
         </div>
       </form>
         <div class="closeModalButtons">
           <button class="uk-modal-close btnCancel" type="button">Cancelar</button>
           <button class="uk-modal-close btnSaveContact" type="button">Guardar contacto</button>
+        </div>
+    </div>
+  </div>
+
+  <div id="delete-contact" class="uk-modal-container" uk-modal>
+    <div class="uk-modal-dialog uk-margin-auto-vertical deleteModalContainer">
+        <h3 class="titleDeleteModal">¿Desea eliminar el contacto?</h3>
+        <div class="buttonsModalDelete">
+            <button class="uk-modal-close" id="closeModal">Cancelar</button>
+            <button class="uk-modal-close" id="deleteContact">Confirmar</button>
         </div>
     </div>
   </div>
