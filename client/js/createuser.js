@@ -10,30 +10,30 @@ let allowedCreateUserURL = "/users.html"
 
 if(allowedCreateUserURL.includes(location.pathname)){
 
-    createUserbtn.addEventListener("click", (e) => {
-        e.preventDefault();
+    if(createUserbtn){
+        createUserbtn.addEventListener("click", (e) => {
+            e.preventDefault();
 
-        const data = {
-            firstname: user_name.value,
-            lastname: user_lastname.value,
-            email: user_email.value,
-            password: user_password.value,
-            role: user_role.value
-            // updater_userid: loggedUser.id
-        };
+            const data = {
+                firstname: user_name.value,
+                lastname: user_lastname.value,
+                email: user_email.value,
+                password: user_password.value,
+                role: user_role.value
+            };
 
-        request("/api/user", {
-            method: "POST",
-            headers: {
-                "Authorization": `Bearer ${localStorage.getItem("token")}` 
-            },
-            body: data
-        }).then((response) => {
-            window.alert("Usuario creado!");
-            location.reload();
-            // window.location.replace('/index.html');
-        }).catch(err => {
-        console.log(err);
+            request("/api/user", {
+                method: "POST",
+                headers: {
+                    "Authorization": `Bearer ${localStorage.getItem("token")}` 
+                },
+                body: data
+            }).then((response) => {
+                window.alert("Usuario creado!");
+                location.reload();
+            }).catch(err => {
+            console.log(err);
+            });
         });
-    });
+    }
 }
