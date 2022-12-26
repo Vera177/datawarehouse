@@ -10,7 +10,7 @@
       <a href="https://google.com" class="uk-text-bold iconSearch uk-search-icon-flip" uk-search-icon></a>
     </div>
     <div>
-      <button class="addContactBtn" uk-toggle="target: #my-id">Agregar contacto</button>
+      <button class="addContactBtn" id="btnOpenAddContact">Agregar contacto</button>
     </div>
   </div>
 
@@ -39,7 +39,7 @@
 
 {{!-- Modal --}}
 
-  <div id="my-id" class="uk-modal-container" uk-modal>
+  <div id="add-contact" class="uk-modal-container" uk-modal>
     <div class="uk-modal-dialog">
       <div class="contactsContainer">
         <div class="titleContactsModal">
@@ -52,67 +52,60 @@
           <img src="../assets/addpersonphoto.png" alt="add image person">
           {{!-- <input type="image"> --}}
           <div>
-            <label for="name">Nombre<span class="requiredRed">*</span></label>
-            <input type="text" id="name" required>
+            <label for="input_contact_name">Nombre<span class="requiredRed">*</span></label>
+            <input type="text" id="input_contact_name" required>
           </div>
           <div>
-            <label for="lastname">Apellido<span class="requiredRed">*</span></label>
-            <input type="text" id="lastname" required>
+            <label for="input_contact_lastname">Apellido<span class="requiredRed">*</span></label>
+            <input type="text" id="input_contact_lastname" required>
           </div>
           <div>
-            <label for="occupation">Cargo<span class="requiredRed">*</span></label>
-            <input type="text" id="occupation" required>
+            <label for="input_contact_occupation">Cargo<span class="requiredRed">*</span></label>
+            <input type="text" id="input_contact_occupation" required>
           </div>
           <div>
-            <label for="email">Email<span class="requiredRed">*</span></label>
-            <input type="email" id="email" required>
+            <label for="input_contact_email">Email<span class="requiredRed">*</span></label>
+            <input type="email" id="input_contact_email" required>
           </div>
           <div>
-            <label for="company">Compañía<span class="requiredRed">*</span></label>
-            <input type="text" id="company" required>
+            <label for="cmb_contact_company">Compañía<span class="requiredRed">*</span></label>
+            <select id="cmb_contact_company" name="company" required>
+              <option hidden selected value="">Seleccionar compañía</option>
+            </select>
         </div>
         </div>
         <div class="plusContactInformation">
           <div>
-            <label for="region">Región</label>
-            <select id="region" name="region">
+            <label for="cmb_contact_region">Región</label>
+            <select id="cmb_contact_region" name="region">
               <option hidden selected value="">Seleccionar región</option>
-              <option value="Sudamérica">Sudamérica</option>
             </select>
           </div>
           <div>
-            <label for="country">País</label>
-            <select id="country" name="country">
+            <label for="cmb_contact_country">País</label>
+            <select id="cmb_contact_country" name="country">
               <option hidden selected value="">Seleccionar país</option>
-              <option value="country">Argentina</option>
             </select>
           </div>
           <div>
-            <label for="city">Ciudad</label>
-            <select id="city" name="city">
+            <label for="cmb_contact_city">Ciudad</label>
+            <select id="cmb_contact_city" name="city">
               <option hidden selected value="">Seleccionar ciudad</option>
-              <option value="city">Buenos Aires</option>
             </select>
           </div>
           <div>
-            <label for="region">Dirección</label>
-            <input type="text" placeholder="Ingresa una dirección">
+            <label for="input_contact_adress">Dirección</label>
+            <input type="text" id="input_contact_adress" placeholder="Ingresa una dirección">
           </div>
           <div class="interestContainer">
-            <label for="interest">Interés</label>
-            <select id="interest" name="interest">          
-              <option value="interest">0%</option>
-              <option value="interest">25%</option>
-              <option value="interest">50%</option>
-              <option value="interest">75%</option>
-              <option value="interest">100%</option>
+            <label for="cmb_contact_interest">Interés</label>
+            <select id="cmb_contact_interest" name="interest">
             </select>
           </div>
           <div class="contactChannelContainer">
-            <label for="contactChannel">Canal de contacto</label>
-            <select id="contactChannel" name="contactChannel">
+            <label for="cmb_contact_contactChannel">Canal de contacto</label>
+            <select id="cmb_contact_contactChannel" name="contactChannel">
               <option hidden selected value="">Seleccionar canal</option>
-              <option value="contactChannel">WhatsApp</option>
             </select>
           </div>
           <div>
@@ -133,7 +126,7 @@
       </form>
         <div class="closeModalButtons">
           <button class="uk-modal-close btnCancel" type="button">Cancelar</button>
-          <button class="uk-modal-close btnSaveContact" type="button">Guardar contacto</button>
+          <button class="uk-modal-close btnSaveContact" id="btnSaveNewContact" type="button">Guardar contacto</button>
         </div>
     </div>
   </div>
@@ -148,6 +141,98 @@
     </div>
   </div>
   
+    <div id="edit-contact" class="uk-modal-container" uk-modal>
+    <div class="uk-modal-dialog">
+      <div class="contactsContainer">
+        <div class="titleContactsModal">
+          <h2 class="uk-modal-title newContactTitle">Nuevo contacto</h2>
+          <a class="uk-modal-close" type="a"><img src="../assets/close.png" alt="close modal"></a>
+        </div>
+      </div>
+      <form action="">
+        <div class="contactInformation">
+          <img src="../assets/addpersonphoto.png" alt="add image person">
+          {{!-- <input type="image"> --}}
+          <div>
+            <label for="input_edit_contact_name">Nombre<span class="requiredRed">*</span></label>
+            <input type="text" id="input_edit_contact_name" required>
+          </div>
+          <div>
+            <label for="input_edit_contact_lastname">Apellido<span class="requiredRed">*</span></label>
+            <input type="text" id="input_edit_contact_lastname" required>
+          </div>
+          <div>
+            <label for="input_edit_contact_occupation">Cargo<span class="requiredRed">*</span></label>
+            <input type="text" id="input_edit_contact_occupation" required>
+          </div>
+          <div>
+            <label for="input_edit_contact_email">Email<span class="requiredRed">*</span></label>
+            <input type="email" id="input_edit_contact_email" required>
+          </div>
+          <div>
+            <label for="cmb_edit_contact_company">Compañía<span class="requiredRed">*</span></label>
+            <select id="cmb_edit_contact_company" name="company" required>
+              <option hidden selected value="">Seleccionar compañía</option>
+            </select>
+        </div>
+        </div>
+        <div class="plusContactInformation">
+          <div>
+            <label for="cmb_edit_contact_region">Región</label>
+            <select id="cmb_edit_contact_region" name="region">
+              <option hidden selected value="">Seleccionar región</option>
+            </select>
+          </div>
+          <div>
+            <label for="cmb_edit_contact_country">País</label>
+            <select id="cmb_edit_contact_country" name="country">
+              <option hidden selected value="">Seleccionar país</option>
+            </select>
+          </div>
+          <div>
+            <label for="cmb_edit_contact_city">Ciudad</label>
+            <select id="cmb_edit_contact_city" name="city">
+              <option hidden selected value="">Seleccionar ciudad</option>
+            </select>
+          </div>
+          <div>
+            <label for="input_edit_contact_adress">Dirección</label>
+            <input type="text" id="input_edit_contact_adress" placeholder="Ingresa una dirección">
+          </div>
+          <div class="interestContainer">
+            <label for="cmb_edit_contact_interest">Interés</label>
+            <select id="cmb_edit_contact_interest" name="interest">
+            </select>
+          </div>
+          <div class="contactChannelContainer">
+            <label for="cmb_edit_contact_contactChannel">Canal de contacto</label>
+            <select id="cmb_edit_contact_contactChannel" name="contactChannel">
+              <option hidden selected value="">Seleccionar canal</option>
+            </select>
+          </div>
+          <div>
+              <label for="userAccount">Cuenta de usuario</label>
+              <input type="text" name="userAccount" id="userAccount" placeholder="@ejemplo">
+          </div>
+          <div>
+              <label for="preferences">Preferencias</label>
+              <select id="preferences" name="preferences">
+                <option hidden selected value="">Sin preferencia</option>
+                <option value="preferences">No molestar</option>
+              </select>
+          </div>
+          <div class="addChannel">
+            <input type="text" placeholder="+ Agregar canal">
+          </div>
+        </div>
+      </form>
+        <div class="closeModalButtons">
+          <button class="uk-modal-close btnCancel" type="button">Cancelar</button>
+          <button class="uk-modal-close btnSaveContact" id="btnEditContact" type="button">Guardar contacto</button>
+        </div>
+    </div>
+  </div>
+
 </section>
 {{> partials/footer}}
 {{>partials/foot}}
